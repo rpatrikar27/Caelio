@@ -114,8 +114,8 @@ export default function BlogPage() {
                      {post.excerpt}
                    </p>
                    <div className="mt-auto">
-                     <Link href={`/blog/${post.id}`} className="inline-flex items-center gap-2 text-brand-gold uppercase tracking-[0.2em] text-[10px] font-body border-b border-brand-gold/20 pb-1 hover:border-brand-gold transition-all">
-                        Read Full Story
+                     <Link href={`/blog/${post.id}`} className="group/link inline-flex items-center gap-2 text-brand-gold uppercase tracking-[0.2em] text-[10px] font-body border-b border-brand-gold/20 pb-1 hover:border-brand-gold transition-all">
+                        <motion.span whileHover={{ x: 3 }}>Read Full Story</motion.span>
                      </Link>
                    </div>
                 </div>
@@ -146,9 +146,14 @@ export default function BlogPage() {
                   placeholder="Enter your email" 
                   className="flex-1 bg-brand-black px-6 py-4 font-body outline-none text-brand-ivory"
                 />
-                <button type="submit" className="bg-brand-gold text-brand-black px-10 py-4 font-body text-[10px] uppercase tracking-widest font-bold hover:bg-brand-ivory transition-all whitespace-nowrap">
+                <motion.button 
+                  type="submit" 
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-brand-gold text-brand-black px-10 py-4 font-body text-[10px] uppercase tracking-widest font-bold hover:bg-brand-ivory transition-all whitespace-nowrap"
+                >
                     Subscribe
-                </button>
+                </motion.button>
               </form>
             )}
          </div>

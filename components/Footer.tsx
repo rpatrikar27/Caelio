@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { motion } from 'motion/react';
 import { Instagram, Mail, Phone, MapPin } from 'lucide-react';
 
 export const Footer = () => {
@@ -18,9 +19,16 @@ export const Footer = () => {
             &quot;Sky-Born. Earth-Roasted.&quot; Nagpur&apos;s premier specialty coffee destination and European culinary experience.
           </p>
           <div className="flex gap-4">
-            <a href="https://instagram.com/caaliocoffee" target="_blank" rel="noopener noreferrer" className="p-2 border border-brand-gold/20 text-brand-gold hover:bg-brand-gold hover:text-brand-black transition-all">
+            <motion.a 
+              href="https://instagram.com/caeliocoffee" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              whileHover={{ scale: 1.1, backgroundColor: '#c9a84c', color: '#07080b' }}
+              whileTap={{ scale: 0.9 }}
+              className="p-2 border border-brand-gold/20 text-brand-gold transition-all"
+            >
               <Instagram size={18} />
-            </a>
+            </motion.a>
           </div>
         </div>
 
@@ -28,11 +36,11 @@ export const Footer = () => {
         <div>
           <h4 className="font-heading text-brand-gold tracking-widest text-sm uppercase mb-6">Menu</h4>
           <ul className="flex flex-col gap-4 text-sm text-brand-ivory/60">
-            <li><Link href="/menu" className="hover:text-brand-gold transition-colors">Hot Espresso Bar</Link></li>
-            <li><Link href="/menu" className="hover:text-brand-gold transition-colors">Filter & Pour Over</Link></li>
-            <li><Link href="/menu" className="hover:text-brand-gold transition-colors">Cold Brew & Iced</Link></li>
-            <li><Link href="/food" className="hover:text-brand-gold transition-colors">Italian & French Food</Link></li>
-            <li><Link href="/menu" className="hover:text-brand-gold transition-colors">Beans & Retail</Link></li>
+            <li><Link href="/menu" className="hover:text-brand-gold transition-colors block w-fit hover:translate-x-1 transition-transform">Hot Espresso Bar</Link></li>
+            <li><Link href="/menu" className="hover:text-brand-gold transition-colors block w-fit hover:translate-x-1 transition-transform">Filter & Pour Over</Link></li>
+            <li><Link href="/menu" className="hover:text-brand-gold transition-colors block w-fit hover:translate-x-1 transition-transform">Cold Brew & Iced</Link></li>
+            <li><Link href="/food" className="hover:text-brand-gold transition-colors block w-fit hover:translate-x-1 transition-transform">Italian & French Food</Link></li>
+            <li><Link href="/menu" className="hover:text-brand-gold transition-colors block w-fit hover:translate-x-1 transition-transform">Beans & Retail</Link></li>
           </ul>
         </div>
 

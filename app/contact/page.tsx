@@ -79,12 +79,26 @@ export default function ContactPage() {
                <div className="pt-12 border-t border-brand-gold/10">
                   <h3 className="font-heading text-xl mb-6 tracking-widest uppercase">Follow the Ritual</h3>
                   <div className="flex gap-4">
-                     <a href="#" className="w-10 h-10 border border-brand-gold/20 flex items-center justify-center text-brand-gold hover:bg-brand-gold hover:text-brand-black transition-all">
+                     <motion.a 
+                        href="https://instagram.com/caeliocoffee" 
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.1, backgroundColor: '#c9a84c', color: '#07080b' }} 
+                        whileTap={{ scale: 0.9 }}
+                        className="w-10 h-10 border border-brand-gold/20 flex items-center justify-center text-brand-gold transition-all"
+                     >
                         <Instagram size={18} />
-                     </a>
-                     <a href="#" className="w-10 h-10 border border-brand-gold/20 flex items-center justify-center text-brand-gold hover:bg-brand-gold hover:text-brand-black transition-all">
+                     </motion.a>
+                     <motion.a 
+                        href="https://wa.me/918208049909" 
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.1, backgroundColor: '#c9a84c', color: '#07080b' }} 
+                        whileTap={{ scale: 0.9 }}
+                        className="w-10 h-10 border border-brand-gold/20 flex items-center justify-center text-brand-gold transition-all"
+                      >
                         <MessageSquare size={18} />
-                     </a>
+                      </motion.a>
                   </div>
                </div>
             </div>
@@ -172,9 +186,14 @@ export default function ContactPage() {
             <p className="font-body text-brand-ivory/60 leading-relaxed mb-12">
                Are you an artisan barista or a culinary expert? Join the Caelio family and help us redefine café culture in Nagpur.
             </p>
-            <a href="mailto:careers@caaliocoffee.com" className="inline-block border border-brand-gold px-12 py-5 font-body text-xs uppercase tracking-[0.2em] text-brand-gold hover:bg-brand-gold hover:text-brand-black transition-all duration-500">
+            <motion.a 
+              href="mailto:careers@caaliocoffee.com" 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-block border border-brand-gold px-12 py-5 font-body text-xs uppercase tracking-[0.2em] text-brand-gold hover:bg-brand-gold hover:text-brand-black transition-all duration-500"
+            >
                Inquire at careers@caaliocoffee.com
-            </a>
+            </motion.a>
          </div>
       </section>
 

@@ -48,20 +48,30 @@ export const Navbar = () => {
         {/* Desktop Links */}
         <div className="hidden lg:flex items-center gap-8">
           {navLinks.map((link) => (
-            <Link 
-              key={link.name} 
-              href={link.href} 
-              className="font-body text-[11px] uppercase tracking-[0.2em] font-light text-brand-ivory/60 hover:text-brand-gold transition-colors duration-300"
+            <motion.div
+              key={link.name}
+              whileHover={{ y: -2 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 10 }}
             >
-              {link.name}
-            </Link>
+              <Link 
+                href={link.href} 
+                className="font-body text-[11px] uppercase tracking-[0.2em] font-light text-brand-ivory/60 hover:text-brand-gold transition-colors duration-300"
+              >
+                {link.name}
+              </Link>
+            </motion.div>
           ))}
-          <Link 
-            href="/contact" 
-            className="px-6 py-2 border border-brand-gold text-brand-gold font-body text-[10px] uppercase tracking-[0.2em] hover:bg-brand-gold hover:text-brand-black transition-colors"
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
-            Reserve Table
-          </Link>
+            <Link 
+              href="/contact" 
+              className="px-6 py-2 border border-brand-gold text-brand-gold font-body text-[10px] uppercase tracking-[0.2em] hover:bg-brand-gold hover:text-brand-black transition-colors"
+            >
+              Reserve Table
+            </Link>
+          </motion.div>
         </div>
 
         {/* Mobile Toggle */}

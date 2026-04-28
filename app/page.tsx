@@ -7,7 +7,7 @@ import { motion } from 'motion/react';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { Starfield, GrainOverlay } from '@/components/Starfield';
-import { Coffee, Stars, Award, Globe, Quote, ChevronRight } from 'lucide-react';
+import { Coffee, Stars, Award, Globe, Quote, ChevronRight, Instagram } from 'lucide-react';
 
 // --- Components ---
 
@@ -152,12 +152,16 @@ export default function HomePage() {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="flex flex-col sm:flex-row gap-4 md:gap-6 mb-16 lg:mb-20"
             >
-              <Link href="/menu" className="bg-brand-gold text-brand-black px-10 md:px-14 py-5 text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-brand-ivory transition-all text-center">
-                Explore Menu
-              </Link>
-              <Link href="/story" className="border border-brand-ivory/30 text-brand-ivory px-10 md:px-14 py-5 text-[10px] uppercase tracking-[0.3em] hover:bg-brand-ivory hover:text-brand-black transition-all text-center">
-                Our Story
-              </Link>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Link href="/menu" className="block bg-brand-gold text-brand-black px-10 md:px-14 py-5 text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-brand-ivory transition-all text-center">
+                  Explore Menu
+                </Link>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Link href="/story" className="block border border-brand-ivory/30 text-brand-ivory px-10 md:px-14 py-5 text-[10px] uppercase tracking-[0.3em] hover:bg-brand-ivory hover:text-brand-black transition-all text-center">
+                  Our Story
+                </Link>
+              </motion.div>
             </motion.div>
 
             <div className="pt-10 border-t border-brand-gold/10 flex flex-wrap gap-8 md:gap-12">
@@ -222,7 +226,7 @@ export default function HomePage() {
               </p>
               <div className="flex flex-col gap-2 text-xs text-brand-gold font-body tracking-[0.1em]">
                 <span>+91 82080 49909</span>
-                <span>@caeliocoffeehouse</span>
+                <span>@caeliocoffee</span>
               </div>
               <div className="mt-10 text-[9px] uppercase tracking-widest flex gap-6 opacity-30">
                 <span>Daily: 08:30—02:30</span>
@@ -348,9 +352,11 @@ export default function HomePage() {
             <p className="text-lg text-brand-ivory font-editorial text-center mb-10 max-w-2xl px-6 opacity-70">
               Caelio opens 1st June 2026. Experience it. Then tell the world.
             </p>
-            <Link href="https://maps.google.com/?q=Nandanvan+Road,+Nagpur,+Maharashtra+440008" className="bg-brand-gold text-brand-black px-12 py-5 text-[10px] uppercase tracking-widest font-bold hover:bg-brand-ivory transition-all flex items-center gap-3">
-              Leave a Google Review <ChevronRight size={16} />
-            </Link>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Link href="https://maps.google.com/?q=Nandanvan+Road,+Nagpur,+Maharashtra+440008" className="bg-brand-gold text-brand-black px-12 py-5 text-[10px] uppercase tracking-widest font-bold hover:bg-brand-ivory transition-all flex items-center gap-3">
+                Leave a Google Review <ChevronRight size={16} />
+              </Link>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -358,22 +364,58 @@ export default function HomePage() {
       {/* Instagram Placeholder Grid */}
       <section className="py-20 px-6">
         <div className="max-w-7xl mx-auto">
-           <div className="flex justify-between items-center mb-12">
-              <h3 className="font-heading text-2xl tracking-widest uppercase">@caeliocoffeehouse</h3>
-              <a href="https://instagram.com/caeliocoffeehouse" className="text-xs uppercase tracking-widest text-brand-gold border-b border-brand-transparent hover:border-brand-gold transition-all">Follow Us</a>
+           <div className="flex justify-between items-end mb-12">
+              <div>
+                <span className="text-[10px] uppercase tracking-[0.4em] text-brand-gold/50 mb-2 block">Social Gallery</span>
+                <h3 className="font-heading text-2xl tracking-widest uppercase">@caeliocoffee</h3>
+              </div>
+              <motion.div whileHover={{ x: 5 }} whileTap={{ scale: 0.95 }}>
+                <a href="https://instagram.com/caeliocoffee" target="_blank" rel="noopener noreferrer" className="text-xs uppercase tracking-widest text-brand-gold flex items-center gap-2 group">
+                  Follow Us <Instagram size={14} className="group-hover:rotate-12 transition-transform" />
+                </a>
+              </motion.div>
            </div>
-           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2">
-              {[...Array(6)].map((_, i) => (
-                <div key={i} className="aspect-square bg-brand-charcoal relative overflow-hidden group">
+           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              {[
+                { type: 'reel', id: '1', img: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=800&auto=format&fit=crop' },
+                { type: 'post', id: '2', img: 'https://images.unsplash.com/photo-1541167760496-162955ed8a9f?q=80&w=800&auto=format&fit=crop' },
+                { type: 'post', id: '3', img: 'https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=80&w=800&auto=format&fit=crop' },
+                { type: 'reel', id: '4', img: 'https://images.unsplash.com/photo-1507133750040-4a8f57021571?q=80&w=800&auto=format&fit=crop' },
+                { type: 'post', id: '5', img: 'https://images.unsplash.com/photo-1498804103079-a6351b050096?q=80&w=800&auto=format&fit=crop' },
+                { type: 'reel', id: '6', img: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=800&auto=format&fit=crop' },
+                { type: 'post', id: '7', img: 'https://images.unsplash.com/photo-1497933321027-94483b158a2f?q=80&w=800&auto=format&fit=crop' },
+                { type: 'reel', id: '8', img: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=800&auto=format&fit=crop' }
+              ].map((item, i) => (
+                <motion.a
+                  key={i}
+                  href="https://instagram.com/caeliocoffee"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  whileHover={{ y: -8 }}
+                  className="relative aspect-[4/5] bg-brand-charcoal overflow-hidden group border border-brand-gold/10"
+                >
                   <Image 
-                    src={i % 2 === 0 ? "https://images.unsplash.com/photo-1447933601403-0c6688de566e" : "https://images.unsplash.com/photo-1611854779393-1b2da9d400fe"} 
+                    src={item.img} 
                     alt="Instagram Post" 
                     fill 
-                    sizes="(max-width: 640px) 50vw, (max-width: 1080px) 25vw, 16vw"
-                    className="object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" 
+                    className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100" 
                     referrerPolicy="no-referrer"
                   />
-                </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                    <div className="flex items-center gap-2 text-brand-gold text-[10px] uppercase tracking-widest">
+                       <Instagram size={14} /> View {item.type}
+                    </div>
+                  </div>
+                  {item.type === 'reel' && (
+                    <div className="absolute top-4 right-4 text-brand-ivory opacity-60">
+                      <Stars size={16} className="animate-pulse" />
+                    </div>
+                  )}
+                </motion.a>
               ))}
            </div>
         </div>
@@ -408,14 +450,15 @@ export default function HomePage() {
               <p>Beside LOC, Nandanvan Road,<br />Nagpur, Maharashtra 440008</p>
               <p>Daily: 8:30 AM – 2:30 AM</p>
               <div className="pt-4">
-                <a 
+                <motion.a 
                   href="https://maps.google.com/?q=Nandanvan+Road,+Nagpur,+Maharashtra+440008" 
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-brand-gold uppercase tracking-[0.2em] text-xs border-b border-brand-gold pb-1"
+                  whileHover={{ x: 5 }}
+                  className="inline-block text-brand-gold uppercase tracking-[0.2em] text-xs border-b border-brand-gold pb-1 transition-all"
                 >
                   Get Directions
-                </a>
+                </motion.a>
               </div>
             </div>
           </div>

@@ -95,9 +95,11 @@ export default function MenuPage() {
           {/* Categories Tab Bar */}
           <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-20">
             {Object.keys(menuData).map((category) => (
-              <button
+              <motion.button
                 key={category}
                 onClick={() => setActiveTab(category)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 className={`px-6 py-3 font-body text-[10px] md:text-xs uppercase tracking-[0.2em] transition-all duration-300 border ${
                   activeTab === category 
                   ? 'bg-brand-gold text-brand-black border-brand-gold' 
@@ -105,7 +107,7 @@ export default function MenuPage() {
                 }`}
               >
                 {category}
-              </button>
+              </motion.button>
             ))}
           </div>
 
