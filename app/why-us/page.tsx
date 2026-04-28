@@ -5,38 +5,37 @@ import { motion } from 'motion/react';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { Starfield, GrainOverlay } from '@/components/Starfield';
-import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { Zap, Beaker, ShieldCheck, Flame, Compass, Heart } from 'lucide-react';
 
 const usps = [
   { 
-    title: "The Vietnam Highlands", 
-    desc: "Caelio brings the first true Vietnamese specialty program to Nagpur, sourced directly from Da Lat.", 
+    title: "Indian Single Origin", 
+    desc: "Caelio brings the finest direct-trade beans from Coorg, Araku Valley, and Chikmagalur estates to Nagpur.", 
     icon: Zap 
   },
   { 
-    title: "18-Hour Mon-Cœur Brew", 
-    desc: "A Parisian-inspired cold infusion steeped for depth, sweetness, and a velvety Vietnamese finish.", 
+    title: "18-Hour Midnight Drift", 
+    desc: "Our signature cold brew infusion steeped for depth, sweetness, and notes of dark Belgian chocolate.", 
     icon: Beaker 
   },
   { 
-    title: "Heritage Direct Trade", 
-    desc: "We work with small-batch family estates in Vietnam's Highland regions to ensure ethical excellence.", 
+    title: "Traceable Estates", 
+    desc: "We work directly with small-batch estates in Karnataka to ensure ethical excellence and complete traceability.", 
     icon: ShieldCheck 
   },
   { 
-    title: "Parisian Roasting Style", 
-    desc: "Our roasts are slow and medium-dark, designed to enhance the natural cocoa and nutty notes of Robusta.", 
+    title: "European Roasting Craft", 
+    desc: "Small-batch roasting techniques designed to enhance the bright, floral, and nutty notes of Indian Arabica.", 
     icon: Flame 
   },
   { 
-    title: "Hanoian Drip Ritual", 
-    desc: "Perfecting the automated Phin drip alongside traditional French Chemex and V60 methods.", 
+    title: "Precision Extraction", 
+    desc: "Mastering the rituals of V60, Chemex, and AeroPress alongside world-class espresso on La Marzocco.", 
     icon: Compass 
   },
   { 
-    title: "Bistro Architecture", 
-    desc: "Immersive Parisian atmosphere featuring dark woods, minimal brass, and elegant gold lighting.", 
+    title: "Celestial Architecture", 
+    desc: "Immersive dark ambiance featuring warm gold lighting and an elevated Italian & French culinary experience.", 
     icon: Heart 
   }
 ];
@@ -47,7 +46,6 @@ export default function WhyUsPage() {
       <Navbar />
       <Starfield />
       <GrainOverlay />
-      <WhatsAppButton />
 
       <section className="pt-40 pb-32 px-6">
         <div className="max-w-7xl mx-auto">
@@ -67,7 +65,7 @@ export default function WhyUsPage() {
                Why We Are <span className="text-editorial italic font-light">Best.</span>
              </motion.h1>
              <p className="max-w-2xl mx-auto font-body text-brand-ivory/60 leading-relaxed text-lg">
-               At Caelio, we don't just serve coffee; we shepherd a bean's journey from volcanic soil to your celestial cup.
+               At Caelio, we don&apos;t just serve coffee; we shepherd a bean&apos;s journey from volcanic soil to your celestial cup.
              </p>
           </div>
 

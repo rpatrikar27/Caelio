@@ -9,8 +9,7 @@ const navLinks = [
   { name: 'Home', href: '/' },
   { name: 'Menu', href: '/menu' },
   { name: 'Our Story', href: '/story' },
-  { name: 'Why Us', href: '/why-us' },
-  { name: 'Food', href: '/food' },
+  { name: 'Kitchen', href: '/food' },
   { name: 'Blog', href: '/blog' },
   { name: 'Contact', href: '/contact' },
 ];
@@ -77,32 +76,59 @@ export const Navbar = () => {
       {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, x: '100%' }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed inset-0 bg-brand-black z-40 flex flex-col items-center justify-center gap-8 lg:hidden"
-          >
-            <div className="grain-overlay opacity-10" />
-            {navLinks.map((link) => (
-              <Link 
-                key={link.name} 
-                href={link.href} 
-                onClick={() => setIsOpen(false)}
-                className="font-heading text-3xl tracking-widest text-brand-gold hover:text-brand-ivory transition-colors"
-              >
-                {link.name}
-              </Link>
-            ))}
-            <Link 
-              href="/contact"
+          <>
+            {/* Background Overlay */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="mt-4 px-10 py-4 border border-brand-gold text-brand-gold font-body text-sm uppercase tracking-[0.2em]"
+              className="fixed inset-0 bg-brand-black/80 backdrop-blur-sm z-40 lg:hidden"
+            />
+            
+            <motion.div
+              initial={{ opacity: 0, x: '100%' }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="fixed inset-y-0 right-0 w-full sm:w-[400px] bg-brand-black z-50 flex flex-col justify-center px-12 lg:hidden border-l border-brand-gold/10"
             >
-              Reserve Table
-            </Link>
-          </motion.div>
+              <button 
+                onClick={() => setIsOpen(false)}
+                className="absolute top-8 right-8 text-brand-gold hover:text-brand-ivory transition-colors p-2"
+              >
+                <X size={32} />
+              </button>
+
+              <div className="grain-overlay opacity-10" />
+              <div className="flex flex-col gap-6">
+                <span className="text-brand-gold/30 text-[10px] tracking-[0.4em] uppercase mb-4">Explorer</span>
+                {navLinks.map((link) => (
+                  <Link 
+                    key={link.name} 
+                    href={link.href} 
+                    onClick={() => setIsOpen(false)}
+                    className="font-heading text-2xl tracking-widest text-brand-ivory hover:text-brand-gold transition-colors flex items-center justify-between group"
+                  >
+                    <span>{link.name}</span>
+                    <div className="h-px w-0 group-hover:w-12 bg-brand-gold transition-all duration-300" />
+                  </Link>
+                ))}
+                <Link 
+                  href="/contact"
+                  onClick={() => setIsOpen(false)}
+                  className="mt-8 px-8 py-4 border border-brand-gold/30 text-brand-gold font-body text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-brand-gold hover:text-brand-black transition-all text-center"
+                >
+                  Reserve Table
+                </Link>
+              </div>
+              
+              <div className="absolute bottom-12 left-12 right-12 flex justify-between items-center opacity-30 text-[9px] tracking-widest transition-opacity hover:opacity-100">
+                 <span>EST. 2026</span>
+                 <span>CAELIO PARIS</span>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </nav>

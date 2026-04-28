@@ -5,40 +5,62 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { Starfield, GrainOverlay } from '@/components/Starfield';
-import { WhatsAppButton } from '@/components/WhatsAppButton';
 
 const menuData = {
   'Hot Espresso Bar': [
-    { name: 'Espresso Saigon', price: '₹160', desc: 'Vietnamese robusta-arabica hybrid blend.', tags: [] },
-    { name: 'Phin Ristretto', price: '₹200', desc: 'Double concentrated Vietnamese drip base.', tags: ['Signature'] },
-    { name: 'The Eclipse', price: '₹240', desc: 'Condensed Vietnamese milk over black drip layer.', tags: ['Signature'] },
-    { name: 'Americano', price: '₹180', desc: 'Espresso with hot filtered water.', tags: [] },
-    { name: 'Cloud Nine Cappuccino', price: '₹260', desc: 'Velvety micro-foam over Vietnamese bold roast.', tags: [] },
-    { name: 'Hanoi Gold Latte', price: '₹290', desc: 'Infused with honey, organic turmeric, and spice.', tags: ['Signature'] },
-    { name: 'Flat White', price: '₹270', desc: 'Thin layer of micro-foam over double ristretto.', tags: [] },
+    { name: 'Espresso', price: '₹160', desc: 'Pure. Intense. Single origin shot pulled to perfection.', tags: [] },
+    { name: 'Doppio', price: '₹200', desc: 'Double espresso for those who never compromise.', tags: [] },
+    { name: 'The Eclipse', price: '₹240', desc: 'Ristretto with a shadow of dark chocolate bitters.', tags: ['Signature'] },
+    { name: 'Americano', price: '₹180', desc: 'Espresso with pure spring water, clean and bold.', tags: [] },
+    { name: 'Cloud Nine Cappuccino', price: '₹260', desc: 'Equal parts espresso, steamed milk, and airy foam.', tags: ['Signature'] },
+    { name: 'Golden Hour Latte', price: '₹290', desc: 'Silky micro-foam with turmeric-gold syrup.', tags: ['Signature'] },
+    { name: 'Flat White', price: '₹270', desc: 'Velvety micro-foam over ristretto double.', tags: [] },
+    { name: 'Cortado', price: '₹220', desc: 'Espresso cut with equal warm milk.', tags: [] },
+    { name: 'Macchiato', price: '₹190', desc: 'A shot marked with steamed milk.', tags: [] },
+    { name: 'Mocha', price: '₹300', desc: 'Espresso with Belgian dark chocolate.', tags: [] },
   ],
-  'Filter & Vietnamese Drip': [
-    { name: 'Da Lat V60', price: '₹320', desc: 'Bright, citrusy light roast from Vietnam highlands.', tags: ['Single Origin'] },
-    { name: 'Traditional Phin', price: '₹240', desc: 'Authentic Da Lat robusta slow-dripped.', tags: ['Vietnam'] },
-    { name: 'Chemex Brew', price: '₹340', desc: 'Pure extraction through triple-bonded filter.', tags: [] },
-    { name: 'AeroPress Vietnam', price: '₹280', desc: 'Full-bodied immersion extraction of dark roast.', tags: [] },
-    { name: 'Siphon Brew', price: '₹480', desc: 'Theatrical vacuum-brewed perfection.', tags: ['Signature'] },
+  'Filter & Pour Over': [
+    { name: 'Dawn Drop V60', price: '₹320', desc: 'Single origin, bright, floral, delicate.', tags: ['Signature'] },
+    { name: 'Chemex Brew', price: '₹340', desc: 'Crystal-clear through double-bonded filters.', tags: [] },
+    { name: 'AeroPress', price: '₹280', desc: 'Bold and smooth with low acidity.', tags: [] },
+    { name: 'French Press', price: '₹260', desc: 'Full-bodied, full-immersion brew.', tags: [] },
+    { name: 'Siphon Brew', price: '₹480', desc: 'Theatrical vacuum brewing at your table.', tags: ['Rare'] },
+    { name: 'South Indian Filter', price: '₹220', desc: 'Traditional brass decoction with warm milk.', tags: [] },
   ],
   'Cold Brew & Iced': [
-    { name: 'Mon Coeur Brew', price: '₹340', desc: '18-hour cold brew with Saigon cocoa notes.', tags: ['Signature', 'Cold'] },
-    { name: 'Ca Phe Muoi', price: '₹320', desc: 'Vietnamese salted coffee over cold brew base.', tags: ['Cold', 'Signature'] },
-    { name: 'Nebula Frappe', price: '₹360', desc: 'Blended Vietnamese coffee with salted caramel.', tags: ['New', 'Cold'] },
-    { name: 'Stardust Nitro', price: '₹420', desc: 'Nitrogen infused cold brew for creamy texture.', tags: ['Signature', 'Cold'] },
+    { name: 'Midnight Drift', price: '₹340', desc: '18-hour cold brew, dark chocolate notes.', tags: ['Signature'] },
+    { name: 'Cold Brew Tonic', price: '₹320', desc: 'Cold brew over premium tonic with citrus.', tags: [] },
+    { name: 'Iced Latte', price: '₹280', desc: 'Espresso over ice with cold-frothed milk.', tags: [] },
+    { name: 'Nebula Frappe', price: '₹360', desc: 'Cold brew, salted caramel, oat milk, crushed ice.', tags: ['Signature'] },
+    { name: 'Iced Americano', price: '₹220', desc: 'Double espresso over ice.', tags: [] },
+    { name: 'Stardust Nitro Cold Brew', price: '₹420', desc: 'Nitro-infused with lavender foam and gold shimmer.', tags: ['New'] },
   ],
-  'Parisian Kitchen': [
-    { name: 'Croque Monsieur', price: '₹340', desc: 'Toasted ham and gruyère sandwich.', tags: ['French'] },
-    { name: 'Tiramisu Caelio', price: '₹280', desc: 'Vietnamese coffee infused Italian classic.', tags: ['Signature'] },
-    { name: 'Quiche Lorraine', price: '₹300', desc: 'Savory custard, smoked bacon, and gruyère.', tags: ['French'] },
-    { name: 'Pasta Aglio e Olio', price: '₹360', desc: 'Garlic, olive oil, and parsley masterpiece.', tags: ['Italian'] },
+  'Beyond Coffee': [
+    { name: 'Sattva Chai', price: '₹220', desc: 'Hand-ground spice masala with Darjeeling leaf.', tags: [] },
+    { name: 'Matcha Latte', price: '₹290', desc: 'Ceremonial grade Japanese matcha.', tags: [] },
+    { name: 'Golden Turmeric Latte', price: '₹250', desc: 'Turmeric, ginger, coconut milk.', tags: ['Vegan'] },
+    { name: 'Hot Chocolate Noir', price: '₹280', desc: 'Belgian 70% dark chocolate.', tags: [] },
+    { name: 'Hibiscus Cooler', price: '₹200', desc: 'Hibiscus, rose water, lemon, sparkling water.', tags: ['Vegan'] },
   ],
-  'Retail Beans': [
-    { name: 'Saigon Signature 250g', price: '₹680', desc: 'Our signature bold Vietnamese blend.', tags: ['Retail'] },
-    { name: 'Highland Single Origin 250g', price: '₹850', desc: 'Directly sourced from Da Lat estates.', tags: ['Vietnam'] },
+  'Kitchen': [
+    { name: 'Eggs Benedict', price: '₹380', desc: 'Brioche, smoked gouda, poached eggs, hollandaise.', tags: [] },
+    { name: 'Avocado Toast', price: '₹320', desc: 'Sourdough, smashed avocado, chilli, microgreens.', tags: [] },
+    { name: 'Croissant Butter/Almond', price: '₹180', desc: 'Laminated daily, European butter.', tags: [] },
+    { name: 'Croque Monsieur', price: '₹340', desc: 'Classic French ham and gruyere toastie.', tags: [] },
+    { name: 'Bruschetta Classica', price: '₹260', desc: 'Heirloom tomatoes, basil, Sicilian olive oil.', tags: [] },
+    { name: 'Quiche Lorraine', price: '₹300', desc: 'Gruyere, lardons, classic French pastry shell.', tags: [] },
+    { name: 'Tiramisu', price: '₹280', desc: 'Espresso-soaked ladyfingers, mascarpone cloud.', tags: [] },
+    { name: 'Crème Brûlée', price: '₹320', desc: 'Vanilla custard, caramelised sugar crust.', tags: [] },
+    { name: 'Dark Chocolate Tart', price: '₹260', desc: 'Valrhona ganache, shortbread shell.', tags: [] },
+    { name: 'French Onion Soup', price: '₹280', desc: 'Slow-caramelised onion, gruyere crouton.', tags: [] },
+    { name: 'Pasta Aglio e Olio', price: '₹360', desc: 'Spaghetti, garlic, chilli, Sicilian olive oil.', tags: [] },
+    { name: 'Margherita Flatbread', price: '₹320', desc: 'San Marzano, fior di latte, fresh basil.', tags: [] },
+  ],
+  'Beans & Retail': [
+    { name: 'Caelio House Blend 250g', price: '₹680', desc: 'Balanced, chocolatey, nutty signature roast.', tags: [] },
+    { name: 'Single Origin Coorg/Araku', price: '₹850', desc: 'Seasonal Indian single-estate.', tags: [] },
+    { name: 'Cold Brew Kit', price: '₹480', desc: 'Pre-measured grind + filter bag for 1L home brew.', tags: [] },
+    { name: 'Gift Box The Caelio Set', price: '₹1,400', desc: 'House blend + branded mug + tasting notes card.', tags: [] },
   ]
 };
 
@@ -50,7 +72,6 @@ export default function MenuPage() {
       <Navbar />
       <Starfield />
       <GrainOverlay />
-      <WhatsAppButton />
 
       <section className="pt-40 pb-20 px-6">
         <div className="max-w-7xl mx-auto">

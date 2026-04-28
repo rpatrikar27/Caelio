@@ -15,7 +15,7 @@ export const Footer = () => {
             <span className="text-[10px] tracking-[0.3em] font-body text-brand-ivory/60 uppercase">Coffee House</span>
           </div>
           <p className="text-sm text-brand-ivory/60 leading-relaxed max-w-xs">
-            "Sky-Born. Earth-Roasted." Nagpur's premier specialty coffee destination and European culinary experience.
+            &quot;Sky-Born. Earth-Roasted.&quot; Nagpur&apos;s premier specialty coffee destination and European culinary experience.
           </p>
           <div className="flex gap-4">
             <a href="https://instagram.com/caaliocoffee" target="_blank" rel="noopener noreferrer" className="p-2 border border-brand-gold/20 text-brand-gold hover:bg-brand-gold hover:text-brand-black transition-all">
@@ -60,14 +60,10 @@ export const Footer = () => {
           <h4 className="font-heading text-brand-gold tracking-widest text-sm uppercase mb-6">Hours</h4>
           <ul className="flex flex-col gap-3 text-sm text-brand-ivory/60 font-medium">
             <li className="flex justify-between border-b border-brand-gold/10 pb-2">
-              <span>Mon – Fri</span>
-              <span className="text-brand-gold">7:30 AM – 10:00 PM</span>
+              <span>Daily</span>
+              <span className="text-brand-gold">8:30 AM – 2:30 AM</span>
             </li>
-            <li className="flex justify-between border-b border-brand-gold/10 pb-2">
-              <span>Sat – Sun</span>
-              <span className="text-brand-gold">8:00 AM – 11:00 PM</span>
-            </li>
-            <li className="pt-2 text-xs text-brand-gold italic">Opening 1st May 2026</li>
+            <li className="pt-2 text-xs text-brand-gold italic">Opening 1st June 2026</li>
           </ul>
         </div>
       </div>

@@ -24,7 +24,7 @@ export default function StoryPage() {
                animate={{ opacity: 1 }}
                className="text-editorial text-brand-gold text-2xl mb-4 block"
              >
-               The Origin Myth
+               Sky-Born. Earth-Roasted.
              </motion.span>
              <motion.h1 
                initial={{ opacity: 0, y: 20 }}
@@ -35,19 +35,20 @@ export default function StoryPage() {
              </motion.h1>
              <div className="space-y-8 font-body text-brand-ivory/70 text-lg leading-relaxed max-w-xl">
                <p>
-                 Derived from the Latin <span className="text-brand-gold italic">Caelum</span>, meaning sky and heaven, Caelio was born from a singular obsession: to fuse the elegance of Parisian café culture with the depth of the Vietnamese Highlands.
+                 Caelio derives from <span className="text-brand-gold italic">Caelum</span> — Latin for sky and heaven. Born from a singular obsession with specialty coffee and European café culture, Caelio is Nagpur&apos;s answer to world-class coffee.
                </p>
                <p>
-                 In the heart of Nagpur, founders Rohit Patrikar and Shahnawaz Pathan envisioned a sanctuary where the world's most resilient robusta and refined arabica from Vietnam find a home in a Parisian bistro setting.
+                 Founders Rohit Patrikar and Shahnawaz Pathan envisioned a sanctuary where honest, traceable, single-origin Indian coffee meets the refined atmosphere of a European boutique café.
                </p>
              </div>
           </div>
-          <div className="flex-1 relative aspect-[4/5] w-full">
+          <div className="flex-1 relative aspect-[4/5] w-full max-w-md lg:max-w-none">
              <div className="absolute inset-0 border border-brand-gold/20 -translate-x-6 translate-y-6" />
              <Image 
-               src="https://picsum.photos/seed/paris/800/1000" 
-               alt="Parisian Aesthetic" 
+               src="https://images.unsplash.com/photo-1554118811-1e0d58224f24" 
+               alt="Interior Ambience" 
                fill 
+               sizes="(max-width: 640px) 100vw, 50vw"
                className="object-cover relative z-10 grayscale hover:grayscale-0 transition-all duration-1000"
                referrerPolicy="no-referrer"
              />
@@ -55,15 +56,16 @@ export default function StoryPage() {
         </div>
       </section>
 
-      {/* Founders Section */}
+      {/* Real Founders Story */}
       <section className="py-32 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
             <div className="order-2 md:order-1 relative aspect-video">
                <Image 
-                 src="https://picsum.photos/seed/founders2/800/600" 
-                 alt="The Founders" 
+                 src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085" 
+                 alt="The Craft" 
                  fill 
+                 sizes="(max-width: 640px) 100vw, 50vw"
                  className="object-cover border border-brand-gold/10"
                  referrerPolicy="no-referrer"
                />
@@ -71,16 +73,16 @@ export default function StoryPage() {
             <div className="order-1 md:order-2">
               <h2 className="font-heading text-4xl mb-8 tracking-widest text-brand-gold">The Founders</h2>
               <p className="font-body text-brand-ivory/60 mb-12 leading-relaxed">
-                Rohit Patrikar and Shahnawaz Pathan — two visionaries with a shared passion for Vietnamese coffee heritage and Parisian culinary excellence. Together, they have crafted Caelio Paris not just as a café, but as Nagpur's landmark for the discerning aficionado.
+                Having experienced the best cafés globally, Rohit and Shahnawaz returned to their hometown with one mission — to bring traceable, single-origin Indian coffee to Nagpur, paired with an elevated Italian and French culinary experience.
               </p>
               <div className="grid grid-cols-2 gap-8 text-center uppercase tracking-widest text-[10px] text-brand-gold">
                 <div className="p-8 border border-brand-gold/10">
-                   <p className="opacity-60 mb-2">Technical Vision</p>
-                   <p className="font-heading text-sm">Rohit Patrikar</p>
+                   <p className="opacity-60 mb-2">Founding Vision</p>
+                   <p className="font-heading text-sm text-[#f0e6d0]">Rohit Patrikar</p>
                 </div>
                 <div className="p-8 border border-brand-gold/10">
-                   <p className="opacity-60 mb-2">Culinary Craft</p>
-                   <p className="font-heading text-sm">Shahnawaz Pathan</p>
+                   <p className="opacity-60 mb-2">Founding Vision</p>
+                   <p className="font-heading text-sm text-[#f0e6d0]">Shahnawaz Pathan</p>
                 </div>
               </div>
             </div>
@@ -88,19 +90,19 @@ export default function StoryPage() {
         </div>
       </section>
 
-      {/* Philosophy */}
+      {/* Philosophy Pillars */}
       <section className="py-32 px-6 bg-brand-charcoal/20">
         <div className="max-w-7xl mx-auto">
            <div className="text-center mb-20">
-              <span className="text-editorial text-brand-gold text-2xl mb-4 block">The Immutable Spirit</span>
-              <h2 className="text-5xl font-heading mb-4">Our Philosophy.</h2>
+              <span className="text-editorial text-brand-gold text-2xl mb-4 block">Our Three Pillars</span>
+              <h2 className="text-5xl font-heading mb-4">Philosophy.</h2>
            </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
              {[
-               { icon: Target, title: "Vietnam", desc: "We source our beans directly from the volcanic soil of Da Lat and the Central Highlands, respecting the heritage of Vietnam's coffee culture." },
-               { icon: Coffee, title: "Bistro", desc: "Our craft is inspired by the legendary bistros of Paris. Precision dripping, refined roasts, and an uncompromising attention to texture." },
-               { icon: Users, title: "Heritage", desc: "Caelio Paris is a destination of culture. From the brass accents to the French-Italian kitchen, it is a bridge between two worlds." }
+               { icon: Target, title: "ORIGIN", desc: "Direct-trade beans from Coorg, Araku Valley, and Chikmagalur. Traceable to the estate and roasted to highlight their unique Indian terroir." },
+               { icon: Coffee, title: "CRAFT", desc: "Precision espresso on La Marzocco. Mastering V60, Chemex, AeroPress, and a dedicated 18-hour cold brew program." },
+               { icon: Users, title: "EXPERIENCE", desc: "Celestial dark ambiance, warm gold lighting, and an Italian & French kitchen. A destination designed for elevated living." }
              ].map((item, i) => (
                 <div key={i} className="text-center group">
                   <div className="w-16 h-16 rounded-full border border-brand-gold/20 flex items-center justify-center mx-auto mb-8 group-hover:bg-brand-gold group-hover:text-brand-black transition-all duration-500">
@@ -124,15 +126,15 @@ export default function StoryPage() {
 
            <div className="space-y-20">
               {[
-                { year: "2024", title: "The Vision", desc: "A late-night conversation in a Parisian bistro sparks the concept of Caelio Paris." },
-                { year: "2025", title: "Vietnamese Journey", desc: "Rohit and Shahnawaz spend 6 months in the Vietnamese Highlands sourcing the finest Robusta and Arabica." },
-                { year: "2026", title: "The Masterpiece", desc: "Grand opening in Nagpur, bringing a unique fusion of Paris and Saigon to the city." }
+                { year: "2024", title: "The Vision", desc: "Rohit and Shahnawaz conceptualise Nagpur's first specialty coffee house, bridging the gap between local beans and world-class craft." },
+                { year: "2025", title: "The Build", desc: "Sourcing partners established across Coorg and Araku, barista training begins, and the celestial interiors at Nandanvan Road are designed." },
+                { year: "2026", title: "The Opening", desc: "Caelio Coffee House opens its doors on 1st June 2026, marking a new era for coffee culture in Nagpur." }
               ].map((step, i) => (
                 <div key={i} className="flex gap-12 items-start group">
                    <div className="text-brand-gold font-heading text-3xl opacity-30 group-hover:opacity-100 transition-opacity">{step.year}</div>
                    <div className="flex flex-col gap-2">
-                      <h4 className="font-heading text-xl tracking-wide">{step.title}</h4>
-                      <p className="text-brand-ivory/60 leading-relaxed">{step.desc}</p>
+                       <h4 className="font-heading text-xl tracking-wide">{step.title}</h4>
+                       <p className="text-brand-ivory/60 leading-relaxed">{step.desc}</p>
                    </div>
                 </div>
               ))}

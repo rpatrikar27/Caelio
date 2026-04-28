@@ -14,7 +14,10 @@ export const Starfield = () => {
       size: `${Math.random() * 1.5 + 0.5}px`, // Scaled down for minimalism
       duration: `${Math.random() * 3 + 2}s`,
     }));
-    setStars(newStars);
+    const timeout = setTimeout(() => {
+      setStars(newStars);
+    }, 0);
+    return () => clearTimeout(timeout);
   }, []);
 
   return (

@@ -1,13 +1,13 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'motion/react';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { Starfield, GrainOverlay } from '@/components/Starfield';
-import { Clock, Calendar, User } from 'lucide-react';
+import { Clock, Calendar } from 'lucide-react';
 
 const blogPosts = [
   {
@@ -17,7 +17,7 @@ const blogPosts = [
     category: "Coffee 101",
     date: "April 15, 2026",
     readTime: "6 min read",
-    img: "https://picsum.photos/seed/blog1/800/600"
+    img: "https://images.unsplash.com/photo-1447933601403-0c6688de566e"
   },
   {
     id: 2,
@@ -26,7 +26,7 @@ const blogPosts = [
     category: "Origins",
     date: "April 18, 2026",
     readTime: "8 min read",
-    img: "https://picsum.photos/seed/blog2/800/600"
+    img: "https://images.unsplash.com/photo-1611854779393-1b2da9d400fe"
   },
   {
     id: 3,
@@ -35,7 +35,7 @@ const blogPosts = [
     category: "Brew Methods",
     date: "April 22, 2026",
     readTime: "5 min read",
-    img: "https://picsum.photos/seed/blog3/800/600"
+    img: "https://images.unsplash.com/photo-1541167760496-1628856ab772"
   },
   {
     id: 4,
@@ -44,11 +44,18 @@ const blogPosts = [
     category: "Culture",
     date: "April 25, 2026",
     readTime: "7 min read",
-    img: "https://picsum.photos/seed/blog4/800/600"
+    img: "https://images.unsplash.com/photo-1554118811-1e0d58224f24"
   }
 ];
 
 export default function BlogPage() {
+  const [isSubscribed, setIsSubscribed] = useState(false);
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubscribed(true);
+  };
+
   return (
     <main className="min-h-screen bg-brand-black">
       <Navbar />
@@ -89,6 +96,7 @@ export default function BlogPage() {
                      src={post.img} 
                      alt={post.title} 
                      fill 
+                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                      className="object-cover transition-transform duration-1000 group-hover:scale-110 opacity-60 group-hover:opacity-100"
                      referrerPolicy="no-referrer"
                    />
@@ -117,21 +125,32 @@ export default function BlogPage() {
         </div>
       </section>
 
-      {/* Newsletter Placeholder */}
+      {/* Newsletter Section */}
       <section className="py-32 px-6 border-y border-brand-gold/10">
          <div className="max-w-2xl mx-auto text-center">
             <h3 className="font-heading text-3xl mb-8 tracking-widest leading-tight">Subscribe to the <span className="text-editorial italic text-brand-gold">Caelio Letters.</span></h3>
             <p className="font-body text-brand-ivory/60 mb-10 text-sm italic">Weekly insights into specialty coffee culture, brewing techniques, and culinary news.</p>
-            <form className="flex group border border-brand-gold/20 p-1">
-               <input 
-                 type="email" 
-                 placeholder="Enter your email" 
-                 className="flex-1 bg-brand-black px-6 py-4 font-body outline-none text-brand-ivory"
-               />
-               <button className="bg-brand-gold text-brand-black px-10 py-4 font-body text-[10px] uppercase tracking-widest font-bold hover:bg-brand-ivory transition-all whitespace-nowrap">
-                  Subscribe
-               </button>
-            </form>
+            {isSubscribed ? (
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="p-8 border border-brand-gold/40 bg-brand-gold/10 text-brand-gold font-heading tracking-widest"
+              >
+                Thank you! We&apos;ll be in touch before opening day.
+              </motion.div>
+            ) : (
+              <form onSubmit={handleSubscribe} className="flex group border border-brand-gold/20 p-1">
+                <input 
+                  type="email" 
+                  required
+                  placeholder="Enter your email" 
+                  className="flex-1 bg-brand-black px-6 py-4 font-body outline-none text-brand-ivory"
+                />
+                <button type="submit" className="bg-brand-gold text-brand-black px-10 py-4 font-body text-[10px] uppercase tracking-widest font-bold hover:bg-brand-ivory transition-all whitespace-nowrap">
+                    Subscribe
+                </button>
+              </form>
+            )}
          </div>
       </section>
 

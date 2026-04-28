@@ -5,16 +5,21 @@ import { motion } from 'motion/react';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { Starfield, GrainOverlay } from '@/components/Starfield';
-import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { MapPin, Phone, Mail, Instagram, MessageSquare } from 'lucide-react';
 
 export default function ContactPage() {
+  const [isSubmitted, setIsSubmitted] = React.useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitted(true);
+  };
+
   return (
     <main className="min-h-screen bg-brand-black">
       <Navbar />
       <Starfield />
       <GrainOverlay />
-      <WhatsAppButton />
 
       <section className="pt-40 pb-32 px-6">
         <div className="max-w-7xl mx-auto">
@@ -84,41 +89,77 @@ export default function ContactPage() {
                </div>
             </div>
 
-            {/* Contact Form */}
+            {/* Reservation / Contact Form */}
             <div className="bg-brand-charcoal/30 p-12 border border-brand-gold/10 backdrop-blur-md">
-               <h2 className="font-heading text-3xl mb-10 tracking-widest underline underline-offset-8 decoration-brand-gold/30">Send a Message</h2>
-               <form className="space-y-6 font-body">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                     <div className="space-y-2">
-                        <label className="text-[10px] uppercase tracking-widest text-brand-ivory/40">Name</label>
-                        <input type="text" className="w-full bg-brand-black border border-brand-gold/10 px-6 py-4 focus:border-brand-gold outline-none transition-all text-brand-ivory" placeholder="John Doe" />
-                     </div>
-                     <div className="space-y-2">
-                        <label className="text-[10px] uppercase tracking-widest text-brand-ivory/40">Email</label>
-                        <input type="email" className="w-full bg-brand-black border border-brand-gold/10 px-6 py-4 focus:border-brand-gold outline-none transition-all text-brand-ivory" placeholder="john@example.com" />
-                     </div>
-                  </div>
-                  <div className="space-y-2">
-                     <label className="text-[10px] uppercase tracking-widest text-brand-ivory/40">Subject</label>
-                     <select className="w-full bg-brand-black border border-brand-gold/10 px-6 py-4 focus:border-brand-gold outline-none transition-all text-brand-ivory appearance-none">
-                        <option>General Inquiry</option>
-                        <option>Table Reservation</option>
-                        <option>Careers</option>
-                        <option>Business Opportunity</option>
-                     </select>
-                  </div>
-                  <div className="space-y-2">
-                     <label className="text-[10px] uppercase tracking-widest text-brand-ivory/40">Message</label>
-                     <textarea rows={5} className="w-full bg-brand-black border border-brand-gold/10 px-6 py-4 focus:border-brand-gold outline-none transition-all text-brand-ivory placeholder:text-brand-ivory/20" placeholder="How can we assist your coffee journey?"></textarea>
-                  </div>
-                  <motion.button 
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="w-full bg-brand-gold text-brand-black font-body text-xs uppercase tracking-[0.3em] font-bold py-5 mt-4 transition-all hover:bg-brand-ivory"
-                  >
-                    Transmit Message
-                  </motion.button>
-               </form>
+               <h2 className="font-heading text-3xl mb-10 tracking-widest underline underline-offset-8 decoration-brand-gold/30">Reservations</h2>
+               
+               {isSubmitted ? (
+                 <motion.div 
+                   initial={{ opacity: 0, scale: 0.9 }}
+                   animate={{ opacity: 1, scale: 1 }}
+                   className="p-12 border border-brand-gold/40 bg-brand-gold/10 text-center space-y-6"
+                 >
+                   <h3 className="text-brand-gold font-heading text-2xl tracking-widest">Reservation Received</h3>
+                   <p className="text-brand-ivory/70 font-body leading-relaxed">
+                     Thank you for choosing Caelio. We have received your request and will confirm your table shortly via WhatsApp or Email.
+                   </p>
+                   <button 
+                     onClick={() => setIsSubmitted(false)}
+                     className="text-brand-gold border-b border-brand-gold/20 pb-1 text-[10px] uppercase tracking-widest font-body"
+                   >
+                     Make another request
+                   </button>
+                 </motion.div>
+               ) : (
+                 <form onSubmit={handleSubmit} className="space-y-6 font-body">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                       <div className="space-y-2">
+                          <label className="text-[10px] uppercase tracking-widest text-brand-ivory/40">Full Name</label>
+                          <input required type="text" className="w-full bg-brand-black border border-brand-gold/10 px-6 py-4 focus:border-brand-gold outline-none transition-all text-brand-ivory" placeholder="John Doe" />
+                       </div>
+                       <div className="space-y-2">
+                          <label className="text-[10px] uppercase tracking-widest text-brand-ivory/40">Phone Number</label>
+                          <input required type="tel" className="w-full bg-brand-black border border-brand-gold/10 px-6 py-4 focus:border-brand-gold outline-none transition-all text-brand-ivory" placeholder="+91 00000 00000" />
+                       </div>
+                    </div>
+                    <div className="space-y-2">
+                       <label className="text-[10px] uppercase tracking-widest text-brand-ivory/40">Email Address</label>
+                       <input required type="email" className="w-full bg-brand-black border border-brand-gold/10 px-6 py-4 focus:border-brand-gold outline-none transition-all text-brand-ivory" placeholder="john@example.com" />
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                       <div className="space-y-2">
+                          <label className="text-[10px] uppercase tracking-widest text-brand-ivory/40">Date</label>
+                          <input required type="date" className="w-full bg-brand-black border border-brand-gold/10 px-6 py-4 focus:border-brand-gold outline-none transition-all text-brand-ivory [color-scheme:dark]" />
+                       </div>
+                       <div className="space-y-2">
+                          <label className="text-[10px] uppercase tracking-widest text-brand-ivory/40">Time</label>
+                          <input required type="time" className="w-full bg-brand-black border border-brand-gold/10 px-6 py-4 focus:border-brand-gold outline-none transition-all text-brand-ivory [color-scheme:dark]" />
+                       </div>
+                       <div className="space-y-2">
+                          <label className="text-[10px] uppercase tracking-widest text-brand-ivory/40">Guests</label>
+                          <select required className="w-full bg-brand-black border border-brand-gold/10 px-6 py-4 focus:border-brand-gold outline-none transition-all text-brand-ivory appearance-none">
+                             <option value="1">1 Person</option>
+                             <option value="2">2 People</option>
+                             <option value="3">3 People</option>
+                             <option value="4">4 People</option>
+                             <option value="5+">5+ People</option>
+                          </select>
+                       </div>
+                    </div>
+                    <div className="space-y-2">
+                       <label className="text-[10px] uppercase tracking-widest text-brand-ivory/40">Special Requests</label>
+                       <textarea rows={3} className="w-full bg-brand-black border border-brand-gold/10 px-6 py-4 focus:border-brand-gold outline-none transition-all text-brand-ivory placeholder:text-brand-ivory/20" placeholder="Birthdays, allergies, or preferred seating..."></textarea>
+                    </div>
+                    <motion.button 
+                      type="submit"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="w-full bg-brand-gold text-brand-black font-body text-xs uppercase tracking-[0.3em] font-bold py-5 mt-4 transition-all hover:bg-brand-ivory"
+                    >
+                      Request Table
+                    </motion.button>
+                 </form>
+               )}
             </div>
           </div>
         </div>
