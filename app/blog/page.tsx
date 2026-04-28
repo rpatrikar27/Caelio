@@ -97,7 +97,7 @@ export default function BlogPage() {
                      alt={post.title} 
                      fill 
                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                     className="object-cover transition-transform duration-1000 group-hover:scale-110 opacity-60 group-hover:opacity-100"
+                     className="object-cover transition-transform duration-1000 group-hover:scale-110 opacity-75 group-hover:opacity-100"
                      referrerPolicy="no-referrer"
                    />
                    <div className="absolute top-6 left-6 ring-1 ring-brand-gold px-4 py-1 bg-brand-black/80 text-[10px] uppercase tracking-widest text-brand-gold font-body">
@@ -105,12 +105,12 @@ export default function BlogPage() {
                    </div>
                 </div>
                 <div className="p-10 flex flex-col flex-1">
-                   <div className="flex items-center gap-6 mb-6 text-[10px] uppercase tracking-widest text-brand-ivory/40 font-body">
+                   <div className="flex items-center gap-6 mb-6 text-[10px] uppercase tracking-widest text-brand-ivory/60 font-body">
                       <div className="flex items-center gap-2"><Calendar size={12} /> {post.date}</div>
                       <div className="flex items-center gap-2"><Clock size={12} /> {post.readTime}</div>
                    </div>
                    <h2 className="font-heading text-2xl mb-6 tracking-wide leading-tight group-hover:text-brand-gold transition-colors">{post.title}</h2>
-                   <p className="font-body text-brand-ivory/60 leading-relaxed mb-8 text-sm line-clamp-2">
+                   <p className="font-body text-brand-ivory/80 leading-relaxed mb-8 text-sm line-clamp-2">
                      {post.excerpt}
                    </p>
                    <div className="mt-auto">
@@ -129,7 +129,7 @@ export default function BlogPage() {
       <section className="py-32 px-6 border-y border-brand-gold/10">
          <div className="max-w-2xl mx-auto text-center">
             <h3 className="font-heading text-3xl mb-8 tracking-widest leading-tight">Subscribe to the <span className="text-editorial italic text-brand-gold">Caelio Letters.</span></h3>
-            <p className="font-body text-brand-ivory/60 mb-10 text-sm italic">Weekly insights into specialty coffee culture, brewing techniques, and culinary news.</p>
+            <p className="font-body text-brand-ivory/80 mb-10 text-sm italic">Weekly insights into specialty coffee culture, brewing techniques, and culinary news.</p>
             {isSubscribed ? (
               <motion.div 
                 initial={{ opacity: 0, scale: 0.9 }}

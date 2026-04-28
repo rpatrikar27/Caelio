@@ -33,7 +33,7 @@ export default function StoryPage() {
              >
                Our<br /><span className="text-editorial italic font-light">Story.</span>
              </motion.h1>
-             <div className="space-y-8 font-body text-brand-ivory/70 text-lg leading-relaxed max-w-xl">
+             <div className="space-y-8 font-body text-brand-ivory/90 text-lg leading-relaxed max-w-xl">
                <p>
                  Caelio derives from <span className="text-brand-gold italic">Caelum</span> — Latin for sky and heaven. Born from a singular obsession with specialty coffee and European café culture, Caelio is Nagpur&apos;s answer to world-class coffee.
                </p>
@@ -72,7 +72,7 @@ export default function StoryPage() {
             </div>
             <div className="order-1 md:order-2">
               <h2 className="font-heading text-4xl mb-8 tracking-widest text-brand-gold">The Founders</h2>
-              <p className="font-body text-brand-ivory/60 mb-12 leading-relaxed">
+              <p className="font-body text-brand-ivory/80 mb-12 leading-relaxed">
                 Having experienced the best cafés globally, Rohit and Shahnawaz returned to their hometown with one mission — to bring traceable, single-origin Indian coffee to Nagpur, paired with an elevated Italian and French culinary experience.
               </p>
               <div className="grid grid-cols-2 gap-8 text-center uppercase tracking-widest text-[10px] text-brand-gold">
@@ -91,7 +91,7 @@ export default function StoryPage() {
       </section>
 
       {/* Philosophy Pillars */}
-      <section className="py-32 px-6 bg-brand-charcoal/20">
+      <section className="py-32 px-6 bg-brand-charcoal/10">
         <div className="max-w-7xl mx-auto">
            <div className="text-center mb-20">
               <span className="text-editorial text-brand-gold text-2xl mb-4 block">Our Three Pillars</span>
@@ -109,7 +109,7 @@ export default function StoryPage() {
                     <item.icon size={28} />
                   </div>
                   <h3 className="font-heading text-2xl mb-6 tracking-widest">{item.title}</h3>
-                  <p className="font-body text-brand-ivory/60 leading-relaxed text-sm">{item.desc}</p>
+                  <p className="font-body text-brand-ivory/80 leading-relaxed text-sm">{item.desc}</p>
                 </div>
              ))}
            </div>
@@ -134,7 +134,7 @@ export default function StoryPage() {
                    <div className="text-brand-gold font-heading text-3xl opacity-30 group-hover:opacity-100 transition-opacity">{step.year}</div>
                    <div className="flex flex-col gap-2">
                        <h4 className="font-heading text-xl tracking-wide">{step.title}</h4>
-                       <p className="text-brand-ivory/60 leading-relaxed">{step.desc}</p>
+                       <p className="text-brand-ivory/80 leading-relaxed">{step.desc}</p>
                    </div>
                 </div>
               ))}

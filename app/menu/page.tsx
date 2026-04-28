@@ -103,7 +103,7 @@ export default function MenuPage() {
                 className={`px-6 py-3 font-body text-[10px] md:text-xs uppercase tracking-[0.2em] transition-all duration-300 border ${
                   activeTab === category 
                   ? 'bg-brand-gold text-brand-black border-brand-gold' 
-                  : 'text-brand-ivory/60 border-brand-gold/20 hover:border-brand-gold/60'
+                  : 'text-brand-ivory/80 border-brand-gold/20 hover:border-brand-gold/60'
                 }`}
               >
                 {category}
@@ -127,7 +127,7 @@ export default function MenuPage() {
                     <div className="flex justify-between items-start">
                       <div className="flex flex-col gap-1">
                         <div className="flex items-center gap-3">
-                          <h3 className="font-heading text-lg tracking-wide group-hover:text-brand-gold transition-colors">
+                          <h3 className="font-heading text-lg tracking-wide group-hover:text-brand-gold/90 transition-colors">
                             {item.name}
                           </h3>
                           {item.tags.map(tag => (
@@ -136,7 +136,7 @@ export default function MenuPage() {
                             </span>
                           ))}
                         </div>
-                        <p className="text-xs text-brand-ivory/50 font-body italic">{item.desc}</p>
+                        <p className="text-xs text-brand-ivory/70 font-body italic">{item.desc}</p>
                       </div>
                       <span className="font-body text-brand-gold text-sm font-medium">{item.price}</span>
                     </div>

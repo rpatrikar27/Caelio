@@ -55,7 +55,7 @@ export const Navbar = () => {
             >
               <Link 
                 href={link.href} 
-                className="font-body text-[11px] uppercase tracking-[0.2em] font-light text-brand-ivory/60 hover:text-brand-gold transition-colors duration-300"
+                className="font-body text-[11px] uppercase tracking-[0.2em] font-light text-brand-ivory/80 hover:text-brand-gold transition-colors duration-300"
               >
                 {link.name}
               </Link>
@@ -112,7 +112,7 @@ export const Navbar = () => {
 
               <div className="grain-overlay opacity-10" />
               <div className="flex flex-col gap-6">
-                <span className="text-brand-gold/30 text-[10px] tracking-[0.4em] uppercase mb-4">Explorer</span>
+                <span className="text-brand-gold/50 text-[10px] tracking-[0.4em] uppercase mb-4">Explorer</span>
                 {navLinks.map((link) => (
                   <Link 
                     key={link.name} 

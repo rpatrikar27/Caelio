@@ -29,13 +29,13 @@ const FeatureCard = ({ icon: Icon, title, desc, index }: { icon: any, title: str
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ delay: index * 0.2 }}
     viewport={{ once: true }}
-    className="p-10 border border-brand-gold/10 bg-brand-charcoal/30 backdrop-blur-sm group hover:border-brand-gold/40 transition-colors duration-500"
+    className="p-10 border border-brand-gold/10 bg-brand-charcoal/10 backdrop-blur-sm group hover:border-brand-gold/40 transition-colors duration-500"
   >
     <div className="w-12 h-12 rounded-full border border-brand-gold/20 flex items-center justify-center mb-8 group-hover:bg-brand-gold group-hover:text-brand-black transition-all">
       <Icon size={24} />
     </div>
     <h3 className="font-heading text-xl mb-4 tracking-wider">{title}</h3>
-    <p className="text-sm text-brand-ivory/60 leading-relaxed font-body">
+    <p className="text-sm text-brand-ivory/80 leading-relaxed font-body">
       {desc}
     </p>
   </motion.div>
@@ -51,16 +51,16 @@ const SignatureCard = ({ name, desc, img, price }: { name: string, desc: string,
       alt={name} 
       fill 
       sizes="(max-width: 640px) 100vw, (max-width: 1080px) 50vw, 33vw"
-      className="object-cover transition-transform duration-1000 group-hover:scale-110 opacity-60 group-hover:opacity-80" 
+      className="object-cover transition-transform duration-1000 group-hover:scale-110 opacity-75 group-hover:opacity-90" 
       referrerPolicy="no-referrer"
     />
-    <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent" />
+    <div className="absolute inset-0 bg-gradient-to-t from-brand-black/80 via-transparent to-transparent" />
     <div className="absolute bottom-0 left-0 p-8 w-full">
       <div className="flex justify-between items-end mb-4">
         <h4 className="font-heading text-2xl tracking-wide">{name}</h4>
         <span className="font-body text-brand-gold text-lg">{price}</span>
       </div>
-      <p className="text-sm text-brand-ivory/60 font-body mb-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+      <p className="text-sm text-brand-ivory/80 font-body mb-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
         {desc}
       </p>
       <Link href="/menu" className="inline-flex items-center gap-2 text-brand-gold text-[10px] uppercase tracking-widest font-body border-b border-brand-gold/30 pb-1">
@@ -141,7 +141,7 @@ export default function HomePage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-editorial text-xl md:text-2xl opacity-70 mb-12 max-w-md italic font-light leading-relaxed"
+              className="text-editorial text-xl md:text-2xl opacity-90 mb-12 max-w-md italic font-light leading-relaxed"
             >
               Nagpur&apos;s first dedicated specialty coffee house. Single origin Indian beans. Precision craft. Celestial ambiance.
             </motion.p>
@@ -187,7 +187,7 @@ export default function HomePage() {
           </section>
 
           {/* Right Column: Teaser & Info */}
-          <section className="col-span-12 lg:col-span-5 flex flex-col bg-brand-charcoal/5 backdrop-blur-sm">
+          <section className="col-span-12 lg:col-span-5 flex flex-col bg-brand-charcoal/5">
             <div className="p-8 lg:p-12 border-b border-brand-gold/10 flex-1">
               <h3 className="font-heading text-[10px] uppercase tracking-[0.3em] text-brand-gold mb-10">Signature Rituals</h3>
               <div className="space-y-8 md:space-y-10">
