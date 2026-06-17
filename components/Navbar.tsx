@@ -47,27 +47,36 @@ export const Navbar = () => {
 
         {/* Desktop Links */}
         <div className="hidden lg:flex items-center gap-8">
-          {navLinks.map((link) => (
+          {navLinks.map((link, i) => (
             <motion.div
               key={link.name}
-              whileHover={{ y: -2 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1, type: 'spring', stiffness: 300, damping: 20 }}
+              className="relative group"
             >
               <Link 
                 href={link.href} 
-                className="font-body text-[11px] uppercase tracking-[0.2em] font-light text-brand-ivory/80 hover:text-brand-gold transition-colors duration-300"
+                className="font-body text-[11px] uppercase tracking-[0.2em] font-light text-brand-ivory/80 hover:text-brand-gold transition-colors duration-300 block py-2"
               >
                 {link.name}
+                <motion.div 
+                  className="absolute bottom-0 left-0 w-0 h-[1px] bg-brand-gold transition-all duration-300 group-hover:w-full"
+                  layoutId={`nav-underline-${link.name}`}
+                />
               </Link>
             </motion.div>
           ))}
           <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.6 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             <Link 
               href="/contact" 
-              className="px-6 py-2 border border-brand-gold text-brand-gold font-body text-[10px] uppercase tracking-[0.2em] hover:bg-brand-gold hover:text-brand-black transition-colors"
+              className="px-6 py-2 border border-brand-gold text-brand-gold font-body text-[10px] uppercase tracking-[0.2em] hover:bg-brand-gold hover:text-brand-black transition-all duration-500"
             >
               Reserve Table
             </Link>
@@ -113,16 +122,22 @@ export const Navbar = () => {
               <div className="grain-overlay opacity-10" />
               <div className="flex flex-col gap-6">
                 <span className="text-brand-gold/50 text-[10px] tracking-[0.4em] uppercase mb-4">Explorer</span>
-                {navLinks.map((link) => (
-                  <Link 
-                    key={link.name} 
-                    href={link.href} 
-                    onClick={() => setIsOpen(false)}
-                    className="font-heading text-2xl tracking-widest text-brand-ivory hover:text-brand-gold transition-colors flex items-center justify-between group"
+                {navLinks.map((link, i) => (
+                  <motion.div
+                    key={link.name}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.1 + i * 0.1 }}
                   >
-                    <span>{link.name}</span>
-                    <div className="h-px w-0 group-hover:w-12 bg-brand-gold transition-all duration-300" />
-                  </Link>
+                    <Link 
+                      href={link.href} 
+                      onClick={() => setIsOpen(false)}
+                      className="font-heading text-2xl tracking-widest text-brand-ivory hover:text-brand-gold transition-colors flex items-center justify-between group"
+                    >
+                      <span>{link.name}</span>
+                      <div className="h-px w-0 group-hover:w-12 bg-brand-gold transition-all duration-300" />
+                    </Link>
+                  </motion.div>
                 ))}
                 <Link 
                   href="/contact"

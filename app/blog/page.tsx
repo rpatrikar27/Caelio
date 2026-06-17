@@ -87,9 +87,10 @@ export default function BlogPage() {
                 key={post.id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
+                whileHover={{ y: -5, borderColor: 'rgba(201, 168, 76, 0.4)', boxShadow: '0 10px 30px -15px rgba(201, 168, 76, 0.2)' }}
+                transition={{ delay: i * 0.1, duration: 0.5, ease: 'easeOut' }}
                 viewport={{ once: true }}
-                className="group flex flex-col border border-brand-gold/10 hover:border-brand-gold/40 transition-all duration-700 bg-brand-charcoal/10"
+                className="group flex flex-col border border-brand-gold/10 transition-all duration-700 bg-brand-charcoal/10"
               >
                 <div className="relative aspect-video overflow-hidden">
                    <Image 

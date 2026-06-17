@@ -36,11 +36,29 @@ export const Footer = () => {
         <div>
           <h4 className="font-heading text-brand-gold tracking-widest text-sm uppercase mb-6">Menu</h4>
           <ul className="flex flex-col gap-4 text-sm text-brand-ivory/60">
-            <li><Link href="/menu" className="hover:text-brand-gold transition-colors block w-fit hover:translate-x-1 transition-transform">Hot Espresso Bar</Link></li>
-            <li><Link href="/menu" className="hover:text-brand-gold transition-colors block w-fit hover:translate-x-1 transition-transform">Filter & Pour Over</Link></li>
-            <li><Link href="/menu" className="hover:text-brand-gold transition-colors block w-fit hover:translate-x-1 transition-transform">Cold Brew & Iced</Link></li>
-            <li><Link href="/food" className="hover:text-brand-gold transition-colors block w-fit hover:translate-x-1 transition-transform">Italian & French Food</Link></li>
-            <li><Link href="/menu" className="hover:text-brand-gold transition-colors block w-fit hover:translate-x-1 transition-transform">Beans & Retail</Link></li>
+            {[
+              { label: 'Hot Espresso Bar', href: '/menu' },
+              { label: 'Filter & Pour Over', href: '/menu' },
+              { label: 'Cold Brew & Iced', href: '/menu' },
+              { label: 'Italian & French Food', href: '/food' },
+              { label: 'Beans & Retail', href: '/menu' }
+            ].map((link) => (
+              <li key={link.label}>
+                <Link 
+                  href={link.href} 
+                  className="group flex items-center gap-2 hover:text-brand-gold transition-colors block w-fit"
+                >
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">{link.label}</span>
+                  <motion.span
+                    initial={{ opacity: 0, x: -5 }}
+                    whileHover={{ opacity: 1, x: 0 }}
+                    className="text-brand-gold hidden group-hover:block"
+                  >
+                    →
+                  </motion.span>
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -58,7 +76,7 @@ export const Footer = () => {
             </li>
             <li className="flex gap-3 items-center">
               <Mail size={16} className="text-brand-gold" />
-              <span>careers@caaliocoffee.com</span>
+              <span>careers@caeliocoffee.com</span>
             </li>
           </ul>
         </div>

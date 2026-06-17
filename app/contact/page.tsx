@@ -70,7 +70,7 @@ export default function ContactPage() {
                         </div>
                         <div className="font-body space-y-1">
                            <p className="text-xs uppercase tracking-widest text-brand-gold font-bold">Careers</p>
-                           <p className="text-brand-ivory/70">careers@caaliocoffee.com</p>
+                           <p className="text-brand-ivory/70">careers@caeliocoffee.com</p>
                         </div>
                      </div>
                   </div>
@@ -129,29 +129,29 @@ export default function ContactPage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                        <div className="space-y-2">
                           <label className="text-[10px] uppercase tracking-widest text-brand-ivory/40">Full Name</label>
-                          <input required type="text" className="w-full bg-brand-black border border-brand-gold/10 px-6 py-4 focus:border-brand-gold outline-none transition-all text-brand-ivory" placeholder="John Doe" />
+                          <input required type="text" className="w-full bg-brand-black border border-brand-gold/10 px-6 py-4 focus:border-brand-gold focus:ring-1 focus:ring-brand-gold/20 focus:bg-brand-charcoal/40 outline-none transition-all duration-300 text-brand-ivory" placeholder="John Doe" />
                        </div>
                        <div className="space-y-2">
                           <label className="text-[10px] uppercase tracking-widest text-brand-ivory/40">Phone Number</label>
-                          <input required type="tel" className="w-full bg-brand-black border border-brand-gold/10 px-6 py-4 focus:border-brand-gold outline-none transition-all text-brand-ivory" placeholder="+91 00000 00000" />
+                          <input required type="tel" className="w-full bg-brand-black border border-brand-gold/10 px-6 py-4 focus:border-brand-gold focus:ring-1 focus:ring-brand-gold/20 focus:bg-brand-charcoal/40 outline-none transition-all duration-300 text-brand-ivory" placeholder="+91 00000 00000" />
                        </div>
                     </div>
                     <div className="space-y-2">
                        <label className="text-[10px] uppercase tracking-widest text-brand-ivory/40">Email Address</label>
-                       <input required type="email" className="w-full bg-brand-black border border-brand-gold/10 px-6 py-4 focus:border-brand-gold outline-none transition-all text-brand-ivory" placeholder="john@example.com" />
+                       <input required type="email" className="w-full bg-brand-black border border-brand-gold/10 px-6 py-4 focus:border-brand-gold focus:ring-1 focus:ring-brand-gold/20 focus:bg-brand-charcoal/40 outline-none transition-all duration-300 text-brand-ivory" placeholder="john@example.com" />
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                        <div className="space-y-2">
                           <label className="text-[10px] uppercase tracking-widest text-brand-ivory/40">Date</label>
-                          <input required type="date" className="w-full bg-brand-black border border-brand-gold/10 px-6 py-4 focus:border-brand-gold outline-none transition-all text-brand-ivory [color-scheme:dark]" />
+                          <input required type="date" className="w-full bg-brand-black border border-brand-gold/10 px-6 py-4 focus:border-brand-gold focus:ring-1 focus:ring-brand-gold/20 focus:bg-brand-charcoal/40 outline-none transition-all duration-300 text-brand-ivory [color-scheme:dark]" />
                        </div>
                        <div className="space-y-2">
                           <label className="text-[10px] uppercase tracking-widest text-brand-ivory/40">Time</label>
-                          <input required type="time" className="w-full bg-brand-black border border-brand-gold/10 px-6 py-4 focus:border-brand-gold outline-none transition-all text-brand-ivory [color-scheme:dark]" />
+                          <input required type="time" className="w-full bg-brand-black border border-brand-gold/10 px-6 py-4 focus:border-brand-gold focus:ring-1 focus:ring-brand-gold/20 focus:bg-brand-charcoal/40 outline-none transition-all duration-300 text-brand-ivory [color-scheme:dark]" />
                        </div>
                        <div className="space-y-2">
                           <label className="text-[10px] uppercase tracking-widest text-brand-ivory/40">Guests</label>
-                          <select required className="w-full bg-brand-black border border-brand-gold/10 px-6 py-4 focus:border-brand-gold outline-none transition-all text-brand-ivory appearance-none">
+                          <select required className="w-full bg-brand-black border border-brand-gold/10 px-6 py-4 focus:border-brand-gold focus:ring-1 focus:ring-brand-gold/20 focus:bg-brand-charcoal/40 outline-none transition-all duration-300 text-brand-ivory appearance-none">
                              <option value="1">1 Person</option>
                              <option value="2">2 People</option>
                              <option value="3">3 People</option>
@@ -162,7 +162,7 @@ export default function ContactPage() {
                     </div>
                     <div className="space-y-2">
                        <label className="text-[10px] uppercase tracking-widest text-brand-ivory/40">Special Requests</label>
-                       <textarea rows={3} className="w-full bg-brand-black border border-brand-gold/10 px-6 py-4 focus:border-brand-gold outline-none transition-all text-brand-ivory placeholder:text-brand-ivory/20" placeholder="Birthdays, allergies, or preferred seating..."></textarea>
+                       <textarea rows={3} className="w-full bg-brand-black border border-brand-gold/10 px-6 py-4 focus:border-brand-gold focus:ring-1 focus:ring-brand-gold/20 focus:bg-brand-charcoal/40 outline-none transition-all duration-300 text-brand-ivory placeholder:text-brand-ivory/20" placeholder="Birthdays, allergies, or preferred seating..."></textarea>
                     </div>
                     <motion.button 
                       type="submit"
@@ -187,12 +187,12 @@ export default function ContactPage() {
                Are you an artisan barista or a culinary expert? Join the Caelio family and help us redefine café culture in Nagpur.
             </p>
             <motion.a 
-              href="mailto:careers@caaliocoffee.com" 
+              href="mailto:careers@caeliocoffee.com" 
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="inline-block border border-brand-gold px-12 py-5 font-body text-xs uppercase tracking-[0.2em] text-brand-gold hover:bg-brand-gold hover:text-brand-black transition-all duration-500"
             >
-               Inquire at careers@caaliocoffee.com
+               Inquire at careers@caeliocoffee.com
             </motion.a>
          </div>
       </section>

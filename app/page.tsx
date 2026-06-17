@@ -27,14 +27,15 @@ const FeatureCard = ({ icon: Icon, title, desc, index }: { icon: any, title: str
   <motion.div
     initial={{ opacity: 0, y: 30 }}
     whileInView={{ opacity: 1, y: 0 }}
-    transition={{ delay: index * 0.2 }}
+    whileHover={{ y: -5, borderColor: 'rgba(201, 168, 76, 0.4)', boxShadow: '0 10px 30px -15px rgba(201, 168, 76, 0.2)' }}
+    transition={{ delay: index * 0.2, duration: 0.5, ease: 'easeOut' }}
     viewport={{ once: true }}
-    className="p-10 border border-brand-gold/10 bg-brand-charcoal/10 backdrop-blur-sm group hover:border-brand-gold/40 transition-colors duration-500"
+    className="p-10 border border-brand-gold/10 bg-brand-charcoal/10 backdrop-blur-sm group transition-all duration-500"
   >
     <div className="w-12 h-12 rounded-full border border-brand-gold/20 flex items-center justify-center mb-8 group-hover:bg-brand-gold group-hover:text-brand-black transition-all">
       <Icon size={24} />
     </div>
-    <h3 className="font-heading text-xl mb-4 tracking-wider">{title}</h3>
+    <h3 className="font-heading text-xl mb-4 tracking-wider group-hover:text-brand-gold transition-colors">{title}</h3>
     <p className="text-sm text-brand-ivory/80 leading-relaxed font-body">
       {desc}
     </p>
@@ -43,27 +44,27 @@ const FeatureCard = ({ icon: Icon, title, desc, index }: { icon: any, title: str
 
 const SignatureCard = ({ name, desc, img, price }: { name: string, desc: string, img: string, price: string }) => (
   <motion.div 
-    whileHover={{ y: -10 }}
-    className="group relative h-[500px] overflow-hidden border border-brand-gold/10"
+    whileHover={{ y: -10, boxShadow: '0 20px 40px -20px rgba(0,0,0,0.5)' }}
+    className="group relative h-[500px] overflow-hidden border border-brand-gold/10 transition-all duration-500"
   >
     <Image 
       src={img} 
       alt={name} 
       fill 
       sizes="(max-width: 640px) 100vw, (max-width: 1080px) 50vw, 33vw"
-      className="object-cover transition-transform duration-1000 group-hover:scale-110 opacity-75 group-hover:opacity-90" 
+      className="object-cover transition-transform duration-1000 group-hover:scale-105 opacity-75 group-hover:opacity-100" 
       referrerPolicy="no-referrer"
     />
-    <div className="absolute inset-0 bg-gradient-to-t from-brand-black/80 via-transparent to-transparent" />
+    <div className="absolute inset-0 bg-gradient-to-t from-brand-black/90 via-brand-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
     <div className="absolute bottom-0 left-0 p-8 w-full">
       <div className="flex justify-between items-end mb-4">
-        <h4 className="font-heading text-2xl tracking-wide">{name}</h4>
+        <h4 className="font-heading text-2xl tracking-wide group-hover:text-brand-gold transition-colors">{name}</h4>
         <span className="font-body text-brand-gold text-lg">{price}</span>
       </div>
-      <p className="text-sm text-brand-ivory/80 font-body mb-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+      <p className="text-sm text-brand-ivory/80 font-body mb-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 leading-relaxed">
         {desc}
       </p>
-      <Link href="/menu" className="inline-flex items-center gap-2 text-brand-gold text-[10px] uppercase tracking-widest font-body border-b border-brand-gold/30 pb-1">
+      <Link href="/menu" className="inline-flex items-center gap-2 text-brand-gold text-[10px] uppercase tracking-widest font-body border-b border-brand-gold/30 pb-1 hover:border-brand-gold hover:gap-3 transition-all">
         Explore Menu <ChevronRight size={14} />
       </Link>
     </div>
@@ -152,13 +153,13 @@ export default function HomePage() {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="flex flex-col sm:flex-row gap-4 md:gap-6 mb-16 lg:mb-20"
             >
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link href="/menu" className="block bg-brand-gold text-brand-black px-10 md:px-14 py-5 text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-brand-ivory transition-all text-center">
+              <motion.div whileHover={{ scale: 1.02, y: -2 }} whileTap={{ scale: 0.98 }}>
+                <Link href="/menu" className="block bg-brand-gold text-brand-black px-10 md:px-14 py-5 text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-brand-ivory hover:shadow-[0_0_20px_rgba(201,168,76,0.3)] transition-all duration-300 text-center">
                   Explore Menu
                 </Link>
               </motion.div>
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link href="/story" className="block border border-brand-ivory/30 text-brand-ivory px-10 md:px-14 py-5 text-[10px] uppercase tracking-[0.3em] hover:bg-brand-ivory hover:text-brand-black transition-all text-center">
+              <motion.div whileHover={{ scale: 1.02, y: -2 }} whileTap={{ scale: 0.98 }}>
+                <Link href="/story" className="block border border-brand-ivory/30 text-brand-ivory px-10 md:px-14 py-5 text-[10px] uppercase tracking-[0.3em] hover:bg-brand-ivory hover:text-brand-black transition-all duration-300 text-center">
                   Our Story
                 </Link>
               </motion.div>
@@ -378,12 +379,12 @@ export default function HomePage() {
            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
               {[
                 { type: 'reel', id: '1', img: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=800&auto=format&fit=crop' },
-                { type: 'post', id: '2', img: 'https://images.unsplash.com/photo-1541167760496-162955ed8a9f?q=80&w=800&auto=format&fit=crop' },
+                { type: 'post', id: '2', img: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=800&auto=format&fit=crop' },
                 { type: 'post', id: '3', img: 'https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=80&w=800&auto=format&fit=crop' },
                 { type: 'reel', id: '4', img: 'https://images.unsplash.com/photo-1507133750040-4a8f57021571?q=80&w=800&auto=format&fit=crop' },
                 { type: 'post', id: '5', img: 'https://images.unsplash.com/photo-1498804103079-a6351b050096?q=80&w=800&auto=format&fit=crop' },
                 { type: 'reel', id: '6', img: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=800&auto=format&fit=crop' },
-                { type: 'post', id: '7', img: 'https://images.unsplash.com/photo-1497933321027-94483b158a2f?q=80&w=800&auto=format&fit=crop' },
+                { type: 'post', id: '7', img: 'https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?q=80&w=800&auto=format&fit=crop' },
                 { type: 'reel', id: '8', img: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=800&auto=format&fit=crop' }
               ].map((item, i) => (
                 <motion.a
