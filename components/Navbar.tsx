@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X } from 'lucide-react';
+import { CaelioLogo } from './CaelioLogo';
 
 const navLinks = [
   { name: 'Home', href: '/' },
@@ -33,14 +34,10 @@ export const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto h-full px-6 lg:px-12 flex justify-between items-center">
         {/* Logo Mark */}
-        <Link href="/" className="flex items-center gap-2 group">
-          <svg width="32" height="32" viewBox="0 0 100 100" fill="none" className="group-hover:rotate-180 transition-transform duration-700">
-            <circle cx="50" cy="50" r="45" stroke="#c9a84c" strokeWidth="1" className="opacity-30" />
-            <path d="M30 50C30 38.9543 38.9543 30 50 30C61.0457 30 70 38.9543 70 50" stroke="#c9a84c" strokeWidth="2" />
-            <circle cx="50" cy="55" r="5" fill="#c9a84c" />
-          </svg>
+        <Link href="/" className="flex items-center gap-1.5 group">
+          <CaelioLogo variant="icon" iconSize={46} />
           <div className="flex flex-col">
-            <span className="font-heading text-xl tracking-[0.3em] uppercase font-bold text-brand-gold leading-none">Caelio</span>
+            <span className="font-heading text-xl tracking-[0.18em] uppercase font-bold text-brand-gold leading-none">Caelio</span>
           </div>
         </Link>
 

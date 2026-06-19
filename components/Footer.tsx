@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { motion } from 'motion/react';
 import { Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import { CaelioLogo } from './CaelioLogo';
 
 export const Footer = () => {
   return (
@@ -11,10 +12,7 @@ export const Footer = () => {
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 relative z-10 font-body">
         {/* Brand Column */}
         <div className="flex flex-col gap-6">
-           <div className="flex flex-col gap-2">
-            <span className="font-heading text-2xl tracking-widest text-brand-gold">CAELIO</span>
-            <span className="text-[10px] tracking-[0.3em] font-body text-brand-ivory/60 uppercase">Coffee House</span>
-          </div>
+          <CaelioLogo align="left" variant="full" iconSize={64} showTagline={true} />
           <p className="text-sm text-brand-ivory/60 leading-relaxed max-w-xs">
             &quot;Sky-Born. Earth-Roasted.&quot; Nagpur&apos;s premier specialty coffee destination and European culinary experience.
           </p>
