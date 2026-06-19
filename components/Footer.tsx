@@ -37,11 +37,10 @@ export const Footer = () => {
           <h4 className="font-heading text-brand-gold tracking-widest text-sm uppercase mb-6">Menu</h4>
           <ul className="flex flex-col gap-4 text-sm text-brand-ivory/60">
             {[
-              { label: 'Hot Espresso Bar', href: '/menu' },
-              { label: 'Filter & Pour Over', href: '/menu' },
-              { label: 'Cold Brew & Iced', href: '/menu' },
-              { label: 'Italian & French Food', href: '/food' },
-              { label: 'Beans & Retail', href: '/menu' }
+              { label: 'Hot Espresso Collection', href: '/menu#hot-coffee' },
+              { label: 'Artisan Cold Brews', href: '/menu#cold-brews' },
+              { label: 'Shakes & Coffee Frappes', href: '/menu#coffee-frappes' },
+              { label: 'Ceremonial Matcha', href: '/menu#matcha' }
             ].map((link) => (
               <li key={link.label}>
                 <Link 

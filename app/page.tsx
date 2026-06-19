@@ -7,7 +7,7 @@ import { motion } from 'motion/react';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { Starfield, GrainOverlay } from '@/components/Starfield';
-import { Coffee, Stars, Award, Globe, Quote, ChevronRight, Instagram } from 'lucide-react';
+import { Coffee, Stars, Award, Quote, ChevronRight, Instagram, Sparkles } from 'lucide-react';
 
 // --- Components ---
 
@@ -16,7 +16,7 @@ const Marquee = () => (
     <div className="flex animate-[marquee_30s_linear_infinite]">
       {[...Array(4)].map((_, i) => (
         <span key={i} className="font-heading text-lg lg:text-2xl tracking-[0.3em] uppercase text-brand-gold mx-8">
-          Single Origin · Pour Over · Cold Brew · Espresso Bar · Italian Fast Food · French Cuisine · Nagpur&apos;s Finest ·
+          Single Origin · Pour Over · Cold Brew · Espresso Bar · Premium Shakes · Artisan Mocktails · Nagpur&apos;s Finest ·
         </span>
       ))}
     </div>
@@ -261,10 +261,10 @@ export default function HomePage() {
               desc="V60, Chemex, AeroPress, and 18-hour cold brew program on world-class machinery."
             />
             <FeatureCard 
-              icon={Globe} 
+              icon={Sparkles} 
               index={2}
-              title="European Kitchen" 
-              desc="Authentic Italian & French culinary experience paired perfectly with our specialty brews."
+              title="Signature Blends" 
+              desc="Decadent frozen frappes, artisanal shakes, refreshing mocktails, and ceremonial stoneground Japanese matcha."
             />
             <FeatureCard 
               icon={Coffee} 
