@@ -24,7 +24,7 @@ const jost = Jost({
 
 export const metadata: Metadata = {
   title: 'Caelio Coffee House | Nagpur\'s First Specialty Coffee | Sky-Born. Earth-Roasted.',
-  description: 'Nagpur\'s premier specialty coffee house. Single-origin Indian beans, precision espresso, pour-overs, cold brew and authentic Italian & French cuisine. Opening 1st June 2026 on Nandanvan Road, Nagpur.',
+  description: 'Nagpur\'s premier specialty coffee house. Single-origin Indian beans, precision espresso, pour-overs, cold brew and authentic Italian & French cuisine on Nandanvan Road, Nagpur.',
   keywords: 'specialty coffee Nagpur, best coffee Nagpur, pour over Nagpur, cold brew Nagpur, cafe Nagpur, Nandanvan Road cafe, Caelio coffee',
   openGraph: {
     title: 'Caelio Coffee House | Sky-Born. Earth-Roasted.',

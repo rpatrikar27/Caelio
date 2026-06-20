@@ -86,7 +86,7 @@ export const Footer = () => {
               <span>Daily</span>
               <span className="text-brand-gold">8:30 AM – 2:30 AM</span>
             </li>
-            <li className="pt-2 text-xs text-brand-gold italic">Opening 1st June 2026</li>
+            <li className="pt-2 text-xs text-brand-gold italic">Now Open</li>
           </ul>
         </div>
       </div>

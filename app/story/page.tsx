@@ -128,7 +128,7 @@ export default function StoryPage() {
               {[
                 { year: "2024", title: "The Vision", desc: "Rohit and Shahnawaz conceptualise Nagpur's first specialty coffee house, bridging the gap between local beans and world-class craft." },
                 { year: "2025", title: "The Build", desc: "Sourcing partners established across Coorg and Araku, barista training begins, and the celestial interiors at Nandanvan Road are designed." },
-                { year: "2026", title: "The Opening", desc: "Caelio Coffee House opens its doors on 1st June 2026, marking a new era for coffee culture in Nagpur." }
+                { year: "2026", title: "The Experience", desc: "Caelio Coffee House officially opens its doors at Nandanvan Road, marking a new era for specialty coffee culture in Nagpur." }
               ].map((step, i) => (
                 <div key={i} className="flex gap-12 items-start group">
                    <div className="text-brand-gold font-heading text-3xl opacity-30 group-hover:opacity-100 transition-opacity">{step.year}</div>
