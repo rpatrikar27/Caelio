@@ -42,6 +42,7 @@ export const menuCategories: MenuCategory[] = [
     name: '🥤 Cold Coffee & Frappes',
     accent: 'Thick, creamy frozen blends and cooling, effervescent botanical ristretto fusions.',
     items: [
+      { name: 'Caelio Cold Coffee', price: '₹170', desc: 'Our signature specialty house blend, double-filtered and chilled over mountain-spring ice blocks for an exceptionally smooth, full-bodied coffee experience.', type: 'veg', tag: 'Signature' },
       { name: 'Classic Frost Frappe', price: '₹180', desc: 'Blended house espresso, cold farm milk, and simple syrup spun with crystal ice blocks.', type: 'veg' },
       { name: 'Mocha Frost Frappe', price: '₹200', desc: 'Rich Dutch cocoa powder and sweet espresso whipped together in chocolate-coffee bliss.', type: 'veg' },
       { name: 'Hazelnut Bliss Frappe', price: '₹200', desc: 'Decadent frozen espresso shake with roasted hazelnut butter and premium cream.', type: 'veg', tag: 'Popular' },
