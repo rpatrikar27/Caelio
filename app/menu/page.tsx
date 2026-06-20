@@ -12,6 +12,7 @@ import {
   MenuItem, 
   PerfectPairing 
 } from './data';
+import { DownloadMenu } from './DownloadMenu';
 import { 
   Coffee, 
   Milk, 
@@ -32,7 +33,8 @@ import {
   ChevronRight,
   Info,
   X,
-  SlidersHorizontal
+  SlidersHorizontal,
+  Download
 } from 'lucide-react';
 
 // --- Custom Svg icons to ensure zero external dependency crashes ---
@@ -377,6 +379,8 @@ export default function MenuPage() {
 
           {/* Quick Dietary Selectors */}
           <div className="flex flex-wrap items-center gap-1.5 justify-start md:justify-end">
+            <DownloadMenu />
+            <div className="h-4 w-[1px] bg-brand-gold/20 mx-1 hidden sm:block" />
             <span className="text-[9px] uppercase tracking-wider text-brand-gold font-bold mr-1 flex items-center gap-1 font-body">
               <SlidersHorizontal size={10} className="text-brand-gold" />
               Diet:

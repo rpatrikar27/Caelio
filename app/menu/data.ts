@@ -20,10 +20,10 @@ export const menuCategories: MenuCategory[] = [
     accent: 'Indian Arabica heirloom single-origin beans, meticulously roasted and brewed hot or slow cold-extracted.',
     items: [
       { name: 'Velvet Cappuccino', price: '₹160', desc: 'Double espresso with silky steamed milk and a dense, velvety microfoam finish.', type: 'veg', tag: 'Bestseller' },
-      { name: 'Golden Latte', price: '₹160', desc: 'Smooth house-espresso blended with creamy, lightly texturized warm milk.', type: 'veg', tag: 'Popular' },
+      { name: 'Golden Latte', price: '₹170', desc: 'Smooth house-espresso blended with creamy, lightly texturized warm milk.', type: 'veg', tag: 'Popular' },
       { name: 'Cloud Flat White', price: '₹160', desc: 'Double-shot espresso extraction combined with velvety micro-foamed milk.', type: 'veg' },
       { name: 'Midnight Mocha', price: '₹180', desc: 'Premium espresso meets luxurious liquid cocoa and texturized steamed milk.', type: 'veg', tag: 'Recommended' },
-      { name: 'Hazelnut Harmony Latte', price: '₹200', desc: 'A soothing milk latte infused with roasted Piedmont hazelnut reduction.', type: 'veg', tag: 'Chef Recommendation' },
+      { name: 'Hazelnut Harmony Latte', price: '₹200', desc: 'A soothing milk latte infused with roasted hazelnut reduction.', type: 'veg', tag: 'Chef Recommendation' },
       { name: 'Caramel Royale Latte', price: '₹200', desc: 'Fresh espresso layered with house-crafted organic salted caramel and warm milk.', type: 'veg' },
       { name: 'Vanilla Velvet Latte', price: '₹200', desc: 'Classic espresso paired with sweet scraped vanilla bean pod infusion and creamy milk.', type: 'veg' },
       { name: 'Shot Doppio', price: '₹100', desc: 'Two concentrated shots of single-origin Indian heirloom estate espresso with thick crema.', type: 'veg' },
@@ -42,17 +42,17 @@ export const menuCategories: MenuCategory[] = [
     name: '🥤 Cold Coffee & Frappes',
     accent: 'Thick, creamy frozen blends and cooling, effervescent botanical ristretto fusions.',
     items: [
-      { name: 'Classic Frost Frappe', price: '₹240', desc: 'Blended house espresso, cold farm milk, and simple syrup spun with crystal ice blocks.', type: 'veg' },
-      { name: 'Mocha Frost Frappe', price: '₹260', desc: 'Rich Dutch cocoa powder and sweet espresso whipped together in chocolate-coffee bliss.', type: 'veg' },
-      { name: 'Hazelnut Bliss Frappe', price: '₹260', desc: 'Decadent frozen espresso shake with roasted hazelnut butter and premium cream.', type: 'veg', tag: 'Popular' },
-      { name: 'Biscoff Cookie Crunch Frappe', price: '₹280', desc: 'Fresh espresso blended with caramelized Speculoos cookies, topped with Biscoff dust crumbs.', type: 'veg', tag: 'Chef Recommendation' },
-      { name: 'Nutella Indulgence Frappe', price: '₹280', desc: 'A luxurious chocolate-heavy blend of espresso, authentic Nutella, and cold cream.', type: 'veg', tag: 'Signature' },
-      { name: 'Tiramisu Delight Frappe', price: '₹280', desc: 'Inspired by Italy\'s finest cake—creamy mascarpone cheese notes, espresso, and cocoa.', type: 'veg' },
+      { name: 'Classic Frost Frappe', price: '₹180', desc: 'Blended house espresso, cold farm milk, and simple syrup spun with crystal ice blocks.', type: 'veg' },
+      { name: 'Mocha Frost Frappe', price: '₹200', desc: 'Rich Dutch cocoa powder and sweet espresso whipped together in chocolate-coffee bliss.', type: 'veg' },
+      { name: 'Hazelnut Bliss Frappe', price: '₹200', desc: 'Decadent frozen espresso shake with roasted hazelnut butter and premium cream.', type: 'veg', tag: 'Popular' },
+      { name: 'Biscoff Cookie Crunch Frappe', price: '₹210', desc: 'Fresh espresso blended with caramelized Speculoos cookies, topped with Biscoff dust crumbs.', type: 'veg', tag: 'Chef Recommendation' },
+      { name: 'Nutella Indulgence Frappe', price: '₹210', desc: 'A luxurious chocolate-heavy blend of espresso, authentic Nutella, and cold cream.', type: 'veg', tag: 'Signature' },
+      { name: 'Tiramisu Delight Frappe', price: '₹210', desc: 'Inspired by Italy\'s finest cake—creamy mascarpone cheese notes, espresso, and cocoa.', type: 'veg' },
       { name: 'Arctic Americano', price: '₹120', desc: 'Double ristretto pulled directly over mountain spring ice blocks and clear glacier water.', type: 'veg' },
       { name: 'Silk Iced Latte', price: '₹160', desc: 'Smooth, bold espresso combined gently with chilled pasture-fed milk over a dense stack of ice.', type: 'veg' },
-      { name: 'Sparkling Espresso Tonic', price: '₹240', desc: 'A high-contrast layering of hot espresso dropped dynamically over chilled tonic and Meyer lemon.', type: 'veg', tag: 'Signature' },
-      { name: 'Ginger Spark Espresso', price: '₹240', desc: 'Freshly pulled single-origin espresso floated over artisanal fizzy ginger ale.', type: 'veg' },
-      { name: 'Citrus Sunrise Espresso', price: '₹220', desc: 'Naturally sweet fresh orange juice and cold water layers crowned with heirloom espresso.', type: 'veg', tag: 'Recommended' }
+      { name: 'Sparkling Espresso Tonic', price: '₹180', desc: 'A high-contrast layering of hot espresso dropped dynamically over chilled tonic and Meyer lemon.', type: 'veg', tag: 'Signature' },
+      { name: 'Ginger Spark Espresso', price: '₹180', desc: 'Freshly pulled single-origin espresso floated over artisanal fizzy ginger ale.', type: 'veg' },
+      { name: 'Citrus Sunrise Espresso', price: '₹190', desc: 'Naturally sweet fresh orange juice and cold water layers crowned with heirloom espresso.', type: 'veg', tag: 'Recommended' }
     ]
   },
   {
@@ -72,15 +72,15 @@ export const menuCategories: MenuCategory[] = [
     name: '🧋 Shakes',
     accent: 'Ultra-creamy milk sessions decorated with fresh fruits and artisanal sweet ingredients.',
     items: [
-      { name: 'Choco Chip Bliss', price: '₹240', desc: 'Decadent milk shake blended with premium dark chocolate, cocoa syrup, and roasted cocoa nibs.', type: 'veg' },
-      { name: 'Oreo Dream Shake', price: '₹280', desc: 'Creamy high-fat vanilla bean milkshake loaded with crunchy crushed black Oreo cookies.', type: 'veg' },
-      { name: 'KitKat Crunch', price: '₹280', desc: 'A playful fusion of premium cold milk, crushed crispy wafer KitKat bars, and fudge ribbons.', type: 'veg' },
-      { name: 'Brownie Heaven', price: '₹280', desc: 'Thick, dense chocolate milkshake blended with an entire slice of our signature fudge brownie.', type: 'veg', tag: 'Bestseller' },
-      { name: 'Mango Paradise', price: '₹280', desc: 'Chilled tropical shake highlighting sweet, sun-ripened Indian Alphonso mangos.', type: 'veg' },
-      { name: 'Strawberry Velvet', price: '₹280', desc: 'Artisanal garden strawberry preserve milk shake featuring a delicate pink hue.', type: 'veg' },
-      { name: 'Blueberry Bliss', price: '₹280', desc: 'Whole wild blueberries slow-simmered, blended with organic yogurt and sweet cream.', type: 'veg', tag: 'Popular' },
-      { name: 'Caramel Banana Royale', price: '₹280', desc: 'Ripe sweet bananas whipped with a buttery salted caramel reduction and real vanilla pods.', type: 'veg' },
-      { name: 'Kiwi Banana Fusion', price: '₹280', desc: 'A tart, refreshing blend of fresh green kiwi pulp and smooth sweet banana.', type: 'veg' }
+      { name: 'Choco Chip Bliss', price: '₹200', desc: 'Decadent milk shake blended with premium dark chocolate, cocoa syrup, and roasted cocoa nibs.', type: 'veg' },
+      { name: 'Oreo Dream Shake', price: '₹210', desc: 'Creamy high-fat vanilla bean milkshake loaded with crunchy crushed black Oreo cookies.', type: 'veg' },
+      { name: 'KitKat Crunch', price: '₹210', desc: 'A playful fusion of premium cold milk, crushed crispy wafer KitKat bars, and fudge ribbons.', type: 'veg' },
+      { name: 'Brownie Heaven', price: '₹220', desc: 'Thick, dense chocolate milkshake blended with an entire slice of our signature fudge brownie.', type: 'veg', tag: 'Bestseller' },
+      { name: 'Mango Paradise', price: '₹200', desc: 'Chilled tropical shake highlighting sweet, sun-ripened Indian Alphonso mangos.', type: 'veg' },
+      { name: 'Strawberry Velvet', price: '₹200', desc: 'Artisanal garden strawberry preserve milk shake featuring a delicate pink hue.', type: 'veg' },
+      { name: 'Blueberry Bliss', price: '₹210', desc: 'Whole wild blueberries slow-simmered, blended with organic yogurt and sweet cream.', type: 'veg', tag: 'Popular' },
+      { name: 'Caramel Banana Royale', price: '₹210', desc: 'Ripe sweet bananas whipped with a buttery salted caramel reduction and real vanilla pods.', type: 'veg' },
+      { name: 'Kiwi Banana Fusion', price: '₹210', desc: 'A tart, refreshing blend of fresh green kiwi pulp and smooth sweet banana.', type: 'veg' }
     ]
   },
   {
@@ -101,9 +101,9 @@ export const menuCategories: MenuCategory[] = [
     name: '🫖 Iced Tea',
     accent: 'Fragrant single-estate tea leaf extractions cold-steeped over twelve hours.',
     items: [
-      { name: 'Citrus Chill Iced Tea', price: '₹140', desc: 'Classic Nilgiri black tea extraction blended with fresh Meyer lemon juice and simple botanical sugars.', type: 'veg', tag: 'Popular' },
-      { name: 'Peach Sunset Tea', price: '₹140', desc: 'A highly fragrant Assam tea infusion blended with sweet peach pulp, served icy cold with fresh mint leaves.', type: 'veg', tag: 'Bestseller' },
-      { name: 'Green Apple Splash Tea', price: '₹140', desc: 'Sparkling green apple skins and cooling mountain tea combined for a delightfully crisp, restorative beverage.', type: 'veg' }
+      { name: 'Citrus Chill Iced Tea', price: '₹160', desc: 'Classic Nilgiri black tea extraction blended with fresh Meyer lemon juice and simple botanical sugars.', type: 'veg', tag: 'Popular' },
+      { name: 'Peach Sunset Tea', price: '₹160', desc: 'A highly fragrant Assam tea infusion blended with sweet peach pulp, served icy cold with fresh mint leaves.', type: 'veg', tag: 'Bestseller' },
+      { name: 'Green Apple Splash Tea', price: '₹160', desc: 'Sparkling green apple skins and cooling mountain tea combined for a delightfully crisp, restorative beverage.', type: 'veg' }
     ]
   },
   {
@@ -111,15 +111,13 @@ export const menuCategories: MenuCategory[] = [
     name: '🥐 Breakfast',
     accent: 'Fresh fruits, nutrient-rich Greek yogurts, gourmet open sourdough toasts, and hearty platters.',
     items: [
-      { name: 'Fresh Fruits Bowl', price: '₹229', desc: 'Seasonal exotic fruits tossed lightly with organic wildflower honey and fresh mint.', type: 'veg' },
-      { name: 'Coffee & Chocolate Yogurt Bowl', price: '₹269', desc: 'Thick Greek yogurt infused with our espresso extraction, dark chocolate chips, and raw organic honey.', type: 'veg' },
-      { name: 'Tropical Fruit Yogurt Bowl', price: '₹269', desc: 'Creamy vanilla-bean Greek yogurt layered with fresh tropical mango pulp and chia seed pudding.', type: 'veg' },
-      { name: 'Vegetarian Breakfast Platter', price: '₹349', desc: 'Roasted herb potato wedges, creamy baked beans, sautéed mushrooms, grilled tomatoes, and avocado with sourdough.', type: 'veg', tag: 'Chef Recommendation' },
-      { name: 'Non-Vegetarian Breakfast Platter', price: '₹349', desc: 'Smoked chicken stripes, fluffy scrambled eggs, grilled sausages, baked beans, and buttered brioche slices.', type: 'non-veg' },
-      { name: 'Smashed Avocado Open Toast', price: '₹299', desc: 'Ripe hass avocado mashed with hand-squeezed Key lime juice, sea salt, red chili, and wild sprouts on sourdough.', type: 'veg' },
-      { name: 'Rustic Mushroom Open Toast', price: '₹299', desc: 'Sautéed button mushrooms flambéed with thyme and white wine reduction on herb-infused cream cheese on sourdough.', type: 'veg' },
-      { name: 'Chunky Chicken Supreme Open Toast', price: '₹299', desc: 'Tender shredded chicken breast tossed in a light herb mayonnaise, sweet sun-ripened tomatoes, and melted provolone.', type: 'non-veg' },
-      { name: 'Paneer Bhurji with Brioche Bun', price: '₹299', desc: 'Mouthwatering scrambled cottage cheese spiced with ginger, green chilies, and fresh coriander on butter-toasted brioche.', type: 'veg', tag: 'Chef Recommendation' }
+      { name: 'Fresh Fruits Bowl', price: '₹110', desc: 'A refreshing bowl of hand-cut seasonal fruits bursting with natural sweetness.', type: 'veg' },
+      { name: 'Vegetarian Breakfast Platter', price: '₹280', desc: 'Baked beans, grilled mushrooms, toast, hash browns, masala smashed paneer and a sweet cupcake.', type: 'veg', tag: 'Chef Recommendation' },
+      { name: 'Non-Vegetarian Breakfast Platter', price: '₹290', desc: 'Choice of eggs with baked beans, grilled mushrooms, chicken sausage, toast and grilled tomato.', type: 'non-veg' },
+      { name: 'Smashed Avocado Open Toast', price: '₹180', desc: 'Creamy smashed avocado on toasted bread served with fresh salad.', type: 'veg' },
+      { name: 'Rustic Mushroom Open Toast', price: '₹185', desc: 'Juicy mushrooms and vegetables with herbs and spices on crisp toast.', type: 'veg' },
+      { name: 'Chunky Chicken Supreme Open Toast', price: '₹200', desc: 'Tender chunky chicken with tangy flavors on toasted bread, served with salad.', type: 'non-veg' },
+      { name: 'Paneer Bhurji with Brioche Bun', price: '₹250', desc: 'Spicy paneer bhurji paired with buttery masala brioche bun, chutney and onions.', type: 'veg', tag: 'Chef Recommendation' }
     ]
   },
   {
@@ -127,13 +125,13 @@ export const menuCategories: MenuCategory[] = [
     name: '🍳 Egg Specials',
     accent: 'Artisanal egg dishes made with certified organic pasture farm eggs, cooked to custom order.',
     items: [
-      { name: 'Sunny Side Up', price: '₹249', desc: 'Two farm-fresh organic eggs cooked sunny-side-up, seasoned with sea salt and fresh-cracked black pepper.', type: 'egg' },
-      { name: 'Creamy Scrambled Eggs', price: '₹249', desc: 'Slow-cooked farm eggs whisked with French butter and a dash of cream, served silky-soft on toasted sourdough.', type: 'egg' },
-      { name: 'Boiled Eggs', price: '₹209', desc: 'Three perfectly boiled farm eggs served with organic cherry tomatoes, micro-greens, and a dash of house spice.', type: 'egg' },
-      { name: 'French Omelette', price: '₹259', desc: 'A classic light French rolled omelette with a soft custardy center, cooked in premium butter and chives.', type: 'egg' },
-      { name: 'Caelio Special Mushroom Cheese Omelette', price: '₹339', desc: 'Folded three-egg omelette stuffed with slow-sautéed button mushrooms, aged white cheddar, and mozzarella.', type: 'egg', tag: 'Chef Recommendation' },
-      { name: 'Caelio Special Popeye Omelette', price: '₹339', desc: 'Packed with iron-rich organic baby spinach leaves, muddled cherry tomatoes, and creamy feta cheese crumbled inside.', type: 'egg' },
-      { name: 'Egg Bhurji with Brioche Bun', price: '₹299', desc: 'Three organic eggs scrambled Indian-style with onions, tomatoes, and regional spices, paired with butter-toasted brioche.', type: 'egg' }
+      { name: 'Sunny Side Up', price: '₹140', desc: 'Two perfectly fried sunny-side-up eggs served with fresh bread loaf and a crisp garden salad.', type: 'egg' },
+      { name: 'Creamy Scrambled Eggs', price: '₹150', desc: 'Soft, creamy scrambled eggs made with fresh cream, seasoned with salt and pepper, served with bread loaf and salad.', type: 'egg' },
+      { name: 'Boiled Eggs', price: '₹80', desc: 'Two perfectly boiled eggs seasoned with salt and pepper for a simple, wholesome start.', type: 'egg' },
+      { name: 'French Omelette', price: '₹150', desc: 'A light, fluffy French omelette with a creamy center, served with bread loaf and fresh salad.', type: 'egg' },
+      { name: 'Caelio Special Mushroom Cheese Omelette', price: '₹170', desc: 'Fluffy three-egg omelette filled with sautéed mushrooms and melted cheese, served with bread loaf and salad.', type: 'egg', tag: 'Chef Recommendation' },
+      { name: 'Caelio Special Popeye Omelette', price: '₹170', desc: 'Spinach and cheese stuffed fluffy omelette with bread loaf and fresh salad.', type: 'egg' },
+      { name: 'Egg Bhurji with Brioche Bun', price: '₹260', desc: 'Flavorful egg bhurji served with fluffy masala brioche bun, chutney and onions.', type: 'egg' }
     ]
   },
   {
@@ -141,12 +139,12 @@ export const menuCategories: MenuCategory[] = [
     name: '🥪 Sandwiches & Toasties',
     accent: 'Pressed sourdough creations and loaded baguettes with rich cheeses and select local toppings.',
     items: [
-      { name: 'Exotic Vegetable Harvest Melt', price: '₹249', desc: 'Roasted zucchini, bell peppers, baby corn, and red onions with slow-melted Monterey Jack cheese on toasted artisan sourdough.', type: 'veg' },
-      { name: 'Assorted Mushroom Sandwich', price: '₹249', desc: 'Wild local mushrooms tossed in butter-garlic-thyme reduction, paired with melted Gouda cheese inside pressed sourdough.', type: 'veg' },
-      { name: 'Crispy Chicken Supreme', price: '₹249', desc: 'Golden-fried thin chicken breast cutlet, topped with sliced cucumber, sweet honey mustard, and fresh Swiss cheese.', type: 'non-veg' },
-      { name: 'Cheese Mushroom Canape', price: '₹319', desc: 'Bite-sized crispy toasted sourdough discs loaded with soft cream cheese, caramelized butter garlic mushrooms, and mozzarella.', type: 'veg' },
-      { name: 'Baked Beans Canape', price: '₹249', desc: 'Artisan toasted baguette slices layered with savory baked beans, melted cheddar cheese, and fresh cilantro sprigs.', type: 'veg' },
-      { name: 'Spicy Minced Chicken Canape', price: '₹249', desc: 'Crispy toast cups stuffed with fiery minced chicken cooked with local spices, finished with fresh microgreens and jalapeño salsa.', type: 'non-veg' }
+      { name: 'Exotic Vegetable Harvest Melt', price: '₹240', desc: 'Loaded with exotic vegetables, cheese and signature sauce, served with fries and salad.', type: 'veg' },
+      { name: 'Assorted Mushroom Sandwich', price: '₹240', desc: 'Flavorful mushrooms and vegetables in toasted sourdough with fries and salad.', type: 'veg' },
+      { name: 'Crispy Chicken Supreme', price: '₹250', desc: 'Crispy chicken breast, melted cheese and flavorful sauces in sourdough.', type: 'non-veg' },
+      { name: 'Cheese Mushroom Canape', price: '₹180', desc: 'Crispy canapés topped with creamy cheese and mushrooms.', type: 'veg' },
+      { name: 'Baked Beans Canape', price: '₹180', desc: 'Crunchy bites topped with spicy baked beans.', type: 'veg' },
+      { name: 'Spicy Minced Chicken Canape', price: '₹190', desc: 'Crispy canapés loaded with spicy minced chicken.', type: 'non-veg' }
     ]
   },
   {
@@ -154,10 +152,10 @@ export const menuCategories: MenuCategory[] = [
     name: '🍔 Burgers',
     accent: 'Gourmet brioche bun burgers centered around golden-crispy patty cores and fresh house-slathers.',
     items: [
-      { name: 'Classic Veg Burger', price: '₹299', desc: 'House vegetable patty loaded with lettuce, tomatoes, caramelized onions, and our signature secret herb sauce.', type: 'veg' },
-      { name: 'Nashville Paneer Heat Burger', price: '₹329', desc: 'Crunchy buttermilk-battered paneer dipped in hot Nashville glaze, topped with dills and cool coleslaw.', type: 'veg', tag: 'Chef Recommendation' },
-      { name: 'Smokey Ranch Chicken Burger', price: '₹249', desc: 'Grilled chicken breast basted with premium hickory barbeque sauce, herb ranch, lettuce, and ripe tomatoes.', type: 'non-veg' },
-      { name: 'Crispy Fried Chicken Beast Burger', price: '₹299', desc: 'Golden crispy fried chicken thigh fillet, layered with hot-melt cheddar, jalapeño rings, and sweet chili-mayo.', type: 'non-veg' }
+      { name: 'Classic Veg Burger', price: '₹160', desc: 'Juicy vegetable patty with fresh fillings served with crispy French fries.', type: 'veg' },
+      { name: 'Nashville Paneer Heat Burger', price: '₹180', desc: 'Spicy paneer burger layered with cheese and served with crispy fries.', type: 'veg', tag: 'Chef Recommendation' },
+      { name: 'Smokey Ranch Chicken Burger', price: '₹190', desc: 'Smoky chicken patty with signature ranch sauce and crispy fries.', type: 'non-veg' },
+      { name: 'Crispy Fried Chicken Beast Burger', price: '₹210', desc: 'Crunchy fried chicken loaded with hot spicy sauce and served with fries.', type: 'non-veg' }
     ]
   },
   {
@@ -165,19 +163,19 @@ export const menuCategories: MenuCategory[] = [
     name: '🍟 Sides & Fries',
     accent: 'Hand-seasoned golden potatoes, stacked chips, and superfood macro energy bowls.',
     items: [
-      { name: 'Classic Salted Fries', price: '₹199', desc: 'Thick-cut golden russet potato fries tossed in premium Himalayan pink salt. Classic and comforting.', type: 'veg' },
-      { name: 'Smokey Peri Peri Fries', price: '₹199', desc: 'Crispy skin-on fries dusted liberally with a hot, tangy, smoky African bird\'s eye peri-peri spice mix.', type: 'veg' },
-      { name: 'Saoji Spiced Garlic Fries', price: '₹199', desc: 'Crispy fries tossed in Nagpur\'s hyper-local aromatic Saoji masala, burnt garlic, and crisp curry leaves.', type: 'veg', tag: 'Chef Recommendation' },
-      { name: 'Parmesan Herb Fries', price: '₹199', desc: 'Shoestring fries tossed in aged Italian Parmesan, roasted garlic, fresh rosemary, and extra virgin olive oil.', type: 'veg' },
-      { name: 'Chilly Milly Mexican Nachos', price: '₹249', desc: 'Yellow corn tortilla chips, smothered in warm cheddar sauce, refried beans, jalapeños, and fresh pico de gallo.', type: 'veg' },
-      { name: 'Melted Cheese Chicken Nachos', price: '₹289', desc: 'Crispy corn chips loaded with cheese sauce, slow-braised spiced shredded chicken, sour cream, and guacamole.', type: 'non-veg' },
-      { name: 'Veg Pops', price: '₹329', desc: 'Crunchy golden nuggets stuffed with sweet corn, potato mash, and green garden peas, served with sweet chili mayo.', type: 'veg' },
-      { name: 'Nord Not Cheese Pops', price: '₹299', desc: 'Light golden herbal cheddar balls with a fully molten liquid cheesy core. Pure indulgence.', type: 'veg' },
-      { name: 'Stick On My Mouth', price: '₹249', desc: 'Crispy golden vegetable fingers served on elegant skewers, finished with sesame seeds and hot sweet glaze.', type: 'veg' },
-      { name: 'Crispy Fried Chicken Nuggets', price: '₹249', desc: 'Hand-breaded bite-sized tender chicken breast cubes, deep-fried to crisp perfection.', type: 'non-veg' },
-      { name: 'Veg Energy Bowl', price: '₹249', desc: 'Tri-color organic quinoa, baby spinach, steamed broccoli, sweet corn, chickpeas, and tahini-ginger dressing.', type: 'veg' },
-      { name: 'Egg Energy Bowl', price: '₹319', desc: 'High-protein bowl loaded with organic hard-boiled eggs, fresh garden leaves, cherry tomatoes, and avocados.', type: 'egg' },
-      { name: 'Chicken Energy Bowl', price: '₹249', desc: 'Spiced grilled chicken strips on a bed of long brown grain rice and sweet citrus vinaigrette splash.', type: 'non-veg' }
+      { name: 'Classic Salted Fries', price: '₹130', desc: 'Golden crispy fries served with ketchup and house dip.', type: 'veg' },
+      { name: 'Smokey Peri Peri Fries', price: '₹160', desc: 'Crispy fries tossed in smoky peri peri seasoning with special dip.', type: 'veg' },
+      { name: 'Saoji Spiced Garlic Fries', price: '₹180', desc: 'Nagpur-style Saoji spices with crunchy garlic and signature dip.', type: 'veg', tag: 'Chef Recommendation' },
+      { name: 'Parmesan Herb Fries', price: '₹200', desc: 'Herb-seasoned fries finished with rich parmesan flavor.', type: 'veg' },
+      { name: 'Chilly Milly Mexican Nachos', price: '₹180', desc: 'Loaded nachos with spicy Mexican salsa, vegetables and sauces.', type: 'veg' },
+      { name: 'Melted Cheese Chicken Nachos', price: '₹210', desc: 'Nachos topped with melted cheese, chicken and Mexican salsa.', type: 'non-veg' },
+      { name: 'Veg Pops', price: '₹170', desc: 'Crispy potato pops served with two signature dips.', type: 'veg' },
+      { name: 'Nord Not Cheese Pops', price: '₹180', desc: 'Cheesy spicy veg pops fried until golden.', type: 'veg' },
+      { name: 'Stick On My Mouth', price: '₹180', desc: 'Crunchy potato sticks with bold spices and two special dips.', type: 'veg' },
+      { name: 'Crispy Fried Chicken Nuggets', price: '₹180', desc: 'Golden chicken nuggets served with signature dip.', type: 'non-veg' },
+      { name: 'Veg Energy Bowl', price: '₹180', desc: 'Chickpeas, cucumber, cherry tomatoes, baked vegetables and paneer with creamy dressing.', type: 'veg' },
+      { name: 'Egg Energy Bowl', price: '₹180', desc: 'Fresh vegetables, chickpeas, boiled eggs and paneer with creamy dressing.', type: 'egg' },
+      { name: 'Chicken Energy Bowl', price: '₹200', desc: 'Protein-packed bowl with baked chicken, chickpeas, vegetables and paneer.', type: 'non-veg' }
     ]
   },
   {
@@ -185,11 +183,11 @@ export const menuCategories: MenuCategory[] = [
     name: '🍝 Pasta',
     accent: 'Authentic imported Italian wheat pastas cooked al dente with masterfully crafted sauce emulsions.',
     items: [
-      { name: 'Aglio e Olio', price: '₹249', desc: 'Spaghetti pasta tossed in extra virgin olive oil, sizzling garlic cloves, red pepper flakes, and Parmesan.', type: 'veg' },
-      { name: 'Truffle & Mushroom', price: '₹249', desc: 'Rich, creamy thyme-infused white sauce loaded with sautéed wild mushrooms and genuine white truffle oil.', type: 'veg' },
-      { name: 'Pesto Crema & Capers', price: '₹249', desc: 'Spaghetti with traditional basil pesto sauce, heavy dairy cream, tangy capers, and toasted pine nuts.', type: 'veg' },
-      { name: 'Penne Alfredo', price: '₹249', desc: 'Penne rolled in our velvety cream sauce made from fresh butter, double cream, and melted Parmesan.', type: 'veg' },
-      { name: 'Penne Pink Sauce', price: '₹249', desc: 'The perfect harmony of slow-simmered San Marzano tomato pomodoro sauce, velvety sweet cream, and fresh basil.', type: 'veg' }
+      { name: 'Aglio e Olio', price: '₹240', desc: 'Garlic-infused creamy spaghetti with cheese, served with crispy garlic bread.', type: 'veg' },
+      { name: 'Truffle & Mushroom', price: '₹240', desc: 'Creamy truffle mushroom spaghetti with garlic bread.', type: 'veg' },
+      { name: 'Pesto Crema & Capers', price: '₹250', desc: 'Fresh basil pesto in a creamy sauce with garlic bread.', type: 'veg' },
+      { name: 'Penne Alfredo', price: '₹230', desc: 'Classic creamy white sauce pasta with vegetables and garlic bread.', type: 'veg' },
+      { name: 'Penne Pink Sauce', price: '₹240', desc: 'Tangy pink sauce pasta packed with vegetables and garlic bread.', type: 'veg' }
     ]
   },
   {
@@ -241,7 +239,7 @@ export const perfectPairings: PerfectPairing[] = [
     tagline: 'Bittersweet Cocoa Harmony',
     coffee: 'Velvet Cappuccino',
     food: 'Warm Fudgy Dark Chocolate Brownie',
-    comboPrice: '₹280',
+    comboPrice: '₹260',
     description: 'The dense foam and bold heirloom ristretto profile of our cappuccino balances the rich, melt-in-the-mouth cocoa crumb perfectly.'
   },
   {
@@ -249,7 +247,7 @@ export const perfectPairings: PerfectPairing[] = [
     tagline: 'Bright & Creamy Energizer',
     coffee: 'Hazelnut Harmony Latte',
     food: 'Smashed Avocado Open Toast',
-    comboPrice: '₹449',
+    comboPrice: '₹340',
     description: 'Fruity, tangy key lime avocado fats matched against the warm, roasted hazelnut body of single-origin coffee.'
   },
   {
@@ -257,7 +255,7 @@ export const perfectPairings: PerfectPairing[] = [
     tagline: 'Savory Sweet & Crisp Contrast',
     coffee: 'Vietnamese Velvet Brew',
     food: 'Crispy Chicken Supreme',
-    comboPrice: '₹399',
+    comboPrice: '₹380',
     description: 'Chilled, sweet condensed milk cold extract paired alongside clear honey-mustard and crispy roasted chicken breast sourdough.'
   },
   {
@@ -265,7 +263,7 @@ export const perfectPairings: PerfectPairing[] = [
     tagline: 'Aclean, Clean Botanical Start',
     coffee: 'Classic Americano',
     food: 'Cheese Mushroom Canape',
-    comboPrice: '₹399',
+    comboPrice: '₹270',
     description: 'The bold, low-acid double-shot extraction cleanses the palate after rich, melted mozzarella cream cheese and buttered garlic button mushrooms.'
   },
   {
@@ -273,7 +271,7 @@ export const perfectPairings: PerfectPairing[] = [
     tagline: 'Sweet speculoos Meets Aromatic Spice',
     coffee: 'Biscoff Cookie Crunch Frappe',
     food: 'Saoji Spiced Garlic Fries',
-    comboPrice: '₹429',
+    comboPrice: '₹350',
     description: 'The sweet, caramelized premium Belgian Speculoos shake beautifully balances Nagpur’s bold, spicy, dry-roasted Saoji garlic oil.'
   },
   {
@@ -281,7 +279,7 @@ export const perfectPairings: PerfectPairing[] = [
     tagline: 'Leafy Matcha & Sweet Tropics',
     coffee: 'Classic Iced Matcha Latte',
     food: 'Fresh Fruits Bowl',
-    comboPrice: '₹419',
+    comboPrice: '₹310',
     description: 'Whisked organic green ceremonial tea notes contrasted gracefully with raw honey and sweet seasonal fruit halves.'
   }
 ];
