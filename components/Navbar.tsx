@@ -9,7 +9,10 @@ import { CaelioLogo } from './CaelioLogo';
 const navLinks = [
   { name: 'Home', href: '/' },
   { name: 'Menu', href: '/menu' },
+  { name: 'Coffee', href: '/coffee' },
+  { name: 'Matcha', href: '/matcha' },
   { name: 'Our Story', href: '/story' },
+  { name: 'Why Us', href: '/why-us' },
   { name: 'Blog', href: '/blog' },
   { name: 'Contact', href: '/contact' },
 ];
@@ -20,7 +23,7 @@ export const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 40);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -29,50 +32,46 @@ export const Navbar = () => {
   return (
     <nav 
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-        scrolled ? 'bg-brand-black/95 backdrop-blur-md h-20 border-b border-brand-gold/20' : 'bg-transparent h-24'
+        scrolled ? 'bg-[#120A07]/95 backdrop-blur-md h-20 border-b border-[#A37945]/20 shadow-2xl' : 'bg-transparent h-24'
       }`}
     >
       <div className="max-w-7xl mx-auto h-full px-6 lg:px-12 flex justify-between items-center">
         {/* Logo Mark */}
-        <Link href="/" className="flex items-center gap-1.5 group">
-          <CaelioLogo variant="icon" iconSize={46} />
-          <div className="flex flex-col">
-            <span className="font-heading text-xl tracking-[0.18em] uppercase font-bold text-brand-gold leading-none">Caelio</span>
-          </div>
+        <Link href="/" className="group flex items-center">
+          <CaelioLogo variant="full" size="sm" color="#F4E7D7" taglineColor="#A37945" align="left" className="group-hover:opacity-90 transition-opacity" />
         </Link>
 
         {/* Desktop Links */}
-        <div className="hidden lg:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-7">
           {navLinks.map((link, i) => (
             <motion.div
               key={link.name}
-              initial={{ opacity: 0, y: -10 }}
+              initial={{ opacity: 0, y: -8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1, type: 'spring', stiffness: 300, damping: 20 }}
+              transition={{ delay: i * 0.05, duration: 0.4 }}
               className="relative group"
             >
               <Link 
                 href={link.href} 
-                className="font-body text-[11px] uppercase tracking-[0.2em] font-light text-brand-ivory/80 hover:text-brand-gold transition-colors duration-300 block py-2"
+                className="font-caption text-[11px] uppercase tracking-[0.22em] font-medium text-[#F4E7D7]/80 hover:text-[#A37945] transition-colors duration-300 block py-2"
               >
                 {link.name}
                 <motion.div 
-                  className="absolute bottom-0 left-0 w-0 h-[1px] bg-brand-gold transition-all duration-300 group-hover:w-full"
-                  layoutId={`nav-underline-${link.name}`}
+                  className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#A37945] transition-all duration-300 group-hover:w-full"
                 />
               </Link>
             </motion.div>
           ))}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.6 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            transition={{ delay: 0.4 }}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
           >
             <Link 
               href="/contact" 
-              className="px-6 py-2 border border-brand-gold text-brand-gold font-body text-[10px] uppercase tracking-[0.2em] hover:bg-brand-gold hover:text-brand-black transition-all duration-500"
+              className="px-5 py-2.5 border border-[#A37945] text-[#F4E7D7] font-caption text-[10px] uppercase tracking-[0.25em] hover:bg-[#A37945] hover:text-[#120A07] transition-all duration-500 rounded-sm"
             >
               Reserve Table
             </Link>
@@ -81,8 +80,9 @@ export const Navbar = () => {
 
         {/* Mobile Toggle */}
         <button 
-          className="lg:hidden text-brand-gold"
+          className="lg:hidden text-[#A37945] p-2 hover:text-[#F4E7D7] transition-colors"
           onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle Navigation Menu"
         >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
@@ -98,55 +98,61 @@ export const Navbar = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 bg-brand-black/80 backdrop-blur-sm z-40 lg:hidden"
+              className="fixed inset-0 bg-[#120A07]/90 backdrop-blur-md z-40 lg:hidden"
             />
             
             <motion.div
               initial={{ opacity: 0, x: '100%' }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed inset-y-0 right-0 w-full sm:w-[400px] bg-brand-black z-50 flex flex-col justify-center px-12 lg:hidden border-l border-brand-gold/10"
+              transition={{ type: 'spring', damping: 28, stiffness: 220 }}
+              className="fixed inset-y-0 right-0 w-full sm:w-[420px] bg-[#120A07] z-50 flex flex-col justify-between p-10 lg:hidden border-l border-[#A37945]/20"
             >
-              <button 
-                onClick={() => setIsOpen(false)}
-                className="absolute top-8 right-8 text-brand-gold hover:text-brand-ivory transition-colors p-2"
-              >
-                <X size={32} />
-              </button>
+              <div className="flex justify-between items-center border-b border-[#A37945]/15 pb-6">
+                <Link href="/" onClick={() => setIsOpen(false)}>
+                  <CaelioLogo variant="full" size="sm" color="#F4E7D7" taglineColor="#A37945" align="left" />
+                </Link>
+                <button 
+                  onClick={() => setIsOpen(false)}
+                  className="text-[#A37945] hover:text-[#F4E7D7] transition-colors p-2"
+                >
+                  <X size={28} />
+                </button>
+              </div>
 
               <div className="grain-overlay opacity-10" />
-              <div className="flex flex-col gap-6">
-                <span className="text-brand-gold/50 text-[10px] tracking-[0.4em] uppercase mb-4">Explorer</span>
+              
+              <div className="flex flex-col gap-4 my-auto py-6">
+                <span className="text-[#A37945] text-[10px] tracking-[0.3em] uppercase font-caption mb-2">Explore Caelio</span>
                 {navLinks.map((link, i) => (
                   <motion.div
                     key={link.name}
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.1 + i * 0.1 }}
+                    transition={{ delay: 0.05 + i * 0.05 }}
                   >
                     <Link 
                       href={link.href} 
                       onClick={() => setIsOpen(false)}
-                      className="font-heading text-2xl tracking-widest text-brand-ivory hover:text-brand-gold transition-colors flex items-center justify-between group"
+                      className="font-heading text-2xl tracking-[0.1em] text-[#F4E7D7] hover:text-[#A37945] transition-colors flex items-center justify-between group py-1"
                     >
                       <span>{link.name}</span>
-                      <div className="h-px w-0 group-hover:w-12 bg-brand-gold transition-all duration-300" />
+                      <div className="h-px w-0 group-hover:w-8 bg-[#A37945] transition-all duration-300" />
                     </Link>
                   </motion.div>
                 ))}
                 <Link 
                   href="/contact"
                   onClick={() => setIsOpen(false)}
-                  className="mt-8 px-8 py-4 border border-brand-gold/30 text-brand-gold font-body text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-brand-gold hover:text-brand-black transition-all text-center"
+                  className="mt-6 px-6 py-3.5 bg-[#A37945] text-[#120A07] font-caption text-[11px] uppercase tracking-[0.25em] font-semibold hover:bg-[#F4E7D7] transition-all text-center rounded-sm"
                 >
-                  Reserve Table
+                  Reserve A Sanctuary Table
                 </Link>
               </div>
               
-              <div className="absolute bottom-12 left-12 right-12 flex justify-between items-center opacity-30 text-[9px] tracking-widest transition-opacity hover:opacity-100">
+              <div className="border-t border-[#A37945]/15 pt-6 flex justify-between items-center text-[10px] tracking-widest text-[#C1B19B] font-caption">
+                 <span>NANDANVAN, NAGPUR</span>
                  <span>EST. 2026</span>
-                 <span>CAELIO PARIS</span>
               </div>
             </motion.div>
           </>

@@ -1,440 +1,515 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'motion/react';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
-import { Starfield, GrainOverlay } from '@/components/Starfield';
+import { GrainOverlay } from '@/components/Starfield';
 import { CaelioLogo } from '@/components/CaelioLogo';
+import { InstagramSection } from '@/components/InstagramSection';
 import { 
-  Coffee, 
-  Stars, 
-  Award, 
-  Quote, 
   ChevronRight, 
-  Instagram, 
-  Sparkles,
-  MapPin,
-  Clock
+  MapPin, 
+  Clock, 
+  Sparkles, 
+  Award, 
+  Coffee, 
+  Leaf, 
+  Flame, 
+  ArrowUpRight,
+  Star,
+  Instagram
 } from 'lucide-react';
-import { perfectPairings } from '@/app/menu/data';
 
-// --- Components ---
+// --- Data Arrays ---
 
-const Marquee = () => (
-  <div className="bg-brand-gold/10 py-6 border-y border-brand-gold/20 overflow-hidden whitespace-nowrap">
-    <div className="flex animate-[marquee_30s_linear_infinite]">
-      {[...Array(4)].map((_, i) => (
-        <span key={i} className="font-heading text-lg lg:text-2xl tracking-[0.3em] uppercase text-brand-gold mx-8">
-          Single Origin · Pour Over · Cold Brew · Espresso Bar · Premium Shakes · Artisan Mocktails · Nagpur&apos;s Finest ·
-        </span>
-      ))}
-    </div>
-  </div>
-);
+const featuredCollections = [
+  {
+    title: 'Specialty Coffee',
+    tagline: 'Single Origins & Precision Nitro',
+    image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085',
+    href: '/coffee',
+    desc: 'Ethically traded Arabica beans from Coorg, Chikmagalur & Araku Valley. Roasted in small micro-batches for unprecedented clarity.',
+  },
+  {
+    title: 'Ceremonial Matcha',
+    tagline: 'First-Harvest Stoneground Uji',
+    image: 'https://images.unsplash.com/photo-1536256263959-770b48d82b0a',
+    href: '/matcha',
+    desc: 'Authentic shade-grown green tea leaves from Kyoto, Japan. Whisked traditionally into velvety lattes and iced elixirs.',
+  },
+  {
+    title: 'Artisanal Food',
+    tagline: 'Sourdough & European Kitchen',
+    image: '/images/bento_pasta.jpg',
+    href: '/menu#mains',
+    desc: '48-hour slow fermented heritage sourdough toasts, hand-rolled brioche, truffle pastas, and wood-fired breakfast platters.',
+  },
+  {
+    title: 'Handcrafted Desserts',
+    tagline: 'Classic French & Italian Patisserie',
+    image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9',
+    href: '/menu#desserts',
+    desc: 'House-made Savoyardi Tiramisu, Dark Chocolate Ganache Tartlets, and Pistachio Brioche Toast baked fresh every morning.',
+  },
+];
 
-const FeatureCard = ({ icon: Icon, title, desc, index }: { icon: any, title: string, desc: string, index: number }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    whileHover={{ y: -5, borderColor: 'rgba(201, 168, 76, 0.4)', boxShadow: '0 10px 30px -15px rgba(201, 168, 76, 0.2)' }}
-    transition={{ delay: index * 0.2, duration: 0.5, ease: 'easeOut' }}
-    viewport={{ once: true }}
-    className="p-10 border border-brand-gold/10 bg-brand-charcoal/10 backdrop-blur-sm group transition-all duration-500"
-  >
-    <div className="w-12 h-12 rounded-full border border-brand-gold/20 flex items-center justify-center mb-8 group-hover:bg-brand-gold group-hover:text-brand-black transition-all">
-      <Icon size={24} />
-    </div>
-    <h3 className="font-heading text-xl mb-4 tracking-wider group-hover:text-brand-gold transition-colors">{title}</h3>
-    <p className="text-sm text-brand-ivory/80 leading-relaxed font-body">
-      {desc}
-    </p>
-  </motion.div>
-);
+const bestSellers = [
+  {
+    name: 'Stardust Nitro Cold Brew',
+    category: 'Signature Nitro',
+    price: '₹240',
+    desc: 'Nitrogen-infused cold brew, topped with lavender botanical foam and finished with a delicate dusting of edible gold shimmer.',
+    image: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c',
+    tag: 'Signature',
+  },
+  {
+    name: 'Caelio Cold Coffee',
+    category: 'House Specialty',
+    price: '₹170',
+    desc: 'Our flagship double-filtered espresso blend, shaken over crystal mountain ice blocks with farm milk.',
+    image: '/images/hero_coffee.jpg',
+    tag: 'Best Seller',
+  },
+  {
+    name: 'Eclipse Ristretto Pull',
+    category: 'Reserve Espresso',
+    price: '₹220',
+    desc: 'Double risretto pull over shadow dark chocolate bitters, giving deep notes of toasted hazelnut and raw cocoa.',
+    image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd',
+    tag: 'Reserve',
+  },
+  {
+    name: 'Kyoto Ceremonial Matcha',
+    category: 'Uji Japanese',
+    price: '₹240',
+    desc: 'Authentic shade-grown first harvest matcha whisked with oat milk and a touch of organic agave nectar.',
+    image: 'https://images.unsplash.com/photo-1536256263959-770b48d82b0a',
+    tag: 'Organic',
+  },
+];
 
-const SignatureCard = ({ name, desc, img, price }: { name: string, desc: string, img: string, price: string }) => (
-  <motion.div 
-    whileHover={{ y: -10, boxShadow: '0 20px 40px -20px rgba(0,0,0,0.5)' }}
-    className="group relative h-[500px] overflow-hidden border border-brand-gold/10 transition-all duration-500"
-  >
-    <Image 
-      src={img} 
-      alt={name} 
-      fill 
-      sizes="(max-width: 640px) 100vw, (max-width: 1080px) 50vw, 33vw"
-      className="object-cover transition-transform duration-1000 group-hover:scale-105 opacity-75 group-hover:opacity-100" 
-      referrerPolicy="no-referrer"
-    />
-    <div className="absolute inset-0 bg-gradient-to-t from-brand-black/90 via-brand-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
-    <div className="absolute bottom-0 left-0 p-8 w-full">
-      <div className="flex justify-between items-end mb-4">
-        <h4 className="font-heading text-2xl tracking-wide group-hover:text-brand-gold transition-colors">{name}</h4>
-        <span className="font-body text-brand-gold text-lg">{price}</span>
-      </div>
-      <p className="text-sm text-brand-ivory/80 font-body mb-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 leading-relaxed">
-        {desc}
-      </p>
-      <Link href="/menu" className="inline-flex items-center gap-2 text-brand-gold text-[10px] uppercase tracking-widest font-body border-b border-brand-gold/30 pb-1 hover:border-brand-gold hover:gap-3 transition-all">
-        Explore Menu <ChevronRight size={14} />
-      </Link>
-    </div>
-  </motion.div>
-);
+const customerReviews = [
+  {
+    quote: "Caelio is unlike anything else in Nagpur. The Stardust Cold Brew and sourdough toast feel straight out of a boutique cafe in Milan or Kyoto.",
+    author: "Ananya Sharma",
+    role: "Architect & Coffee Connoisseur",
+  },
+  {
+    quote: "The attention to detail in their single-origin coffee extraction is phenomenal. This is pure craftsmanship, from the La Marzocco machine to the calm interior.",
+    author: "Dr. Vikramaditya Rao",
+    role: "Local Gastronomic Critic",
+  },
+  {
+    quote: "A peaceful sanctuary on Nandanvan Road. Exceptional ceremonial matcha, sublime tiramisu, and late-night hospitality until 2:30 AM.",
+    author: "Priya Deshmukh",
+    role: "Lifestyle Journalist",
+  },
+];
 
-const Countdown = () => {
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, mins: 0, secs: 0 });
-
-  useEffect(() => {
-    const target = new Date('2026-06-01T08:30:00+05:30');
-    const interval = setInterval(() => {
-      const now = new Date();
-      const diff = target.getTime() - now.getTime();
-      
-      if (diff > 0) {
-        setTimeLeft({
-          days: Math.floor(diff / 86400000),
-          hours: Math.floor((diff % 86400000) / 3600000),
-          mins: Math.floor((diff % 3600000) / 60000),
-          secs: Math.floor((diff % 60000) / 1000),
-        });
-      } else {
-        clearInterval(interval);
-      }
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
-  return (
-    <div className="flex gap-4 md:gap-8 justify-center">
-      {Object.entries(timeLeft).map(([label, value]) => (
-        <div key={label} className="flex flex-col items-center">
-          <span className="font-heading text-3xl md:text-5xl text-brand-gold mb-1">{value.toString().padStart(2, '0')}</span>
-          <span className="text-[10px] uppercase tracking-widest text-brand-ivory/40">{label}</span>
-        </div>
-      ))}
-    </div>
-  );
-};
-
-// --- Page Root ---
+// --- Page Component ---
 
 export default function HomePage() {
   return (
-    <main className="relative min-h-screen overflow-x-hidden bg-brand-black">
+    <main className="relative min-h-screen bg-[#120A07] text-[#F4E7D7] overflow-x-hidden selection:bg-[#A37945] selection:text-white">
       <Navbar />
       <GrainOverlay />
 
-      {/* Hero Section: Atmospheric & Immersive */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      {/* Hero Section: Atmospheric, Editorial, Minimal */}
+      <section className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden pt-20">
         <div className="absolute inset-0 z-0">
           <Image 
             src="/images/hero_coffee.jpg"
-            alt="Atmospheric Specialty Coffee"
+            alt="CAELIO Specialty Coffee Sanctuary"
             fill
-            className="object-cover opacity-40 scale-105"
+            className="object-cover opacity-35 scale-105 transition-transform duration-10000 hover:scale-100"
             priority
             referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-brand-black/80 via-transparent to-brand-black" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#120A07]/90 via-[#120A07]/40 to-[#120A07]" />
         </div>
 
-        <div className="container mx-auto px-6 relative z-10 text-center">
+        <div className="max-w-6xl mx-auto px-6 relative z-10 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <div className="mb-8 inline-flex items-center gap-3 px-4 py-1.5 border border-brand-gold/30 rounded-full text-[10px] uppercase tracking-[0.4em] text-brand-gold font-bold bg-brand-gold/5 backdrop-blur-sm mx-auto">
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-gold animate-pulse" />
-              Now Open in Nagpur
+            <div className="mb-6 flex justify-center">
+              <CaelioLogo variant="full" size="lg" color="#F4E7D7" taglineColor="#A37945" align="center" />
             </div>
-            
-            <h1 className="font-heading text-6xl md:text-8xl lg:text-9xl tracking-tighter text-brand-ivory mb-8 leading-none">
-              SKY<span className="text-brand-gold text-outline">-</span>BORN<br/>
-              EARTH<span className="text-brand-gold text-outline">-</span>ROASTED
+
+            <h1 className="font-heading text-5xl md:text-8xl lg:text-9xl tracking-tight text-[#F4E7D7] leading-[0.95] mb-8 uppercase">
+              SKY<span className="text-[#A37945] italic font-editorial lowercase"> - </span>BORN.<br />
+              EARTH<span className="text-[#A37945] italic font-editorial lowercase"> - </span>ROASTED.
             </h1>
-            
-            <p className="max-w-2xl mx-auto text-brand-ivory/70 font-body text-base md:text-xl font-light leading-relaxed tracking-wide mb-12 uppercase text-xs">
-              Nagpur’s first destination for certified specialty coffee and <br className="hidden md:block" /> authentic European artisanal cuisine.
+
+            <p className="max-w-xl mx-auto font-editorial text-lg md:text-2xl text-[#C1B19B] italic leading-relaxed mb-12">
+              &quot;A sanctuary where direct-trade Indian coffee meets European culinary artistry in Nagpur.&quot;
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link href="/menu" className="group relative inline-flex items-center justify-center px-10 py-5 bg-brand-gold text-brand-black font-bold text-[10px] uppercase tracking-[0.3em] overflow-hidden transition-all duration-300 hover:bg-brand-ivory">
-                  Explore Menu <ChevronRight size={14} className="ml-2" />
-                </Link>
-              </motion.div>
-              
-              <Link href="https://share.google/jXbsilyHMCPPEt43T" target="_blank" className="text-brand-ivory hover:text-brand-gold transition-colors text-[10px] uppercase tracking-[0.3em] font-bold flex items-center gap-2 border-b border-transparent hover:border-brand-gold pb-1 px-4">
-                Establish Directions
+            <div className="flex flex-col sm:flex-row gap-5 justify-center items-center font-caption">
+              <Link 
+                href="/menu" 
+                className="px-8 py-4 bg-[#A37945] text-[#120A07] text-[11px] uppercase tracking-[0.25em] font-semibold hover:bg-[#F4E7D7] transition-all duration-300 rounded-sm shadow-xl flex items-center gap-2 group"
+              >
+                Explore Specialty Menu 
+                <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+
+              <Link 
+                href="/contact" 
+                className="px-8 py-4 border border-[#A37945]/40 text-[#F4E7D7] text-[11px] uppercase tracking-[0.25em] hover:bg-[#A37945]/10 hover:border-[#A37945] transition-all duration-300 rounded-sm"
+              >
+                Visit The Sanctuary
               </Link>
             </div>
           </motion.div>
         </div>
 
-        <motion.div 
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 text-brand-gold/50"
-        >
-          <div className="w-[1px] h-12 bg-gradient-to-b from-brand-gold to-transparent mx-auto" />
-        </motion.div>
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-center">
+          <span className="text-[9px] uppercase tracking-[0.3em] text-[#C1B19B]/60 font-caption block mb-2">Scroll</span>
+          <div className="w-px h-10 bg-gradient-to-b from-[#A37945] to-transparent mx-auto animate-pulse" />
+        </div>
       </section>
 
-      <Marquee />
+      {/* Marquee Banner */}
+      <div className="border-y border-[#A37945]/20 bg-[#1C120D] py-5 overflow-hidden whitespace-nowrap">
+        <div className="flex animate-[marquee_35s_linear_infinite]">
+          {[...Array(4)].map((_, i) => (
+            <span key={i} className="font-caption text-xs tracking-[0.35em] uppercase text-[#A37945] mx-8 flex items-center gap-8">
+              <span>SINGLE ORIGIN INDIAN ARABICA</span>
+              <span className="text-[#C1B19B]/30">•</span>
+              <span>FIRST-HARVEST UJI MATCHA</span>
+              <span className="text-[#C1B19B]/30">•</span>
+              <span>48H FERMENTED SOURDOUGH</span>
+              <span className="text-[#C1B19B]/30">•</span>
+              <span>LA MARZOCCO EXTRACTION</span>
+              <span className="text-[#C1B19B]/30">•</span>
+            </span>
+          ))}
+        </div>
+      </div>
 
-      {/* Bento Grid Highlights */}
-      <section className="py-24 bg-brand-black relative">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-            <div className="max-w-xl">
-              <span className="text-brand-gold font-body uppercase tracking-[0.5em] text-[10px] block mb-4 italic">The Collection</span>
-              <h2 className="text-4xl md:text-6xl text-brand-ivory leading-tight font-heading uppercase tracking-tighter">
-                Crafted for <span className="italic text-brand-gold">Connoisseurs</span>
+      {/* Craft Story: Editorial Layout */}
+      <section className="py-28 px-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+          <div className="lg:col-span-5 relative">
+            <div className="relative aspect-[4/5] rounded-xl overflow-hidden border border-[#A37945]/20 shadow-2xl">
+              <Image 
+                src="https://images.unsplash.com/photo-1554118811-1e0d58224f24" 
+                alt="CAELIO Interior Ambience" 
+                fill 
+                sizes="(max-width: 1024px) 100vw, 40vw"
+                className="object-cover grayscale hover:grayscale-0 transition-all duration-1000"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+            <div className="absolute -bottom-6 -right-6 w-36 h-36 border border-[#A37945]/30 rounded-xl -z-10 hidden md:block" />
+          </div>
+
+          <div className="lg:col-span-7 space-y-8">
+            <span className="text-[#A37945] text-[10px] tracking-[0.35em] uppercase font-caption block">
+              OUR CRAFT & PHILOSOPHY
+            </span>
+            <h2 className="font-heading text-4xl md:text-6xl text-[#F4E7D7] leading-[1.1]">
+              A Sanctuary Designed for <br />
+              <span className="italic font-editorial text-[#A37945]">Slow Living & Fine Taste.</span>
+            </h2>
+            <p className="font-body text-[#C1B19B] text-base leading-relaxed">
+              Founded by <strong className="text-[#F4E7D7]">Rohit Patrikar</strong> and <strong className="text-[#F4E7D7]">Shahnawaz Pathan</strong>, CAELIO derives from <em className="italic text-[#A37945]">Caelum</em> — Latin for sky and heaven. Born out of an unyielding obsession with Indian specialty coffee and European cafe culture, CAELIO brings ethically sourced, single-estate Arabica beans from Coorg and Araku Valley directly to Nandanvan Road, Nagpur.
+            </p>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-6 pt-6 border-t border-[#A37945]/15">
+              <div>
+                <span className="font-heading text-3xl text-[#A37945]">100%</span>
+                <p className="font-caption text-[10px] text-[#C1B19B] uppercase tracking-wider mt-1">Traceable Estate Beans</p>
+              </div>
+              <div>
+                <span className="font-heading text-3xl text-[#A37945]">48-Hr</span>
+                <p className="font-caption text-[10px] text-[#C1B19B] uppercase tracking-wider mt-1">Wild Sourdough Ferment</p>
+              </div>
+              <div>
+                <span className="font-heading text-3xl text-[#A37945]">2:30 AM</span>
+                <p className="font-caption text-[10px] text-[#C1B19B] uppercase tracking-wider mt-1">Late Night Sanctuary</p>
+              </div>
+            </div>
+
+            <div className="pt-4">
+              <Link 
+                href="/story" 
+                className="inline-flex items-center gap-2 font-caption text-xs uppercase tracking-[0.25em] text-[#A37945] hover:text-[#F4E7D7] transition-colors border-b border-[#A37945]/30 pb-1"
+              >
+                Read Our Complete Founders Story <ChevronRight size={14} />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Collections */}
+      <section className="py-24 bg-[#1C120D] border-y border-[#A37945]/15 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
+            <div>
+              <span className="text-[#A37945] text-[10px] tracking-[0.35em] uppercase font-caption block mb-3">
+                ARTISANAL CATEGORIES
+              </span>
+              <h2 className="font-heading text-3xl md:text-5xl text-[#F4E7D7]">
+                Featured Collections
               </h2>
             </div>
-            <p className="text-brand-ivory/50 font-body text-xs max-w-xs md:text-right uppercase tracking-widest leading-loose">
-              Every bean. Every ingredient. Every plate. A study in precision.
+            <p className="font-editorial italic text-[#C1B19B] text-lg max-w-sm">
+              Discover our curated offerings crafted with uncompromising standard and passion.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 h-auto md:h-[850px]">
-            {/* Feature 1: Coffee Loft */}
-            <motion.div 
-              whileHover={{ y: -10 }}
-              className="md:col-span-2 md:row-span-2 group relative overflow-hidden bg-neutral-900 border border-brand-gold/10"
-            >
-              <Image 
-                src="/images/bento_vibe.jpg"
-                alt="Specialty Coffee"
-                fill
-                className="object-cover opacity-60 transition-transform duration-700 group-hover:scale-110"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/20 to-transparent" />
-              <div className="absolute bottom-0 left-0 p-10">
-                <span className="text-brand-gold text-[10px] uppercase font-bold tracking-[0.4em] mb-4 block">Certified Specialty</span>
-                <h3 className="text-4xl text-brand-ivory mb-6 font-heading uppercase tracking-tighter">Liquid Wisdom</h3>
-                <p className="text-brand-ivory/60 text-sm max-w-sm mb-8 leading-relaxed">Experience the precision of our Velvet Cappuccinos, Midnight Straight Cold Brews, and single-origin pour-overs.</p>
-                <Link href="/menu#coffee" className="inline-flex items-center gap-4 text-brand-gold text-[10px] uppercase tracking-widest font-bold group border border-brand-gold/20 px-6 py-3 hover:bg-brand-gold hover:text-brand-black transition-all">
-                  Discover Brews <ChevronRight size={14} className="transition-transform group-hover:translate-x-1" />
-                </Link>
-              </div>
-            </motion.div>
-
-            {/* Feature 2: The Sourdough Lab */}
-            <motion.div 
-              whileHover={{ y: -10 }}
-              className="md:col-span-2 group relative overflow-hidden bg-neutral-900 border border-brand-gold/10"
-            >
-              <Image 
-                src="/images/bento_bread.jpg"
-                alt="Artisan Sourdough"
-                fill
-                className="object-cover opacity-60 transition-transform duration-700 group-hover:scale-110"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/20 to-transparent" />
-              <div className="absolute bottom-0 left-0 p-8">
-                <h3 className="text-2xl text-brand-ivory mb-2 font-heading uppercase tracking-widest">Loaves of Art</h3>
-                <p className="text-brand-ivory/60 text-[10px] uppercase tracking-[0.2em] max-w-xs">48-Hour slow fermented heritage sourdoughs.</p>
-              </div>
-            </motion.div>
-
-            {/* Feature 3: Petit Dejeuner */}
-            <motion.div 
-              whileHover={{ y: -10 }}
-              className="md:col-span-1 group relative overflow-hidden bg-neutral-900 border border-brand-gold/10"
-            >
-              <Image 
-                src="/images/bento_breakfast.jpg"
-                alt="European Breakfast"
-                fill
-                className="object-cover opacity-50 transition-transform duration-700 group-hover:scale-110"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/50 to-transparent" />
-              <div className="absolute bottom-0 left-0 p-6">
-                <h3 className="text-lg text-brand-ivory mb-1 font-heading uppercase tracking-widest">Petit Dej</h3>
-                <span className="text-brand-gold text-[9px] uppercase tracking-[0.3em]">Morning Rituals</span>
-              </div>
-            </motion.div>
-
-            {/* Feature 4: Italian Al Fresco */}
-            <motion.div 
-              whileHover={{ y: -10 }}
-              className="md:col-span-1 group relative overflow-hidden bg-neutral-900 border border-brand-gold/10"
-            >
-              <Image 
-                src="/images/bento_pasta.jpg"
-                alt="Italian Pasta"
-                fill
-                className="object-cover opacity-50 transition-transform duration-700 group-hover:scale-110"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/50 to-transparent" />
-              <div className="absolute bottom-0 left-0 p-6">
-                <h3 className="text-lg text-brand-ivory mb-1 font-heading uppercase tracking-widest">Mains</h3>
-                <span className="text-brand-gold text-[9px] uppercase tracking-[0.3em]">Artisanal Pasta</span>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Pairings: Horizontal Scroll with Style */}
-      <section className="py-32 bg-brand-charcoal/10 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 mb-20 text-center">
-          <span className="text-brand-gold font-body uppercase tracking-[0.5em] text-[10px] block mb-6">Curated Symbiosis</span>
-          <h2 className="text-5xl md:text-7xl font-heading uppercase tracking-tighter">Perfect Pairings</h2>
-        </div>
-        
-        <div className="flex gap-12 overflow-x-auto px-[10%] pb-12 no-scrollbar scroll-smooth">
-          {perfectPairings.map((pairing, index) => {
-            const pairingImages = [
-              '/images/pairing_harmony.jpg',
-              '/images/pairing_morning.jpg',
-              '/images/pairing_saigon.jpg',
-              '/images/pairing_royal.jpg',
-              '/images/pairing_street.jpg',
-              '/images/pairing_kyoto.jpg'
-            ];
-            
-            return (
-              <motion.div 
-                key={index} 
-                className="flex-shrink-0 w-[350px] md:w-[450px] group"
-                whileHover={{ y: -15 }}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {featuredCollections.map((col, idx) => (
+              <motion.div
+                key={col.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: idx * 0.1, duration: 0.5 }}
+                viewport={{ once: true }}
+                className="group relative bg-[#120A07] rounded-xl overflow-hidden border border-[#A37945]/15 hover:border-[#A37945]/40 transition-all duration-500 flex flex-col"
               >
-                <div className="relative aspect-[4/5] overflow-hidden border border-brand-gold/10 mb-8 p-3 bg-brand-charcoal/30">
+                <div className="relative aspect-[4/3] overflow-hidden">
                   <Image 
-                    src={pairingImages[index] || "/images/bento_vibe.jpg"}
-                    alt={pairing.tagline}
-                    fill
-                    className="object-cover opacity-60 transition-all duration-1000 group-hover:scale-110 group-hover:opacity-90 grayscale hover:grayscale-0"
+                    src={col.image} 
+                    alt={col.title} 
+                    fill 
+                    sizes="(max-width: 768px) 100vw, 25vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100"
                     referrerPolicy="no-referrer"
                   />
-                  <div className="absolute inset-0 bg-neutral-950/20" />
-                  <div className="absolute top-6 right-6 font-heading text-4xl text-brand-gold/20 select-none">{String(index + 1).padStart(2, '0')}</div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#120A07] via-transparent to-transparent opacity-80" />
                 </div>
-                <div className="px-2">
-                  <h4 className="text-brand-gold text-[10px] uppercase font-bold tracking-[0.4em] mb-3">{pairing.tagline}</h4>
-                  <h3 className="text-brand-ivory text-xl md:text-2xl font-heading mb-4 leading-tight">
-                    {pairing.coffee} <br className="hidden md:block"/> 
-                    <span className="text-brand-gold/40 text-sm font-body italic lowercase mx-2">&</span>
-                    {pairing.food}
-                  </h3>
-                  <p className="text-brand-ivory/50 text-xs font-body leading-relaxed max-w-xs">{pairing.description}</p>
-                  <div className="mt-6 font-body text-brand-gold text-sm tracking-widest">{pairing.comboPrice}</div>
+                <div className="p-6 flex-1 flex flex-col justify-between">
+                  <div>
+                    <span className="text-[9px] font-caption tracking-[0.25em] uppercase text-[#A37945] block mb-1">
+                      {col.tagline}
+                    </span>
+                    <h3 className="font-heading text-xl text-[#F4E7D7] mb-3 group-hover:text-[#A37945] transition-colors">
+                      {col.title}
+                    </h3>
+                    <p className="font-body text-xs text-[#C1B19B] leading-relaxed mb-6">
+                      {col.desc}
+                    </p>
+                  </div>
+                  <Link 
+                    href={col.href} 
+                    className="inline-flex items-center justify-between text-[10px] font-caption uppercase tracking-[0.2em] text-[#F4E7D7] group-hover:text-[#A37945] transition-colors border-t border-[#A37945]/10 pt-4"
+                  >
+                    <span>Explore Collection</span>
+                    <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </Link>
                 </div>
               </motion.div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Atmospheric Philosophy */}
-      <section className="py-32 bg-brand-ivory relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-          <div className="relative group">
-            <div className="aspect-[3/4] relative overflow-hidden transition-all duration-1000 group-hover:p-4">
-              <Image 
-                src="/images/sanctuary_vibe.jpg"
-                alt="The Caelio Experience"
-                fill
-                className="object-cover grayscale hover:grayscale-0 transition-all duration-1000 shadow-2xl"
-                referrerPolicy="no-referrer"
-              />
-            </div>
-            <div className="absolute -bottom-10 -right-10 w-48 h-48 border border-brand-gold/20 -z-10 hidden md:block" />
-            <div className="absolute -top-10 -left-10 w-48 h-48 border border-brand-gold/20 -z-10 hidden md:block" />
-          </div>
-          
-          <div className="space-y-12">
-            <div className="space-y-6">
-              <span className="text-brand-gold font-body uppercase tracking-[0.6em] text-[10px] block">Manifesto</span>
-              <h2 className="text-5xl md:text-7xl font-heading uppercase leading-tight text-neutral-900 tracking-tighter">
-                A Celestial <br/> <span className="italic text-brand-gold">Sanctuary</span>
-              </h2>
-            </div>
-            
-            <p className="text-neutral-600 font-body text-xl font-light leading-relaxed">
-              Caelio (Latin: <span className="italic text-brand-gold font-medium">Of the Heavens</span>) is Nagpur&apos;s defiant step towards a more intentional coffee ritual. We curate beans that have touched the clouds and food that honors the soil.
-            </p>
-
-            <div className="grid grid-cols-2 gap-12 pt-8 border-t border-neutral-200">
-              <div>
-                <span className="text-brand-gold font-bold text-4xl font-heading mb-2 block">100%</span>
-                <p className="text-[9px] text-neutral-400 uppercase tracking-[0.2em] font-bold">Specialty Grade Arabica</p>
-              </div>
-              <div>
-                <span className="text-brand-gold font-bold text-4xl font-heading mb-2 block">48H</span>
-                <p className="text-[9px] text-neutral-400 uppercase tracking-[0.2em] font-bold">Slow-Ferment Sourdough</p>
-              </div>
-            </div>
-
-            <motion.div whileHover={{ x: 10 }}>
-              <Link href="/story" className="inline-flex items-center gap-6 text-neutral-900 text-[10px] uppercase tracking-[0.4em] font-bold group pb-2 border-b-2 border-brand-gold/10 hover:border-brand-gold transition-all">
-                The Origin Story <ChevronRight size={18} className="text-brand-gold" />
-              </Link>
-            </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Modern Location & Experience */}
-      <section className="py-32 bg-brand-black relative">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-          <div className="space-y-12">
-            <h2 className="text-5xl md:text-8xl font-heading uppercase text-brand-ivory leading-none tracking-tighter">
-              VISIT THE <br/><span className="text-brand-gold italic">LOFT</span>.
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-12">
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <MapPin className="text-brand-gold" size={18} />
-                  <h4 className="text-brand-ivory font-bold uppercase text-[10px] tracking-widest">Sanctuary Address</h4>
+      {/* Best Sellers */}
+      <section className="py-28 px-6 max-w-7xl mx-auto">
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <span className="text-[#A37945] text-[10px] tracking-[0.35em] uppercase font-caption block mb-3">
+            SIGNATURE CONCOCTIONS
+          </span>
+          <h2 className="font-heading text-4xl md:text-6xl text-[#F4E7D7] mb-4">
+            Most Loved at CAELIO
+          </h2>
+          <p className="font-editorial italic text-[#C1B19B] text-lg">
+            Our most requested specialty cold brews, ceremonial drinks, and reserve pulls.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {bestSellers.map((item, i) => (
+            <motion.div
+              key={item.name}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1, duration: 0.5 }}
+              viewport={{ once: true }}
+              className="luxury-card rounded-xl overflow-hidden p-5 flex flex-col justify-between group"
+            >
+              <div>
+                <div className="relative aspect-square rounded-lg overflow-hidden mb-5">
+                  <Image 
+                    src={item.image} 
+                    alt={item.name} 
+                    fill 
+                    sizes="(max-width: 768px) 100vw, 25vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute top-3 left-3 bg-[#120A07]/80 backdrop-blur-md px-2.5 py-1 rounded text-[9px] font-caption uppercase tracking-widest text-[#A37945] border border-[#A37945]/30">
+                    {item.tag}
+                  </div>
+                  <div className="absolute bottom-3 right-3 bg-[#A37945] text-[#120A07] px-3 py-1 rounded text-xs font-caption font-bold">
+                    {item.price}
+                  </div>
                 </div>
-                <p className="text-brand-ivory/50 text-sm font-light leading-relaxed">
-                  Near Nandanvan Road,<br />Nagpur, Maharashtra 440008
+
+                <span className="text-[9px] font-caption tracking-[0.25em] uppercase text-[#A37945] block mb-1">
+                  {item.category}
+                </span>
+                <h3 className="font-heading text-lg text-[#F4E7D7] mb-2 group-hover:text-[#A37945] transition-colors">
+                  {item.name}
+                </h3>
+                <p className="font-body text-xs text-[#C1B19B] leading-relaxed mb-6">
+                  {item.desc}
                 </p>
               </div>
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <Clock className="text-brand-gold" size={18} />
-                  <h4 className="text-brand-ivory font-bold uppercase text-[10px] tracking-widest">Ritual Hours</h4>
-                </div>
-                <p className="text-brand-ivory/50 text-sm font-light leading-relaxed">
-                  Daily Open Session:<br />08:30 AM – 02:30 AM
-                </p>
-              </div>
-            </div>
-            
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+
               <Link 
-                href="https://share.google/jXbsilyHMCPPEt43T" 
-                target="_blank"
-                className="inline-flex items-center gap-6 bg-brand-gold text-brand-black px-12 py-6 text-[11px] uppercase tracking-[0.4em] font-bold hover:bg-brand-ivory transition-all shadow-[0_20px_40px_-15px_rgba(201,168,76,0.3)]"
+                href="/menu" 
+                className="w-full py-2.5 border border-[#A37945]/30 text-[#F4E7D7] font-caption text-[10px] uppercase tracking-[0.2em] text-center rounded hover:bg-[#A37945] hover:text-[#120A07] transition-all block"
               >
-                Establish Route <ChevronRight size={16} />
+                Order On Menu
               </Link>
             </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Why Caelio Section */}
+      <section className="py-24 bg-[#1C120D] border-y border-[#A37945]/15 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div className="p-8 border border-[#A37945]/15 rounded-xl bg-[#120A07]/50 space-y-4">
+              <div className="w-12 h-12 rounded-full border border-[#A37945]/30 flex items-center justify-center text-[#A37945]">
+                <Coffee size={24} />
+              </div>
+              <h3 className="font-heading text-xl text-[#F4E7D7]">Single-Estate Terroir</h3>
+              <p className="font-body text-xs text-[#C1B19B] leading-relaxed">
+                We partner directly with family estates in Coorg, Araku Valley, and Chikmagalur. Every bag is traceable down to elevation and micro-climatic harvest dates.
+              </p>
+            </div>
+
+            <div className="p-8 border border-[#A37945]/15 rounded-xl bg-[#120A07]/50 space-y-4">
+              <div className="w-12 h-12 rounded-full border border-[#A37945]/30 flex items-center justify-center text-[#A37945]">
+                <Leaf size={24} />
+              </div>
+              <h3 className="font-heading text-xl text-[#F4E7D7]">Ceremonial Uji Matcha</h3>
+              <p className="font-body text-xs text-[#C1B19B] leading-relaxed">
+                Imported directly from Uji, Kyoto. Shade-grown first harvest leaves stoneground into vivid green powder, whisked traditionally with bamboo chasen.
+              </p>
+            </div>
+
+            <div className="p-8 border border-[#A37945]/15 rounded-xl bg-[#120A07]/50 space-y-4">
+              <div className="w-12 h-12 rounded-full border border-[#A37945]/30 flex items-center justify-center text-[#A37945]">
+                <Flame size={24} />
+              </div>
+              <h3 className="font-heading text-xl text-[#F4E7D7]">48H Wild Sourdough</h3>
+              <p className="font-body text-xs text-[#C1B19B] leading-relaxed">
+                Fermented naturally over two days using a 6-year-old mother culture. Baked daily for dark caramelized crust and airy, complex crumb.
+              </p>
+            </div>
           </div>
-          
-          <div className="relative aspect-square border-l border-brand-gold/10 hidden lg:flex items-center justify-center bg-brand-charcoal/5">
-             <div className="relative w-2/3 aspect-square border border-brand-gold/20 flex flex-col items-center justify-center p-12 text-center group transition-all duration-1000 hover:border-brand-gold">
-                <Stars className="text-brand-gold/20 absolute top-8 left-8" size={32} />
-                <Stars className="text-brand-gold/20 absolute bottom-8 right-8" size={32} />
-                
-                <CaelioLogo variant="icon" iconSize={100} />
-                <h3 className="text-brand-gold font-heading text-2xl tracking-[0.3em] mt-8 mb-4">Caelio Nagpur</h3>
-                <p className="text-brand-ivory/30 text-[9px] uppercase tracking-[0.4em] max-w-xs">Nagpur&apos;s Premier Destination for Specialty Grades & Artisan Craft</p>
-                
-                <div className="absolute top-0 right-0 w-8 h-8 bg-brand-gold scale-0 group-hover:scale-100 transition-transform origin-bottom-left" />
-                <div className="absolute bottom-0 left-0 w-8 h-8 bg-brand-gold scale-0 group-hover:scale-100 transition-transform origin-top-right" />
-             </div>
+        </div>
+      </section>
+
+      {/* Reviews Section */}
+      <section className="py-28 px-6 max-w-7xl mx-auto">
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <span className="text-[#A37945] text-[10px] tracking-[0.35em] uppercase font-caption block mb-3">
+            PATRON TESTIMONIALS
+          </span>
+          <h2 className="font-heading text-4xl text-[#F4E7D7]">
+            Words from Coffee Lovers
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {customerReviews.map((rev, i) => (
+            <div key={i} className="p-8 luxury-card rounded-xl flex flex-col justify-between">
+              <div>
+                <div className="flex gap-1 text-[#A37945] mb-6">
+                  {[...Array(5)].map((_, s) => (
+                    <Star key={s} size={14} fill="#A37945" />
+                  ))}
+                </div>
+                <p className="font-editorial italic text-[#F4E7D7] text-base leading-relaxed mb-6">
+                  &quot;{rev.quote}&quot;
+                </p>
+              </div>
+              <div className="border-t border-[#A37945]/15 pt-4">
+                <span className="font-heading text-sm text-[#F4E7D7] block">{rev.author}</span>
+                <span className="font-caption text-[10px] text-[#C1B19B] uppercase tracking-wider">{rev.role}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Latest From Instagram Section */}
+      <InstagramSection />
+
+      {/* Location & Visit CTA */}
+      <section className="py-28 px-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-5 space-y-8">
+            <span className="text-[#A37945] text-[10px] tracking-[0.35em] uppercase font-caption block">
+              VISIT OUR SANCTUARY
+            </span>
+            <h2 className="font-heading text-4xl md:text-6xl text-[#F4E7D7] leading-tight">
+              Located on <br />
+              <span className="italic font-editorial text-[#A37945]">Nandanvan Road.</span>
+            </h2>
+
+            <div className="space-y-6 font-caption text-xs text-[#C1B19B]">
+              <div className="flex items-start gap-3">
+                <MapPin size={18} className="text-[#A37945] shrink-0 mt-0.5" />
+                <div>
+                  <strong className="text-[#F4E7D7] block text-sm mb-1 font-heading">Address</strong>
+                  Beside LOC, Nandanvan Road, Nagpur, Maharashtra 440008, India
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <Clock size={18} className="text-[#A37945] shrink-0 mt-0.5" />
+                <div>
+                  <strong className="text-[#F4E7D7] block text-sm mb-1 font-heading">Sanctuary Hours</strong>
+                  Monday – Sunday: 08:30 AM – 02:30 AM (Late Night Coffee & Kitchen)
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-4 flex gap-4">
+              <a 
+                href="https://share.google/UOD2FOpGrNZ5a01WK" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="px-6 py-3.5 bg-[#A37945] text-[#120A07] text-[10px] uppercase tracking-[0.25em] font-caption font-bold hover:bg-[#F4E7D7] transition-all rounded-sm flex items-center gap-2"
+              >
+                Get Google Map Directions <ArrowUpRight size={14} />
+              </a>
+              <Link 
+                href="/contact" 
+                className="px-6 py-3.5 border border-[#A37945]/40 text-[#F4E7D7] text-[10px] uppercase tracking-[0.25em] font-caption hover:bg-[#A37945]/10 transition-all rounded-sm"
+              >
+                Reserve A Table
+              </Link>
+            </div>
+          </div>
+
+          <div className="lg:col-span-7 h-[420px] rounded-2xl overflow-hidden border border-[#A37945]/20 shadow-2xl relative">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3721.282570997103!2d79.1175024!3d21.1411516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4c73f32c3f1a5%3A0x6b8dd8d28e08d249!2sNandanvan%20Rd%2C%20Nagpur%2C%20Maharashtra%20440008!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+              width="100%" 
+              height="100%" 
+              style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg) brightness(90%) contrast(110%)' }} 
+              allowFullScreen={false} 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Caelio Coffee House Map Location"
+            />
           </div>
         </div>
       </section>
@@ -443,4 +518,3 @@ export default function HomePage() {
     </main>
   );
 }
-
