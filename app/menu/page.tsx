@@ -190,12 +190,18 @@ const ProductCard = ({ item }: { item: MenuItem }) => {
         </p>
       </div>
 
-      {/* Footer Info / Category Tag */}
-      <div className="pt-3 border-t border-[#C1B19B]/20 flex items-center justify-between text-[10px] uppercase tracking-widest text-[#C1B19B] font-mono">
-        <span>{item.subCategory}</span>
-        <span className="text-[#A37945] font-sans text-[11px] font-medium flex items-center gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity">
-          Specialty Brew <ArrowUpRight size={12} />
-        </span>
+      {/* Footer Info / Zomato Order CTA */}
+      <div className="pt-3 border-t border-[#C1B19B]/20 flex items-center justify-between gap-2">
+        <span className="text-[10px] uppercase tracking-widest text-[#C1B19B] font-mono">{item.subCategory}</span>
+        <a
+          href="https://www.zomato.com/nagpur/caelio-nandanvan/order"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-3 py-1.5 bg-[#E23744] hover:bg-[#3B1F14] text-white font-mono text-[10px] uppercase tracking-wider font-bold rounded-lg transition-all flex items-center gap-1 shadow-xs shrink-0"
+        >
+          <span>Buy Now</span>
+          <ArrowUpRight size={12} />
+        </a>
       </div>
     </motion.article>
   );
@@ -333,6 +339,23 @@ export default function MenuPage() {
           >
             Explore our specialty heirloom coffees, ceremonial matcha, woodfired sourdough selections, and patisserie confections.
           </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="pt-3 flex justify-center"
+          >
+            <a
+              href="https://www.zomato.com/nagpur/caelio-nandanvan/order"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-7 py-3.5 bg-[#E23744] text-white font-mono text-xs uppercase tracking-[0.2em] font-bold rounded-full hover:bg-white hover:text-[#E23744] transition-all shadow-2xl flex items-center gap-2 group"
+            >
+              <span>Order On Zomato (Delivery & Takeaway)</span>
+              <ArrowUpRight size={15} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </a>
+          </motion.div>
         </div>
 
         <div className="absolute bottom-3 left-1/2 -translate-x-1/2 animate-bounce opacity-40 text-[#A37945]">

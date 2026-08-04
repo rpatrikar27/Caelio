@@ -94,20 +94,32 @@ export const Footer = () => {
           <h4 className="font-heading text-[#A37945] tracking-[0.25em] text-xs uppercase mb-6">Explore</h4>
           <ul className="flex flex-col gap-3 text-xs text-[#C1B19B] font-caption">
             {[
-              { label: 'Specialty Menu', href: '/menu' },
-              { label: 'Single Origin Coffee', href: '/coffee' },
-              { label: 'Ceremonial Japanese Matcha', href: '/matcha' },
-              { label: 'Our Story & Philosophy', href: '/story' },
-              { label: 'Why Caelio', href: '/why-us' },
-              { label: 'The Journal & Blog', href: '/blog' }
+              { label: 'Order On Zomato', href: 'https://www.zomato.com/nagpur/caelio-nandanvan/order', external: true },
+              { label: 'Specialty Menu', href: '/menu', external: false },
+              { label: 'Single Origin Coffee', href: '/coffee', external: false },
+              { label: 'Ceremonial Japanese Matcha', href: '/matcha', external: false },
+              { label: 'Our Story & Philosophy', href: '/story', external: false },
+              { label: 'Why Caelio', href: '/why-us', external: false },
+              { label: 'The Journal & Blog', href: '/blog', external: false }
             ].map((link) => (
               <li key={link.label}>
-                <Link 
-                  href={link.href} 
-                  className="group flex items-center gap-2 hover:text-[#F4E7D7] transition-colors block w-fit"
-                >
-                  <span className="transition-transform duration-300 group-hover:translate-x-1">{link.label}</span>
-                </Link>
+                {link.external ? (
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center gap-2 text-[#E23744] hover:text-white transition-colors font-bold w-fit"
+                  >
+                    <span className="transition-transform duration-300 group-hover:translate-x-1">{link.label} ↗</span>
+                  </a>
+                ) : (
+                  <Link 
+                    href={link.href} 
+                    className="group flex items-center gap-2 hover:text-[#F4E7D7] transition-colors block w-fit"
+                  >
+                    <span className="transition-transform duration-300 group-hover:translate-x-1">{link.label}</span>
+                  </Link>
+                )}
               </li>
             ))}
           </ul>

@@ -7,6 +7,7 @@ import { Play, Instagram, ArrowUpRight, Sparkles, Heart, Eye, Volume2 } from 'lu
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { CaelioLogo } from './CaelioLogo';
+import { InstagramGallery } from './InstagramGallery';
 
 // Swiper CSS imports
 import 'swiper/css';
@@ -199,6 +200,9 @@ export function InstagramSection() {
             </Swiper>
           </div>
         )}
+
+        {/* Masonry Instagram Gallery Grid */}
+        <InstagramGallery />
 
         {/* Follow Button Below */}
         <div className="flex flex-col items-center justify-center text-center pt-6 space-y-4">

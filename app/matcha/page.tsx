@@ -150,12 +150,14 @@ export default function MatchaPage() {
                 </p>
               </div>
 
-              <Link 
-                href="/menu#matcha" 
-                className="w-full py-3 bg-[#A37945] text-[#120A07] font-caption text-[10px] uppercase tracking-[0.2em] font-semibold text-center rounded hover:bg-[#F4E7D7] transition-all block"
+              <a 
+                href="https://www.zomato.com/nagpur/caelio-nandanvan/order" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3 bg-[#E23744] text-white font-caption text-[10px] uppercase tracking-[0.2em] font-bold text-center rounded hover:bg-white hover:text-[#E23744] transition-all block shadow-md"
               >
-                Order At Sanctuary
-              </Link>
+                Order On Zomato
+              </a>
             </div>
           ))}
         </div>
