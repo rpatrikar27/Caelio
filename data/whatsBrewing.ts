@@ -43,11 +43,11 @@ export const whatsBrewingData: BrewingAnnouncement[] = [
   {
     id: 'late-night-sanctuary',
     badge: 'Sanctuary Hours',
-    title: 'Late Night Coffee & Kitchen till 2:30 AM',
+    title: 'Late Night Coffee & Kitchen till 1:00 AM',
     description: 'A quiet night-owl sanctuary on Nandanvan Road for deep focus, conversations & espresso.',
     image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd',
     ctaText: 'Visit Us',
     ctaLink: '/contact',
-    date: 'Daily 8:30 AM - 2:30 AM'
+    date: 'Daily 12:00 PM - 1:00 AM'
   }
 ];

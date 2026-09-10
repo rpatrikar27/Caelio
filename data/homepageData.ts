@@ -201,7 +201,7 @@ export const customerReviewsData = [
   },
   {
     id: 'rev-3',
-    quote: "A peaceful sanctuary on Nandanvan Road. Exceptional ceremonial matcha, sublime tiramisu, and late-night hospitality until 2:30 AM.",
+    quote: "A peaceful sanctuary on Nandanvan Road. Exceptional ceremonial matcha, sublime tiramisu, and late-night hospitality until 1:00 AM.",
     author: "Priya Deshmukh",
     role: "Lifestyle Journalist",
     date: "July 2026",

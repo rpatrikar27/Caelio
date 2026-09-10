@@ -56,7 +56,7 @@ const FALLBACK_REELS: ReelItem[] = [
     id: 'reel-5',
     thumbnail: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd',
     permalink: 'https://www.instagram.com/caeliocoffee/',
-    caption: 'Late night coffee & quiet sanctuary moods till 2:30 AM on Nandanvan Road 🌙',
+    caption: 'Late night coffee & quiet sanctuary moods till 1:00 AM on Nandanvan Road 🌙',
     date: 'Jul 18, 2026',
     likes: '3.4k',
     views: '35.1k',
@@ -77,29 +77,31 @@ const FALLBACK_REELS: ReelItem[] = [
 export async function GET() {
   const token = process.env.INSTAGRAM_ACCESS_TOKEN?.trim();
 
-  // If token is missing, empty, or a default placeholder, immediately return fallback
+  // If token is missing or a default placeholder, immediately return fallback
   if (!token || token.startsWith('MY_') || token.startsWith('YOUR_') || token === 'placeholder') {
     return NextResponse.json({
       success: true,
       source: 'fallback',
       account: '@caeliocoffee',
-      reels: FALLBACK_REELS
+      posts: FALLBACK_REELS
     });
   }
 
   try {
+    // Fetch latest 10 items to ensure we have enough after filtering
     const res = await fetch(
-      `https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,permalink,thumbnail_url,timestamp&limit=15&access_token=${token}`,
-      { next: { revalidate: 300 } }
+      `https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,permalink,thumbnail_url,timestamp&limit=10&access_token=${token}`,
+      { 
+        next: { revalidate: 3600 } // Cache for 1 hour
+      }
     );
 
     if (!res.ok) {
-      // Token is invalid, expired, or unconfigured - serve curated fallback silently
       return NextResponse.json({
         success: true,
         source: 'fallback_status_' + res.status,
         account: '@caeliocoffee',
-        reels: FALLBACK_REELS
+        posts: FALLBACK_REELS
       });
     }
 
@@ -110,13 +112,12 @@ export async function GET() {
         success: true,
         source: 'fallback_invalid_data',
         account: '@caeliocoffee',
-        reels: FALLBACK_REELS
+        posts: FALLBACK_REELS
       });
     }
 
-    // Format & filter top 6 reels/videos or media items
+    // Format & filter top 6 posts
     const formatted: ReelItem[] = data.data
-      .filter((item: any) => item.media_type === 'VIDEO' || item.media_type === 'REEL' || item.thumbnail_url || item.media_url)
       .slice(0, 6)
       .map((item: any, idx: number) => {
         const dateObj = item.timestamp ? new Date(item.timestamp) : new Date();
@@ -132,26 +133,24 @@ export async function GET() {
           permalink: item.permalink || 'https://www.instagram.com/caeliocoffee/',
           caption: item.caption || FALLBACK_REELS[idx % 6].caption,
           date: formattedDate,
-          likes: `${(1 + (idx * 0.3)).toFixed(1)}k`,
-          views: `${(10 + (idx * 2.5)).toFixed(1)}k`,
-          duration: '0:20'
+          likes: `${(1 + Math.random() * 2).toFixed(1)}k`, // Randomized stats for aesthetic if not provided by Basic Display API
+          views: `${(10 + Math.random() * 20).toFixed(1)}k`,
+          duration: item.media_type === 'VIDEO' ? '0:20' : undefined
         };
       });
-
-    const reels = formatted.length >= 6 ? formatted : [...formatted, ...FALLBACK_REELS.slice(formatted.length, 6)];
 
     return NextResponse.json({
       success: true,
       source: 'live',
       account: '@caeliocoffee',
-      reels
+      posts: formatted
     });
   } catch (error) {
     return NextResponse.json({
       success: true,
       source: 'fallback_error',
       account: '@caeliocoffee',
-      reels: FALLBACK_REELS
+      posts: FALLBACK_REELS
     });
   }
 }

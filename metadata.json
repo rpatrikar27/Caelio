@@ -1,6 +1,6 @@
 {
   "name": "Caelio Coffee House",
-  "description": "Nagpur's first dedicated specialty coffee house. Indian single-origin beans, Italian & French cuisine. Sky-Born. Earth-Roasted.",
+  "description": "Nagpur's first specialty coffee house and AI-powered journal. Indian single-origin beans, Italian & French cuisine. Sky-Born. Earth-Roasted.",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"

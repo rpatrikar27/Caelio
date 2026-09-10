@@ -7,7 +7,6 @@ import { Play, Instagram, ArrowUpRight, Sparkles, Heart, Eye, Volume2 } from 'lu
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { CaelioLogo } from './CaelioLogo';
-import { InstagramGallery } from './InstagramGallery';
 
 // Swiper CSS imports
 import 'swiper/css';
@@ -26,25 +25,37 @@ export interface ReelItem {
 }
 
 export function InstagramSection() {
-  const [reels, setReels] = useState<ReelItem[]>([]);
+  const [posts, setPosts] = useState<ReelItem[]>([]);
   const [loading, setLoading] = useState(true);
 
+  // Configuration (Could be moved to Firestore later)
+  const config = {
+    enabled: true,
+    heading: 'Follow the Caelio Vibe ☕',
+    subheading: 'Fresh from our Instagram',
+    postCount: 6,
+    refreshInterval: 3600 // 1 hour
+  };
+
   useEffect(() => {
-    async function fetchReels() {
+    async function fetchInstagram() {
+      if (!config.enabled) return;
       try {
         const res = await fetch('/api/instagram');
         const data = await res.json();
-        if (data.success && Array.isArray(data.reels)) {
-          setReels(data.reels.slice(0, 6));
+        if (data.success && Array.isArray(data.posts)) {
+          setPosts(data.posts.slice(0, config.postCount));
         }
       } catch (err) {
-        console.error('Failed to fetch Instagram Reels:', err);
+        console.error('Failed to fetch Instagram posts:', err);
       } finally {
         setLoading(false);
       }
     }
-    fetchReels();
-  }, []);
+    fetchInstagram();
+  }, [config.enabled, config.postCount]);
+
+  if (!config.enabled) return null;
 
   return (
     <section className="relative py-28 px-4 md:px-8 bg-[#120A07] text-[#F4E7D7] border-t border-[#A37945]/20 overflow-hidden">
@@ -60,20 +71,15 @@ export function InstagramSection() {
               <Sparkles size={12} className="text-[#A37945]" />
               <span>Live Feed · @caeliocoffee</span>
             </div>
-
-            <div className="flex items-center gap-3">
-              {/* Secondary Logo Element */}
-              <CaelioLogo variant="full" size="md" color="#F4E7D7" taglineColor="#A37945" align="left" />
-            </div>
-
+            
             <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl tracking-tight text-[#FFF9F5] leading-none">
-              Latest From Instagram
+              {config.heading}
             </h2>
           </div>
 
           <div className="flex flex-col md:items-end gap-2">
             <p className="font-serif italic text-sm md:text-base text-[#C1B19B] max-w-md md:text-right">
-              &quot;Daily glimpses into our micro-batch roasts, ceremonial matchas, and slow living moments on Nandanvan Road.&quot;
+              {config.subheading}
             </p>
             <span className="font-mono text-[11px] text-[#A37945] uppercase tracking-widest flex items-center gap-1.5 pt-1">
               <Instagram size={14} /> Official Account: @caeliocoffee
@@ -81,28 +87,24 @@ export function InstagramSection() {
           </div>
         </div>
 
-        {/* Swiper Reels Carousel */}
+        {/* Swiper Posts Carousel */}
         {loading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 py-8">
-            {[...Array(3)].map((_, i) => (
+          <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-6 gap-6 py-8">
+            {[...Array(6)].map((_, i) => (
               <div
                 key={i}
-                className="aspect-[9/16] max-h-[500px] rounded-2xl bg-[#1C120D] border border-[#A37945]/20 animate-pulse flex flex-col justify-end p-6"
-              >
-                <div className="h-4 bg-[#A37945]/20 rounded w-1/3 mb-2" />
-                <div className="h-6 bg-[#A37945]/20 rounded w-3/4 mb-2" />
-                <div className="h-3 bg-[#A37945]/20 rounded w-1/2" />
-              </div>
+                className="aspect-[4/5] rounded-2xl bg-[#1C120D] border border-[#A37945]/20 animate-pulse"
+              />
             ))}
           </div>
         ) : (
           <div className="swiper-instagram-wrapper relative py-4">
             <Swiper
               modules={[Autoplay, Pagination, Navigation]}
-              loop={true}
+              loop={posts.length >= 6}
               grabCursor={true}
               autoplay={{
-                delay: 3500,
+                delay: 4000,
                 disableOnInteraction: false,
                 pauseOnMouseEnter: true
               }}
@@ -112,97 +114,67 @@ export function InstagramSection() {
               }}
               navigation={true}
               breakpoints={{
-                320: { slidesPerView: 1.15, spaceBetween: 16 },
-                640: { slidesPerView: 2.15, spaceBetween: 20 },
-                1024: { slidesPerView: 3, spaceBetween: 24 },
-                1280: { slidesPerView: 3.5, spaceBetween: 28 }
+                320: { slidesPerView: 1.2, spaceBetween: 16 },
+                640: { slidesPerView: 2.2, spaceBetween: 20 },
+                768: { slidesPerView: 3, spaceBetween: 24 },
+                1024: { slidesPerView: 4, spaceBetween: 24 },
+                1280: { slidesPerView: 6, spaceBetween: 24 }
               }}
               className="!pb-14 !px-1"
             >
-              {reels.map((reel) => (
-                <SwiperSlide key={reel.id}>
-                  <a
-                    href={reel.permalink}
+              {posts.map((post) => (
+                <SwiperSlide key={post.id}>
+                  <motion.a
+                    href={post.permalink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative block aspect-[9/16] w-full rounded-2xl overflow-hidden bg-[#1C120D] border border-[#C1B19B]/20 hover:border-[#A37945] transition-all duration-500 shadow-2xl hover:shadow-[#3B1F14]/80 cursor-pointer"
+                    whileHover={{ y: -8 }}
+                    className="group relative block aspect-[4/5] w-full rounded-xl overflow-hidden bg-[#1C120D] border border-[#C1B19B]/20 hover:border-[#A37945] transition-all duration-500 shadow-xl cursor-pointer"
                   >
                     {/* Thumbnail Image */}
                     <Image
-                      src={reel.thumbnail}
-                      alt={reel.caption || 'CAELIO Instagram Reel'}
+                      src={post.thumbnail}
+                      alt={post.caption || 'CAELIO Instagram Post'}
                       fill
-                      sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
-                      className="object-cover object-center group-hover:scale-108 transition-transform duration-700 ease-out"
+                      sizes="(max-width: 640px) 80vw, (max-width: 1024px) 30vw, 15vw"
+                      className="object-cover object-center group-hover:scale-110 transition-transform duration-700 ease-out"
                       loading="lazy"
                       referrerPolicy="no-referrer"
                     />
 
-                    {/* Espresso Overlay Gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#120A07] via-[#3B1F14]/40 to-transparent opacity-90 group-hover:opacity-95 transition-opacity duration-300" />
+                    {/* Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#120A07] via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
 
-                    {/* Top Badges */}
-                    <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#120A07]/80 backdrop-blur-md border border-[#A37945]/40 text-[#F4E7D7] font-mono text-[10px] uppercase tracking-wider shadow-md">
-                        <Instagram size={11} className="text-[#A37945]" />
-                        <span>Reel</span>
-                      </span>
-
-                      {reel.duration && (
-                        <span className="px-2 py-0.5 rounded-md bg-black/60 backdrop-blur-md text-[#F4E7D7] font-mono text-[10px] tracking-widest">
-                          {reel.duration}
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Center Animated Play Icon */}
-                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-                      <div className="w-14 h-14 rounded-full bg-[#3B1F14]/70 border border-[#A37945]/60 backdrop-blur-md flex items-center justify-center text-[#F4E7D7] shadow-xl group-hover:scale-110 group-hover:bg-[#A37945] group-hover:text-[#120A07] group-hover:border-white transition-all duration-300">
-                        <Play size={22} className="ml-0.5 fill-current" />
+                    {/* Instagram Icon Overlay */}
+                    <div className="absolute top-3 right-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="p-2 bg-[#120A07]/60 backdrop-blur-md rounded-full border border-[#A37945]/40 text-[#F4E7D7]">
+                        <Instagram size={14} />
                       </div>
                     </div>
 
-                    {/* Bottom Card Content */}
-                    <div className="absolute bottom-0 left-0 right-0 p-5 z-20 space-y-2 text-[#FFF9F5]">
-                      {/* Stats row if available */}
-                      <div className="flex items-center gap-3 text-[11px] font-mono text-[#A37945]">
-                        {reel.likes && (
-                          <span className="flex items-center gap-1">
-                            <Heart size={12} className="fill-[#A37945]" />
-                            {reel.likes}
-                          </span>
-                        )}
-                        {reel.views && (
-                          <span className="flex items-center gap-1">
-                            <Eye size={12} />
-                            {reel.views}
-                          </span>
-                        )}
-                        <span className="ml-auto text-[10px] text-[#C1B19B] font-mono uppercase tracking-widest">
-                          {reel.date}
-                        </span>
+                    {/* Bottom Content */}
+                    <div className="absolute bottom-0 left-0 right-0 p-4 z-20 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                      <div className="flex items-center gap-3 text-[10px] font-mono text-[#A37945] mb-2">
+                        <Heart size={10} className="fill-[#A37945]" />
+                        <span>{post.likes}</span>
+                        <span className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity">{post.date}</span>
                       </div>
-
-                      {/* Short Caption */}
-                      <p className="font-serif text-sm md:text-base text-[#F4E7D7] font-light line-clamp-2 leading-snug group-hover:text-[#FFF9F5] transition-colors">
-                        {reel.caption}
+                      
+                      <p className="font-serif text-[11px] text-[#F4E7D7] line-clamp-2 leading-snug opacity-0 group-hover:opacity-100 transition-opacity">
+                        {post.caption}
                       </p>
-
-                      {/* View on Instagram Indicator */}
-                      <div className="pt-2 flex items-center justify-between text-[11px] font-mono uppercase tracking-wider text-[#A37945] group-hover:text-[#F4E7D7] transition-colors border-t border-white/10">
-                        <span>Watch on Instagram</span>
-                        <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                      
+                      <div className="mt-2 pt-2 border-t border-white/10 flex items-center justify-between text-[9px] font-mono uppercase tracking-widest text-[#A37945] opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span>View on Instagram</span>
+                        <ArrowUpRight size={12} />
                       </div>
                     </div>
-                  </a>
+                  </motion.a>
                 </SwiperSlide>
               ))}
             </Swiper>
           </div>
         )}
-
-        {/* Masonry Instagram Gallery Grid */}
-        <InstagramGallery />
 
         {/* Follow Button Below */}
         <div className="flex flex-col items-center justify-center text-center pt-6 space-y-4">

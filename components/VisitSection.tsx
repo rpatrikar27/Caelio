@@ -52,7 +52,7 @@ export function VisitSection() {
               <div className="space-y-1">
                 <strong className="font-serif text-lg text-[#FFF9F5] block font-medium">Opening Hours</strong>
                 <p className="font-sans text-xs text-[#C1B19B] leading-relaxed">
-                  Monday – Sunday: <span className="text-[#A37945] font-semibold">08:30 AM – 02:30 AM</span> <br />
+                  Monday – Sunday: <span className="text-[#A37945] font-semibold">12:00 PM – 01:00 AM</span> <br />
                   (Late Night Specialty Coffee & Kitchen)
                 </p>
               </div>
@@ -127,6 +127,7 @@ export function VisitSection() {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               title="CAELIO Coffee House Google Map Location"
+              suppressHydrationWarning
             />
           </div>
 

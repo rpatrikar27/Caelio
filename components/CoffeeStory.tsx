@@ -128,7 +128,7 @@ export function CoffeeStory() {
             </div>
             <h4 className="font-serif text-xl text-[#FFF9F5]">Night Sanctuary</h4>
             <p className="font-sans text-xs text-[#C1B19B] leading-relaxed">
-              Open daily till 2:30 AM on Nandanvan Road for creators, thinkers, and late-night coffee lovers.
+              Open daily till 1:00 AM on Nandanvan Road for creators, thinkers, and late-night coffee lovers.
             </p>
           </div>
 

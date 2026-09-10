@@ -38,7 +38,7 @@ export const Footer = () => {
             </p>
           </div>
           <div>
-            <form onSubmit={handleNewsletter} className="flex flex-col sm:flex-row gap-3">
+            <form onSubmit={handleNewsletter} className="flex flex-col sm:flex-row gap-3" suppressHydrationWarning>
               <input 
                 type="email"
                 value={email}
@@ -46,6 +46,7 @@ export const Footer = () => {
                 placeholder="Enter your email address..."
                 required
                 className="bg-[#1C120D] border border-[#A37945]/30 text-[#F4E7D7] placeholder-[#C1B19B]/50 px-5 py-3.5 text-xs font-caption focus:outline-none focus:border-[#A37945] flex-grow rounded-sm"
+                suppressHydrationWarning
               />
               <button
                 type="submit"
@@ -150,10 +151,10 @@ export const Footer = () => {
           <ul className="flex flex-col gap-3 text-xs text-[#C1B19B] font-caption">
             <li className="flex justify-between border-b border-[#A37945]/15 pb-2">
               <span>Monday – Sunday</span>
-              <span className="text-[#F4E7D7] font-medium">8:30 AM – 2:30 AM</span>
+              <span className="text-[#F4E7D7] font-medium">12:00 PM – 1:00 AM</span>
             </li>
             <li className="pt-2 text-[11px] text-[#A37945] italic font-body">
-              Late night coffee & gourmet desserts served until 2:30 AM daily.
+              Late night coffee & gourmet desserts served until 1:00 AM daily.
             </li>
           </ul>
         </div>
