@@ -116,7 +116,7 @@ export default async function BlogPostPage({ params }: Props) {
                   </div>
                 </div>
                 <p className="text-xs text-[#3B1F14]/60 leading-relaxed">
-                  Our automated engine researches, optimizes, and delivers daily updates on Nagpur's coffee culture.
+                  Our automated engine researches, optimizes, and delivers daily updates on Nagpur&apos;s coffee culture.
                 </p>
               </div>
 

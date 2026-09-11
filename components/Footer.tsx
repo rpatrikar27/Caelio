@@ -162,7 +162,13 @@ export const Footer = () => {
 
       {/* Copyright */}
       <div className="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-[#A37945]/15 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] uppercase tracking-[0.2em] text-[#C1B19B]/60 font-caption">
-        <p>© 2026 CAELIO Coffee House. All Rights Reserved.</p>
+        <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
+          <p>© 2026 CAELIO Coffee House. All Rights Reserved.</p>
+          <div className="flex gap-6">
+            <Link href="/privacy" className="hover:text-[#A37945] transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-[#A37945] transition-colors">Terms of Service</Link>
+          </div>
+        </div>
         <p className="flex gap-2">
           <span>Crafted by Founders</span>
           <span className="text-[#A37945]">Rohit Patrikar & Shahnawaz Pathan</span>

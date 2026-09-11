@@ -31,6 +31,16 @@ export default function AdminDashboard() {
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
   const router = useRouter();
 
+  const fetchPosts = async () => {
+    try {
+      const res = await fetch('/api/blog?limit=20');
+      const data = await res.json();
+      if (Array.isArray(data)) setPosts(data);
+    } catch (error) {
+      console.error('Fetch Error:', error);
+    }
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (u) => {
       if (!u) {
@@ -43,16 +53,6 @@ export default function AdminDashboard() {
     });
     return () => unsubscribe();
   }, [router]);
-
-  const fetchPosts = async () => {
-    try {
-      const res = await fetch('/api/blog?limit=20');
-      const data = await res.json();
-      if (Array.isArray(data)) setPosts(data);
-    } catch (error) {
-      console.error('Fetch Error:', error);
-    }
-  };
 
   const handleGenerate = async () => {
     setGenerating(true);
