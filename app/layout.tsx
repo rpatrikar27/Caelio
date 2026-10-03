@@ -1,43 +1,39 @@
 import type { Metadata } from 'next';
-import { Cinzel, Cormorant_Garamond, Lora, Jost } from 'next/font/google';
 import './globals.css';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 
-const cinzel = Cinzel({
-  subsets: ['latin'],
-  variable: '--font-cinzel',
-  weight: ['400', '500', '600', '700'],
-});
-
-const cormorant = Cormorant_Garamond({
-  subsets: ['latin'],
-  variable: '--font-cormorant',
-  style: ['italic'],
-  weight: ['300', '400', '500', '600', '700'],
-});
-
-const lora = Lora({
-  subsets: ['latin'],
-  variable: '--font-lora',
-  style: ['normal', 'italic'],
-  weight: ['400', '500', '600'],
-});
-
-const jost = Jost({
-  subsets: ['latin'],
-  variable: '--font-jost',
-  weight: ['300', '400', '500'],
-});
-
 export const metadata: Metadata = {
-  title: 'CAELIO | Specialty Coffee & Artisanal Food | Nagpur',
-  description: 'Nagpur\'s premier luxury specialty coffee sanctuary. Direct-trade Indian single origins, ceremonial Uji matcha, sourdough fermentation, and European culinary artistry on Nandanvan Road.',
-  keywords: 'CAELIO, Caelio Coffee, specialty coffee Nagpur, best cafe in Nagpur, ceremonial matcha Nagpur, cold brew, artisanal sourdough, Nandanvan Road cafe',
+  metadataBase: new URL('https://www.caeliocoffeehouse.com'),
+  title: {
+    default: 'CAELIO NAVRATRI | Celebrate Shakti. Celebrate Her. Celebrate Together.',
+    template: '%s | CAELIO Coffee House Nagpur',
+  },
+  description: 'Experience CAELIO NAVRATRI: Nagpur\'s luxury coffee sanctuary celebration of Shakti, Garba, and modern Indian culture. Single-origin estate brews, festive kesar creations, and sanctuary open 8:00 AM till 2:00 AM on Nandanvan Road.',
+  keywords: 'CAELIO Navratri, Garba Nagpur, Celebrate Shakti, specialty coffee Nagpur, best cafe in Nagpur, late night cafe Nagpur, kesar nitro cold brew, vrat menu Nagpur',
+  authors: [{ name: 'CAELIO Coffee House' }],
+  creator: 'CAELIO Coffee House',
+  publisher: 'CAELIO Coffee House',
   openGraph: {
-    title: 'CAELIO | Specialty Coffee & Artisanal Food',
-    description: 'Sky-Born. Earth-Roasted. Nagpur\'s Destination for Specialty Coffee & Artisanal Dining.',
-    images: [{ url: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085', width: 1200, height: 630, alt: 'CAELIO Coffee House' }],
+    title: 'CAELIO NAVRATRI | Celebrate Shakti. Celebrate Her. Celebrate Together.',
+    description: 'Where every beat celebrates Shakti. Nagpur\'s Destination for Specialty Coffee, Garba Nights & Artisanal Dining.',
+    url: 'https://www.caeliocoffeehouse.com',
+    siteName: 'CAELIO Coffee House',
+    images: [{ url: '/images/navratri_hero_shakti.jpg', width: 1200, height: 630, alt: 'CAELIO Navratri Experience' }],
+    locale: 'en_IN',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'CAELIO NAVRATRI | Celebrate Shakti. Celebrate Her. Celebrate Together.',
+    description: 'Where every beat celebrates Shakti. Nagpur\'s Destination for Specialty Coffee, Garba Nights & Artisanal Dining.',
+    images: ['/images/navratri_hero_shakti.jpg'],
+  },
+  alternates: {
+    canonical: 'https://www.caeliocoffeehouse.com',
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
@@ -50,7 +46,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "CafeOrCoffeeShop",
     "name": "CAELIO Coffee House",
-    "image": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085",
+    "image": "https://caeliocoffeehouse.com/images/navratri_hero_shakti.jpg",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Beside LOC, Nandanvan Road",
@@ -61,25 +57,22 @@ export default function RootLayout({
     },
     "telephone": "+918208049909",
     "url": "https://caeliocoffeehouse.com",
-    "servesCuisine": ["Specialty Coffee", "Ceremonial Matcha", "Italian", "French", "Artisanal Bakery"],
+    "servesCuisine": ["Specialty Coffee", "Kesar Nitro", "Artisanal Vrat Menu", "Ceremonial Matcha", "Italian", "French"],
     "priceRange": "₹₹",
-    "openingHours": ["Mo-Su 08:30-02:30"],
+    "openingHours": ["Mo-Su 08:00-02:00"],
     "founder": ["Rohit Patrikar", "Shahnawaz Pathan"]
   };
 
   return (
-    <html lang="en" className={`${cinzel.variable} ${cormorant.variable} ${lora.variable} ${jost.variable}`} suppressHydrationWarning>
-      <head>
+    <html lang="en" suppressHydrationWarning>
+      <body className="bg-[#180309] text-[#FDFBF7] antialiased selection:bg-[#D4AF37] selection:text-[#1C040B]" suppressHydrationWarning>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-      </head>
-      <body className="bg-[#120A07] text-[#F4E7D7] antialiased selection:bg-[#A37945] selection:text-white" suppressHydrationWarning>
         {children}
         <WhatsAppButton />
       </body>
     </html>
   );
 }
-

@@ -1,7 +1,39 @@
+# Dependencies
 node_modules/
-.next/
-coverage/
+/.pnp
+.pnp.js
+
+# Testing
+/coverage
+
+# Next.js build output
+/.next/
+/out/
+/build
+
+# Production
+dist
+
+# Misc
 .DS_Store
+*.pem
 *.log
-.env*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env*.local
+.env
+.env.production
+.env.staging
 !.env.example
+
+# Local server runtime & proxy files
+.cloud_sql_proxy*
+.dev.*
+*.pid
+
+# TypeScript cache
+*.tsbuildinfo
+next-env.d.ts

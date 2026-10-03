@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import React, { useState, useMemo, useRef } from 'react';
+import { motion } from 'motion/react';
 import Image from 'next/image';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
@@ -10,27 +10,21 @@ import {
   menuData,
   categoryStructure,
   MenuItem,
-  SubCategoryGroup,
-  MenuCategoryGroup
+  energyBowlAddOns
 } from './data';
 import {
   Search,
   X,
   Coffee,
   Utensils,
-  Cake,
   Sparkles,
   Award,
-  SlidersHorizontal,
   ChevronDown,
-  Info,
-  Heart,
   ArrowUpRight,
-  Filter,
-  Check,
-  Bookmark,
   TrendingUp,
-  CupSoda
+  Bookmark,
+  PlusCircle,
+  Heart
 } from 'lucide-react';
 
 // --- Diet Indicator (Veg / Egg / Non-Veg) ---
@@ -63,7 +57,7 @@ const DietIndicator = ({ type }: { type: 'veg' | 'egg' | 'non-veg' }) => {
     >
       <span className={`w-3 h-3 flex items-center justify-center border ${borderColor} rounded-xs`}>
         {type === 'non-veg' ? (
-          <span className={`w-1.5 h-1.5 bg-rose-600 clip-triangle`} />
+          <span className="w-1.5 h-1.5 bg-rose-600" />
         ) : (
           <span className={`w-1.5 h-1.5 rounded-full ${dotColor}`} />
         )}
@@ -87,8 +81,8 @@ const Badge = ({ tag }: { tag: string }) => {
     icon = <Award size={10} className="mr-1 inline-block text-amber-600" />;
     style = 'bg-amber-50 text-amber-900 border-amber-300 font-medium';
   } else if (tag === 'Signature') {
-    icon = <Sparkles size={10} className="mr-1 inline-block text-[#A37945]" />;
-    style = 'bg-[#3B1F14] text-[#F4E7D7] border-[#3B1F14]';
+    icon = <Sparkles size={10} className="mr-1 inline-block text-[#D4AF37]" />;
+    style = 'bg-[#1C040B] text-[#D4AF37] border-[#D4AF37]/50 font-medium';
   } else if (tag === 'Popular') {
     icon = <TrendingUp size={10} className="mr-1 inline-block" />;
     style = 'bg-blue-50 text-blue-900 border-blue-200';
@@ -118,10 +112,10 @@ const ProductCard = ({ item }: { item: MenuItem }) => {
       transition={{ duration: 0.35 }}
       whileHover={{
         y: -4,
-        boxShadow: '0 16px 32px -12px rgba(59, 31, 20, 0.12)',
-        borderColor: 'rgba(163, 121, 69, 0.4)'
+        boxShadow: '0 16px 32px -12px rgba(28, 4, 11, 0.16)',
+        borderColor: 'rgba(212, 175, 55, 0.5)'
       }}
-      className="group relative bg-[#FFF9F5] border border-[#C1B19B]/30 rounded-2xl p-5 md:p-6 transition-all duration-300 flex flex-col justify-between overflow-hidden"
+      className="group relative bg-[#FFF9F5] border border-[#C1B19B]/30 rounded-2xl p-5 md:p-6 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-xs hover:border-[#D4AF37]"
     >
       {/* Top Media / Header */}
       <div>
@@ -136,8 +130,8 @@ const ProductCard = ({ item }: { item: MenuItem }) => {
               onError={() => setImgError(true)}
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#3B1F14]/40 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
-            
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1C040B]/40 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+
             <div className="absolute top-3 left-3 flex items-center gap-2 z-10">
               <DietIndicator type={item.type} />
             </div>
@@ -151,11 +145,11 @@ const ProductCard = ({ item }: { item: MenuItem }) => {
         ) : (
           /* Premium Minimal Luxury Placeholder Card */
           <div className="relative w-full h-32 md:h-36 rounded-xl overflow-hidden mb-4 bg-gradient-to-br from-[#F4E7D7]/60 via-[#FFF9F5] to-[#F4E7D7]/30 border border-[#C1B19B]/30 flex flex-col items-center justify-center p-4 text-center group-hover:bg-[#F4E7D7]/80 transition-colors">
-            <div className="w-10 h-10 rounded-full bg-[#3B1F14]/5 border border-[#A37945]/20 flex items-center justify-center mb-2 text-[#A37945]">
+            <div className="w-10 h-10 rounded-full bg-[#1C040B]/5 border border-[#D4AF37]/30 flex items-center justify-center mb-2 text-[#D4AF37]">
               {item.category === 'Coffee' ? (
                 <Coffee size={20} />
               ) : item.category === 'Desserts' ? (
-                <Cake size={20} />
+                <Sparkles size={20} />
               ) : (
                 <Utensils size={20} />
               )}
@@ -174,9 +168,17 @@ const ProductCard = ({ item }: { item: MenuItem }) => {
           </div>
         )}
 
+        {/* Tasting Notes (for Special Coffees) */}
+        {item.notes && (
+          <div className="mb-2.5 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/30 text-[#A37945] text-[10px] font-mono uppercase tracking-wider">
+            <Sparkles size={10} className="text-[#D4AF37]" />
+            <span>{item.notes}</span>
+          </div>
+        )}
+
         {/* Title & Price Header */}
         <div className="flex justify-between items-start gap-3 mb-2">
-          <h3 className="font-serif text-lg md:text-xl font-medium text-[#3B1F14] tracking-tight leading-snug group-hover:text-[#A37945] transition-colors">
+          <h3 className="font-serif text-lg md:text-xl font-medium text-[#1C040B] tracking-tight leading-snug group-hover:text-[#A37945] transition-colors">
             {item.name}
           </h3>
           <span className="font-sans font-semibold text-lg md:text-xl text-[#A37945] whitespace-nowrap pt-0.5">
@@ -185,19 +187,19 @@ const ProductCard = ({ item }: { item: MenuItem }) => {
         </div>
 
         {/* Description */}
-        <p className="font-sans text-xs md:text-[13px] text-[#3B1F14]/70 leading-relaxed font-light mb-4">
-          {item.desc || `Artisanal preparation of ${item.name.toLowerCase()} made to order.`}
+        <p className="font-sans text-xs md:text-[13px] text-[#1C040B]/75 leading-relaxed font-light mb-4">
+          {item.desc || `Artisanal preparation of ${item.name.toLowerCase()} made fresh to order.`}
         </p>
       </div>
 
-      {/* Footer Info / Zomato Order CTA */}
+      {/* Footer Info / Buy Now CTA */}
       <div className="pt-3 border-t border-[#C1B19B]/20 flex items-center justify-between gap-2">
         <span className="text-[10px] uppercase tracking-widest text-[#C1B19B] font-mono">{item.subCategory}</span>
         <a
           href="https://www.zomato.com/nagpur/caelio-nandanvan/order"
           target="_blank"
           rel="noopener noreferrer"
-          className="px-3 py-1.5 bg-[#E23744] hover:bg-[#3B1F14] text-white font-mono text-[10px] uppercase tracking-wider font-bold rounded-lg transition-all flex items-center gap-1 shadow-xs shrink-0"
+          className="px-3.5 py-1.5 bg-[#E23744] hover:bg-[#1C040B] text-white font-mono text-[10px] uppercase tracking-wider font-bold rounded-lg transition-all flex items-center gap-1 shadow-xs shrink-0"
         >
           <span>Buy Now</span>
           <ArrowUpRight size={12} />
@@ -219,7 +221,7 @@ export default function MenuPage() {
     return {
       '@context': 'https://schema.org',
       '@type': 'Menu',
-      name: 'CAELIO Specialty Coffee & Bakery Menu',
+      name: 'CAELIO Specialty Coffee & Artisanal Food Menu',
       description: 'The official complete menu of CAELIO Specialty Coffee House & Kitchen in Nagpur.',
       hasMenuSection: categoryStructure.map((cat) => ({
         '@type': 'MenuSection',
@@ -241,57 +243,58 @@ export default function MenuPage() {
     };
   }, []);
 
-  // Filtered menu logic
   const currentCategoryData = useMemo(() => {
-    return categoryStructure.find((c) => c.id === activeCategory) || categoryStructure[1];
+    return categoryStructure.find((c) => c.id === activeCategory) || categoryStructure[0];
   }, [activeCategory]);
 
   const filteredItems = useMemo(() => {
-    return menuData.filter((item) => {
-      // Category check
-      const matchesCat = item.category.toLowerCase() === activeCategory;
+    let items = currentCategoryData.subCategories.flatMap((s) => s.items);
 
-      // SubCategory check
-      const matchesSub = activeSubCategory === 'all' || item.subCategory === activeSubCategory;
+    if (activeSubCategory !== 'all') {
+      const sub = currentCategoryData.subCategories.find((s) => s.name === activeSubCategory);
+      items = sub ? sub.items : [];
+    }
 
-      // Search check
-      const query = searchQuery.trim().toLowerCase();
-      const matchesSearch =
-        !query ||
-        item.name.toLowerCase().includes(query) ||
-        item.desc.toLowerCase().includes(query) ||
-        item.subCategory.toLowerCase().includes(query);
+    if (dietFilter !== 'all') {
+      items = items.filter((item) => item.type === dietFilter);
+    }
 
-      // Diet check
-      const matchesDiet = dietFilter === 'all' || item.type === dietFilter;
+    if (searchQuery.trim() !== '') {
+      const q = searchQuery.toLowerCase().trim();
+      items = items.filter(
+        (item) =>
+          item.name.toLowerCase().includes(q) ||
+          item.desc.toLowerCase().includes(q) ||
+          item.subCategory.toLowerCase().includes(q)
+      );
+    }
 
-      return matchesCat && matchesSub && matchesSearch && matchesDiet;
-    });
-  }, [activeCategory, activeSubCategory, searchQuery, dietFilter]);
+    return items;
+  }, [currentCategoryData, activeSubCategory, dietFilter, searchQuery]);
 
-  // Global search match count across all categories if user is searching
   const globalSearchMatches = useMemo(() => {
     if (!searchQuery.trim()) return [];
-    const query = searchQuery.trim().toLowerCase();
+    const q = searchQuery.toLowerCase().trim();
     return menuData.filter(
       (item) =>
-        (dietFilter === 'all' || item.type === dietFilter) &&
-        (item.name.toLowerCase().includes(query) ||
-          item.desc.toLowerCase().includes(query) ||
-          item.subCategory.toLowerCase().includes(query) ||
-          item.category.toLowerCase().includes(query))
+        item.name.toLowerCase().includes(q) ||
+        item.desc.toLowerCase().includes(q) ||
+        item.subCategory.toLowerCase().includes(q)
     );
-  }, [searchQuery, dietFilter]);
+  }, [searchQuery]);
 
-  // Reset subcategory when category changes
   const handleCategoryChange = (catId: 'food' | 'coffee' | 'desserts') => {
     setActiveCategory(catId);
     setActiveSubCategory('all');
+    setSearchQuery('');
+    if (stickyNavRef.current) {
+      stickyNavRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
-    <main className="min-h-screen bg-[#FFF9F5] text-[#3B1F14] antialiased">
-      {/* Dynamic Schema.org JSON-LD */}
+    <main className="min-h-screen bg-[#FFF9F5] text-[#1C040B] antialiased selection:bg-[#D4AF37] selection:text-[#1C040B]">
+      {/* Schema.org Structured Data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
@@ -300,7 +303,7 @@ export default function MenuPage() {
       <Navbar />
 
       {/* --- Editorial Hero Header --- */}
-      <section className="relative pt-36 pb-20 px-4 md:px-8 bg-gradient-to-b from-[#3B1F14] via-[#2A160E] to-[#3B1F14] text-[#FFF9F5] overflow-hidden">
+      <section className="relative pt-36 pb-20 px-4 md:px-8 bg-gradient-to-b from-[#180309] via-[#2A0812] to-[#180309] text-[#FDFBF7] overflow-hidden">
         <Starfield />
         <GrainOverlay />
 
@@ -309,42 +312,50 @@ export default function MenuPage() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#A37945]/20 border border-[#A37945]/40 text-[#F4E7D7] text-[10px] md:text-xs font-mono uppercase tracking-widest"
+            className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37]/40 text-[#FDFBF7] text-[10px] md:text-xs font-mono uppercase tracking-widest"
           >
-            <Sparkles size={13} className="text-[#A37945]" />
-            Single Source of Truth · Full CAELIO Catalogue
+            <Sparkles size={13} className="text-[#D4AF37]" />
+            Official Menu · Thoughtfully Crafted · Happily Served
           </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-serif text-4xl md:text-7xl lg:text-8xl tracking-tight text-[#F4E7D7] font-normal leading-none"
+            className="font-serif text-4xl md:text-7xl lg:text-8xl tracking-tight text-[#FDFBF7] font-normal leading-none"
           >
             The Menu
           </motion.h1>
 
           <motion.div
             initial={{ opacity: 0, width: 0 }}
-            animate={{ opacity: 1, width: 64 }}
+            animate={{ opacity: 1, width: 72 }}
             transition={{ delay: 0.3, duration: 0.5 }}
-            className="h-[1px] bg-[#A37945] mx-auto my-2"
+            className="h-[1.5px] bg-[#D4AF37] mx-auto my-3"
           />
 
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="font-sans text-xs md:text-sm text-[#C1B19B] max-w-2xl mx-auto font-light leading-relaxed tracking-wide"
+            className="font-serif italic text-base md:text-xl text-[#D4AF37] max-w-2xl mx-auto font-light leading-relaxed tracking-wide"
           >
-            Explore our specialty heirloom coffees, ceremonial matcha, woodfired sourdough selections, and patisserie confections.
+            &ldquo;Where every bite feels like art.&rdquo;
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.35 }}
+            className="font-sans text-xs md:text-sm text-stone-300 max-w-2xl mx-auto font-light leading-relaxed tracking-wide"
+          >
+            Specialty coffee, slow cold brews, ceremonial matcha, artisanal sourdough melts, pastas, gourmet burgers, and fudgy brownie indulgences.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="pt-3 flex justify-center"
+            className="pt-4 flex flex-wrap items-center justify-center gap-3"
           >
             <a
               href="https://www.zomato.com/nagpur/caelio-nandanvan/order"
@@ -352,13 +363,21 @@ export default function MenuPage() {
               rel="noopener noreferrer"
               className="px-7 py-3.5 bg-[#E23744] text-white font-mono text-xs uppercase tracking-[0.2em] font-bold rounded-full hover:bg-white hover:text-[#E23744] transition-all shadow-2xl flex items-center gap-2 group"
             >
-              <span>Order On Zomato (Delivery & Takeaway)</span>
+              <span>Order On Zomato</span>
               <ArrowUpRight size={15} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </a>
+            <a
+              href="https://wa.me/918208049909?text=Hi%20Caelio!%20I%20would%20like%20to%20reserve%20a%20table%20or%20ask%20about%20the%20menu."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-3.5 border border-[#D4AF37]/50 text-[#FDFBF7] font-mono text-xs uppercase tracking-[0.2em] font-semibold rounded-full hover:bg-[#D4AF37]/15 transition-all flex items-center gap-2"
+            >
+              <span>Reserve Table</span>
             </a>
           </motion.div>
         </div>
 
-        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 animate-bounce opacity-40 text-[#A37945]">
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 animate-bounce opacity-40 text-[#D4AF37]">
           <ChevronDown size={20} />
         </div>
       </section>
@@ -370,7 +389,7 @@ export default function MenuPage() {
       >
         <div className="max-w-7xl mx-auto px-4 md:px-8 py-3 space-y-3">
           
-          {/* Main Category Tabs (Coffee, Food, Desserts) */}
+          {/* Main Category Tabs (Coffee & Beverages, Food, Brownie Collection) */}
           <div className="flex items-center justify-center gap-2 md:gap-4 overflow-x-auto no-scrollbar py-1">
             {categoryStructure.map((cat) => {
               const isActive = activeCategory === cat.id;
@@ -382,15 +401,15 @@ export default function MenuPage() {
                   onClick={() => handleCategoryChange(cat.id as any)}
                   className={`relative flex items-center gap-2 px-5 py-2.5 rounded-full text-xs md:text-sm font-sans tracking-wider uppercase transition-all duration-300 cursor-pointer border ${
                     isActive
-                      ? 'bg-[#3B1F14] text-[#F4E7D7] border-[#3B1F14] shadow-sm font-medium'
-                      : 'bg-white text-[#3B1F14]/70 border-[#C1B19B]/30 hover:border-[#A37945] hover:text-[#3B1F14]'
+                      ? 'bg-[#180309] text-[#FDFBF7] border-[#D4AF37] shadow-sm font-medium'
+                      : 'bg-white text-[#1C040B]/70 border-[#C1B19B]/30 hover:border-[#D4AF37] hover:text-[#1C040B]'
                   }`}
                 >
                   <span className="text-base">{cat.icon}</span>
                   <span>{cat.name}</span>
                   <span
                     className={`ml-1 text-[10px] px-2 py-0.5 rounded-full font-mono font-bold ${
-                      isActive ? 'bg-[#A37945] text-[#FFF9F5]' : 'bg-[#F4E7D7] text-[#3B1F14]'
+                      isActive ? 'bg-[#D4AF37] text-[#180309]' : 'bg-[#F4E7D7] text-[#1C040B]'
                     }`}
                   >
                     {itemCount}
@@ -404,33 +423,34 @@ export default function MenuPage() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-3 pt-1 border-t border-[#C1B19B]/20">
             
             {/* Search Input */}
-            <div className="relative w-full md:w-80 bg-white border border-[#C1B19B]/40 rounded-full px-4 py-1.5 flex items-center shadow-xs focus-within:border-[#A37945] transition-colors">
+            <div className="relative w-full md:w-80 bg-white border border-[#C1B19B]/40 rounded-full px-4 py-1.5 flex items-center shadow-xs focus-within:border-[#D4AF37] transition-colors">
               <Search size={15} className="text-[#A37945] mr-2 shrink-0" />
               <input
                 type="text"
-                placeholder="Search menu (e.g. Cold Brew, Omelette, Matcha)..."
+                placeholder="Search menu (e.g. Cold Brew, Truffle, Mont Blanc, Burger)..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-transparent border-none text-xs text-[#3B1F14] focus:outline-none placeholder-[#C1B19B] font-sans"
+                className="w-full bg-transparent border-none text-xs text-[#1C040B] focus:outline-none placeholder-[#C1B19B] font-sans"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="p-1 rounded-full hover:bg-[#F4E7D7]/50 text-[#3B1F14]/50"
+                  className="p-1 rounded-full hover:bg-[#F4E7D7]/50 text-[#1C040B]/50"
+                  aria-label="Clear search"
                 >
                   <X size={13} />
                 </button>
               )}
             </div>
 
-            {/* Sub-Category Pills (for current active category) */}
+            {/* Sub-Category Chips */}
             <div className="w-full md:w-auto overflow-x-auto no-scrollbar flex items-center gap-1.5 py-1">
               <button
                 onClick={() => setActiveSubCategory('all')}
                 className={`px-3 py-1 rounded-full text-[11px] font-sans tracking-wide uppercase transition-all shrink-0 border ${
                   activeSubCategory === 'all'
-                    ? 'bg-[#A37945] text-[#FFF9F5] border-[#A37945] font-semibold'
-                    : 'bg-white text-[#3B1F14]/70 border-[#C1B19B]/30 hover:bg-[#F4E7D7]/40'
+                    ? 'bg-[#180309] text-[#D4AF37] border-[#D4AF37] font-semibold'
+                    : 'bg-white text-[#1C040B]/70 border-[#C1B19B]/30 hover:bg-[#F4E7D7]/40'
                 }`}
               >
                 All {currentCategoryData.name}
@@ -444,8 +464,8 @@ export default function MenuPage() {
                     onClick={() => setActiveSubCategory(sub.name)}
                     className={`px-3 py-1 rounded-full text-[11px] font-sans tracking-wide uppercase transition-all shrink-0 border ${
                       isSubActive
-                        ? 'bg-[#A37945] text-[#FFF9F5] border-[#A37945] font-semibold'
-                        : 'bg-white text-[#3B1F14]/70 border-[#C1B19B]/30 hover:bg-[#F4E7D7]/40'
+                        ? 'bg-[#180309] text-[#D4AF37] border-[#D4AF37] font-semibold'
+                        : 'bg-white text-[#1C040B]/70 border-[#C1B19B]/30 hover:bg-[#F4E7D7]/40'
                     }`}
                   >
                     {sub.name} ({sub.items.length})
@@ -467,8 +487,8 @@ export default function MenuPage() {
                   onClick={() => setDietFilter(diet.value as any)}
                   className={`px-2.5 py-1 rounded-md text-[10px] uppercase tracking-wider font-mono font-bold border transition-all flex items-center gap-1 ${
                     dietFilter === diet.value
-                      ? 'bg-[#3B1F14] text-[#F4E7D7] border-[#3B1F14] shadow-xs'
-                      : 'bg-white text-[#3B1F14]/60 border-[#C1B19B]/30 hover:border-[#A37945]'
+                      ? 'bg-[#180309] text-[#D4AF37] border-[#D4AF37] shadow-xs'
+                      : 'bg-white text-[#1C040B]/60 border-[#C1B19B]/30 hover:border-[#D4AF37]'
                   }`}
                 >
                   {diet.dot && <span className={`w-1.5 h-1.5 rounded-full ${diet.dot}`} />}
@@ -489,7 +509,7 @@ export default function MenuPage() {
         {searchQuery.trim() !== '' ? (
           <div className="space-y-8">
             <div className="border-b border-[#C1B19B]/30 pb-4">
-              <h2 className="font-serif text-2xl md:text-3xl text-[#3B1F14]">
+              <h2 className="font-serif text-2xl md:text-3xl text-[#1C040B]">
                 Search Results for &ldquo;{searchQuery}&rdquo;
               </h2>
               <p className="font-sans text-xs text-[#A37945] font-mono uppercase tracking-widest mt-1">
@@ -500,13 +520,13 @@ export default function MenuPage() {
             {globalSearchMatches.length === 0 ? (
               <div className="text-center py-20 max-w-md mx-auto space-y-4">
                 <Coffee size={40} className="mx-auto text-[#A37945] animate-pulse" />
-                <h3 className="font-serif text-xl text-[#3B1F14]">No creations found</h3>
-                <p className="font-sans text-xs text-[#3B1F14]/70 leading-relaxed font-light">
-                  We couldn&apos;t find any item matching &ldquo;{searchQuery}&rdquo;. Try searching for Frappe, Matcha, Burger, Toast, or Brownie.
+                <h3 className="font-serif text-xl text-[#1C040B]">No creations found</h3>
+                <p className="font-sans text-xs text-[#1C040B]/70 leading-relaxed font-light">
+                  We couldn&apos;t find any item matching &ldquo;{searchQuery}&rdquo;. Try searching for Frappe, Cold Brew, Truffle, Aglio, Burger, Toast, or Brownie.
                 </p>
                 <button
                   onClick={() => { setSearchQuery(''); setDietFilter('all'); }}
-                  className="px-5 py-2 bg-[#3B1F14] text-[#F4E7D7] rounded-full text-xs font-mono uppercase tracking-widest"
+                  className="px-5 py-2 bg-[#180309] text-[#D4AF37] rounded-full text-xs font-mono uppercase tracking-widest"
                 >
                   Clear Search
                 </button>
@@ -527,14 +547,14 @@ export default function MenuPage() {
             <div className="bg-gradient-to-r from-[#F4E7D7]/80 via-[#FFF9F5] to-[#F4E7D7]/40 border border-[#C1B19B]/40 p-6 md:p-8 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-4">
               <div className="space-y-1 text-center md:text-left">
                 <span className="text-[11px] font-mono uppercase tracking-widest text-[#A37945] font-bold">
-                  {currentCategoryData.icon} {currentCategoryData.name} Category
+                  {currentCategoryData.icon} {currentCategoryData.name}
                 </span>
-                <h2 className="font-serif text-2xl md:text-4xl text-[#3B1F14]">
+                <h2 className="font-serif text-2xl md:text-4xl text-[#1C040B]">
                   {currentCategoryData.tagline}
                 </h2>
               </div>
               <div className="text-right shrink-0">
-                <span className="font-mono text-xs text-[#3B1F14]/60 uppercase tracking-widest">
+                <span className="font-mono text-xs text-[#1C040B]/60 uppercase tracking-widest">
                   Showing {filteredItems.length} Products
                 </span>
               </div>
@@ -555,13 +575,13 @@ export default function MenuPage() {
                     <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-[#C1B19B]/30 pb-3 gap-2">
                       <div>
                         <div className="flex items-center gap-2">
-                          <span className="w-2 h-2 rounded-full bg-[#A37945]" />
-                          <h3 className="font-serif text-2xl md:text-3xl text-[#3B1F14] tracking-tight">
+                          <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />
+                          <h3 className="font-serif text-2xl md:text-3xl text-[#1C040B] tracking-tight">
                             {subGroup.name}
                           </h3>
                         </div>
                         {subGroup.description && (
-                          <p className="font-sans text-xs text-[#3B1F14]/60 font-light mt-0.5 ml-4">
+                          <p className="font-sans text-xs text-[#1C040B]/65 font-light mt-0.5 ml-4">
                             {subGroup.description}
                           </p>
                         )}
@@ -577,13 +597,35 @@ export default function MenuPage() {
                         <ProductCard key={item.id} item={item} />
                       ))}
                     </div>
+
+                    {/* Add-Ons Box (e.g. for Energy Bowls) */}
+                    {subGroup.addOns && subGroup.addOns.length > 0 && (
+                      <div className="p-4 md:p-5 rounded-2xl bg-amber-50/60 border border-amber-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div className="flex items-center gap-2">
+                          <PlusCircle size={16} className="text-[#A37945]" />
+                          <span className="font-serif font-medium text-sm text-[#1C040B]">
+                            Custom Add-Ons Available
+                          </span>
+                        </div>
+                        <div className="flex flex-wrap gap-2.5">
+                          {subGroup.addOns.map((add) => (
+                            <span
+                              key={add.name}
+                              className="px-3 py-1 rounded-full bg-white border border-amber-200 text-[#1C040B] text-xs font-mono shadow-2xs"
+                            >
+                              {add.name}: <strong className="text-[#A37945]">{add.price}</strong>
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 );
               })
             ) : (
               <div className="space-y-6">
                 <div className="border-b border-[#C1B19B]/30 pb-3">
-                  <h3 className="font-serif text-2xl md:text-3xl text-[#3B1F14]">
+                  <h3 className="font-serif text-2xl md:text-3xl text-[#1C040B]">
                     {activeSubCategory}
                   </h3>
                   <p className="font-sans text-xs text-[#A37945] font-mono uppercase tracking-widest mt-0.5">
@@ -592,15 +634,39 @@ export default function MenuPage() {
                 </div>
 
                 {filteredItems.length === 0 ? (
-                  <div className="py-16 text-center text-[#3B1F14]/50 text-xs font-mono uppercase tracking-widest">
+                  <div className="py-16 text-center text-[#1C040B]/50 text-xs font-mono uppercase tracking-widest">
                     No items match the current diet filter.
                   </div>
                 ) : (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {filteredItems.map((item) => (
-                      <ProductCard key={item.id} item={item} />
-                    ))}
-                  </div>
+                  <>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {filteredItems.map((item) => (
+                        <ProductCard key={item.id} item={item} />
+                      ))}
+                    </div>
+
+                    {/* Check if active subcategory has add-ons */}
+                    {activeSubCategory === 'Energy Bowls' && (
+                      <div className="p-4 md:p-5 rounded-2xl bg-amber-50/60 border border-amber-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 mt-6">
+                        <div className="flex items-center gap-2">
+                          <PlusCircle size={16} className="text-[#A37945]" />
+                          <span className="font-serif font-medium text-sm text-[#1C040B]">
+                            Custom Add-Ons Available
+                          </span>
+                        </div>
+                        <div className="flex flex-wrap gap-2.5">
+                          {energyBowlAddOns.map((add) => (
+                            <span
+                              key={add.name}
+                              className="px-3 py-1 rounded-full bg-white border border-amber-200 text-[#1C040B] text-xs font-mono shadow-2xs"
+                            >
+                              {add.name}: <strong className="text-[#A37945]">{add.price}</strong>
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </>
                 )}
               </div>
             )}
@@ -610,18 +676,45 @@ export default function MenuPage() {
 
       </section>
 
-      {/* --- Brand Story Callout --- */}
-      <section className="bg-[#3B1F14] text-[#FFF9F5] py-16 px-4 md:px-8 border-t border-[#A37945]/30">
-        <div className="max-w-4xl mx-auto text-center space-y-4">
-          <span className="text-[10px] font-mono uppercase tracking-widest text-[#A37945]">
-            Nagpur&apos;s Specialty Coffee House
+      {/* --- Brand Story Callout from Official Menu Page 10 & 20 --- */}
+      <section className="bg-[#180309] text-[#FDFBF7] py-16 px-4 md:px-8 border-t border-[#D4AF37]/30 relative overflow-hidden">
+        <div className="max-w-4xl mx-auto text-center space-y-6 relative z-10">
+          <span className="text-[11px] font-mono uppercase tracking-[0.25em] text-[#D4AF37]">
+            More Than A Café · Our Story
           </span>
-          <h2 className="font-serif text-3xl md:text-5xl text-[#F4E7D7]">
-            Crafted with Obsession & Precision
+          <h2 className="font-serif text-3xl md:text-5xl text-[#FDFBF7] font-normal">
+            &ldquo;Good Food. Brighter Days. Better Coffee, Happier People.&rdquo;
           </h2>
-          <p className="font-sans text-xs md:text-sm text-[#C1B19B] font-light leading-relaxed max-w-2xl mx-auto">
-            Every item on this single-source-of-truth menu is prepared fresh to order using certified heirloom coffee beans, stoneground Uji matcha, organic eggs, and slow-fermented sourdoughs.
+          <p className="font-sans text-xs md:text-sm text-stone-300 font-light leading-relaxed max-w-2xl mx-auto">
+            Caelio was born from a simple thought – that great coffee and good food have the power to bring people closer, create better conversations and make everyday moments feel a little more special.
           </p>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 text-center">
+            <div className="p-4 rounded-xl border border-[#D4AF37]/20 bg-[#2A0812]/50">
+              <span className="block font-serif text-sm text-[#D4AF37] font-semibold mb-1">Specialty Coffee</span>
+              <span className="text-[11px] text-stone-400 font-light">Classics & Signatures</span>
+            </div>
+            <div className="p-4 rounded-xl border border-[#D4AF37]/20 bg-[#2A0812]/50">
+              <span className="block font-serif text-sm text-[#D4AF37] font-semibold mb-1">Fresh Ingredients</span>
+              <span className="text-[11px] text-stone-400 font-light">Farm-fresh daily</span>
+            </div>
+            <div className="p-4 rounded-xl border border-[#D4AF37]/20 bg-[#2A0812]/50">
+              <span className="block font-serif text-sm text-[#D4AF37] font-semibold mb-1">Artisanal Recipes</span>
+              <span className="text-[11px] text-stone-400 font-light">Slow-crafted dishes</span>
+            </div>
+            <div className="p-4 rounded-xl border border-[#D4AF37]/20 bg-[#2A0812]/50">
+              <span className="block font-serif text-sm text-[#D4AF37] font-semibold mb-1">Made With Care</span>
+              <span className="text-[11px] text-stone-400 font-light">Served with happiness</span>
+            </div>
+          </div>
+
+          <div className="pt-4 text-stone-400 text-xs font-mono">
+            <span>Beside LOC, Nandanvan Road, Nagpur</span>
+            <span className="mx-2">·</span>
+            <span>+91 82080 49909</span>
+            <span className="mx-2">·</span>
+            <span>@caeliocoffee</span>
+          </div>
         </div>
       </section>
 

@@ -5,7 +5,7 @@ import { motion } from 'motion/react';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { Starfield, GrainOverlay } from '@/components/Starfield';
-import { MapPin, Phone, Mail, Instagram, MessageSquare } from 'lucide-react';
+import { MapPin, Phone, Mail, Instagram, MessageSquare, Clock } from 'lucide-react';
 
 export default function ContactPage() {
   const [isSubmitted, setIsSubmitted] = React.useState(false);
@@ -53,6 +53,15 @@ export default function ContactPage() {
                         <div className="font-body space-y-1">
                            <p className="text-xs uppercase tracking-widest text-brand-gold font-bold">Address</p>
                            <p className="text-brand-ivory/70 leading-relaxed">Beside LOC, Nandanvan Road,<br />Nagpur, Maharashtra 440008</p>
+                        </div>
+                     </div>
+                     <div className="flex gap-6 items-start">
+                        <div className="w-12 h-12 rounded-full border border-brand-gold/20 flex items-center justify-center shrink-0">
+                           <Clock className="text-brand-gold" size={20} />
+                        </div>
+                        <div className="font-body space-y-1">
+                           <p className="text-xs uppercase tracking-widest text-brand-gold font-bold">Sanctuary Hours</p>
+                           <p className="text-brand-ivory/70 leading-relaxed">Monday – Sunday: <span className="text-[#D4AF37] font-semibold">8:00 AM – 2:00 AM</span></p>
                         </div>
                      </div>
                      <div className="flex gap-6 items-start">

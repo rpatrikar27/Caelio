@@ -11,43 +11,43 @@ export interface BrewingAnnouncement {
 
 export const whatsBrewingData: BrewingAnnouncement[] = [
   {
-    id: 'matcha-launch',
-    badge: 'New Arrival',
-    title: 'Kyoto First-Harvest Matcha Collection',
-    description: 'Ceremonial grade Uji matcha whisked with oat milk and cold-pressed organic agave.',
-    image: 'https://images.unsplash.com/photo-1536256263959-770b48d82b0a',
-    ctaText: 'Explore Matcha',
-    ctaLink: '/matcha',
-    date: 'Aug 2026'
+    id: 'garba-midnight-hours',
+    badge: 'Extended Hours',
+    title: 'Sanctuary Open 8:00 AM till 2:00 AM Daily',
+    description: 'From morning pour-overs to late-night post-Garba coffee on Nandanvan Road for early risers, dancers, and midnight thinkers.',
+    image: '/images/navratri_garba_midnight.jpg',
+    ctaText: 'View Sanctuary Hours',
+    ctaLink: '#visit-section',
+    date: 'Navratri Nights'
   },
   {
-    id: 'stardust-nitro',
-    badge: 'Seasonal Special',
-    title: 'Stardust Lavender Nitro Cold Brew',
-    description: 'Micro-purged nitrogen cascade with organic French lavender foam and edible gold shimmer.',
-    image: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c',
-    ctaText: 'Discover Brew',
-    ctaLink: '/coffee',
-    date: 'Signature'
+    id: 'kesar-nitro-launch',
+    badge: 'Seasonal Reserve',
+    title: 'Kesar Saffron Nitro Cold Brew with 24k Gold',
+    description: 'Cold-steeped Coorg Arabica infused with Grade-A Kashmiri saffron, cardamom foam, and edible shimmering gold dust.',
+    image: '/images/navratri_saffron_coffee.jpg',
+    ctaText: 'Taste The Brew',
+    ctaLink: '#festive-offerings',
+    date: 'Limited Edition'
   },
   {
-    id: 'sourdough-brunch',
-    badge: 'Artisanal Kitchen',
-    title: '48-Hour Wild Ferment Sourdough Toasts',
-    description: 'Hand-crafted heritage loaves baked fresh daily, paired with avocado & cultured European butter.',
-    image: '/images/bento_bread.jpg',
-    ctaText: 'View Bakery',
-    ctaLink: '/menu#mains',
-    date: 'Baked Daily'
+    id: 'vrat-gourmet-menu',
+    badge: 'Artisanal Vrat Kitchen',
+    title: 'Gourmet Fasting Menu: Amaranth & Lotus Crunch',
+    description: 'Crispy water chestnut galettes, pink rock salt roasted makhana with black truffle, and pure coconut yogurt parfaits.',
+    image: '/images/navratri_vrat_gourmet.jpg',
+    ctaText: 'Explore Vrat Menu',
+    ctaLink: '#festive-offerings',
+    date: 'All 9 Days'
   },
   {
-    id: 'late-night-sanctuary',
-    badge: 'Sanctuary Hours',
-    title: 'Late Night Coffee & Kitchen till 1:00 AM',
-    description: 'A quiet night-owl sanctuary on Nandanvan Road for deep focus, conversations & espresso.',
-    image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd',
-    ctaText: 'Visit Us',
-    ctaLink: '/contact',
-    date: 'Daily 12:00 PM - 1:00 AM'
+    id: 'shakti-women-honor',
+    badge: 'Celebrate Shakti',
+    title: 'Honoring Women in Craft: Free Saffron Shot',
+    description: 'Complimentary welcome espresso or kesar elixir for all female patrons celebrating the festival of Shakti with us on Day 1.',
+    image: '/images/navratri_shakti_portrait.jpg',
+    ctaText: 'Our Shakti Story',
+    ctaLink: '#coffee-story',
+    date: 'Pratipada to Navami'
   }
 ];

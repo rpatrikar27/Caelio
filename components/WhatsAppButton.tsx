@@ -6,14 +6,15 @@ import { motion } from 'motion/react';
 export const WhatsAppButton = () => {
   return (
     <motion.a
-      href="https://wa.me/918208049909?text=Hi%20Caelio%20Coffee%20House!%20I%20would%20like%20to%20know%20more."
+      href="https://wa.me/918208049909?text=Hi%20Caelio%20Coffee%20House!%20I%20would%20like%20to%20reserve%20a%20table%20for%20Caelio%20Navratri%20%26%20Garba."
       target="_blank"
       rel="noopener noreferrer"
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
-      className="fixed bottom-6 right-6 z-[9999] w-14 h-14 bg-[#c9a84c] rounded-full flex items-center justify-center shadow-2xl text-black overflow-hidden group"
+      className="fixed bottom-6 right-6 z-[9999] w-14 h-14 bg-[#D4AF37] rounded-full flex items-center justify-center shadow-2xl text-[#1C040B] overflow-hidden group border border-white/20"
+      aria-label="WhatsApp Concierge"
     >
       <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors" />
       <svg viewBox="0 0 24 24" className="w-8 h-8 fill-current relative z-10">

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Jost:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -8,24 +9,34 @@
   --color-brand-cream: #F4E7D7;
   --color-brand-offwhite: #FFF9F5;
 
-  --color-brand-dark: #120A07;
-  --color-brand-dark-surface: #1C120D;
-  --color-brand-gold: #A37945;
-  --color-brand-black: #120A07;
-  --color-brand-ivory: #F4E7D7;
-  --color-brand-charcoal: #231610;
+  --color-brand-dark: #1C040B;
+  --color-brand-dark-surface: #2A0812;
+  --color-brand-gold: #D4AF37;
+  --color-brand-black: #140308;
+  --color-brand-ivory: #FDFBF7;
+  --color-brand-charcoal: #2D0B20;
 
-  --font-heading: var(--font-cinzel), "Times New Roman MT", "Times New Roman", Georgia, serif;
-  --font-editorial: var(--font-cormorant), var(--font-lora), Georgia, serif;
-  --font-body: var(--font-jost), "Times New Roman MT", "Times New Roman", Georgia, serif;
+  --color-festive-maroon: #2A0812;
+  --color-festive-deepmaroon: #180309;
+  --color-festive-sindoor: #8B1E1E;
+  --color-festive-saffron: #D97706;
+  --color-festive-kesar: #E06D14;
+  --color-festive-gold: #D4AF37;
+  --color-festive-goldlight: #E5C158;
+  --color-festive-plum: #2D0B20;
+  --color-festive-peacock: #0D4C59;
+
+  --font-heading: "Cinzel", "Times New Roman MT", "Times New Roman", Georgia, serif;
+  --font-editorial: "Cormorant Garamond", Georgia, serif;
+  --font-body: "Jost", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-caption: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 @layer base {
   body {
     font-family: var(--font-body);
-    background-color: #120A07;
-    color: #F4E7D7;
+    background-color: #180309;
+    color: #FDFBF7;
     font-weight: 300;
   }
 
@@ -35,7 +46,35 @@
   }
 }
 
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.4;
+    filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.4));
+  }
+  50% {
+    opacity: 0.8;
+    filter: drop-shadow(0 0 24px rgba(212, 175, 55, 0.8));
+  }
+}
+
 @layer utilities {
+  .animate-spin-slow {
+    animation: spinSlow 40s linear infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulseGlow 4s ease-in-out infinite;
+  }
+
   .text-editorial {
     font-family: var(--font-editorial);
     font-style: italic;
@@ -58,31 +97,41 @@
   }
 
   .luxury-card {
-    background: rgba(28, 18, 13, 0.6);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(163, 121, 69, 0.15);
+    background: rgba(42, 8, 18, 0.65);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(212, 175, 55, 0.2);
     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .luxury-card:hover {
-    border-color: rgba(163, 121, 69, 0.4);
+    border-color: rgba(212, 175, 55, 0.5);
     transform: translateY(-4px);
-    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 20px 40px -15px rgba(28, 4, 11, 0.8);
   }
 
   .luxury-border {
-    border: 1px solid rgba(163, 121, 69, 0.2);
+    border: 1px solid rgba(212, 175, 55, 0.25);
   }
 
   .nav-blur {
-    background-color: rgba(18, 10, 7, 0.92);
+    background-color: rgba(24, 3, 9, 0.94);
     backdrop-filter: blur(16px);
   }
 
   .gold-gradient-text {
-    background: linear-gradient(135deg, #F4E7D7 0%, #A37945 50%, #C1B19B 100%);
+    background: linear-gradient(135deg, #FFF6E5 0%, #D4AF37 50%, #E5C158 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-}
 
+  .shakti-gradient-text {
+    background: linear-gradient(135deg, #FFF9F5 0%, #E06D14 45%, #D4AF37 80%, #8B1E1E 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .rangoli-pattern {
+    background-image: radial-gradient(rgba(212, 175, 55, 0.12) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+}

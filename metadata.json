@@ -1,6 +1,6 @@
 {
   "name": "Caelio Coffee House",
-  "description": "Nagpur's first specialty coffee house and AI-powered journal. Indian single-origin beans, Italian & French cuisine. Sky-Born. Earth-Roasted.",
+  "description": "Nagpur's premier specialty coffee house celebrating CAELIO NAVRATRI · Celebrate Shakti. Single-origin estate brews, festive kesar creations, and late-night Garba sanctuary on Nandanvan Road.",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"

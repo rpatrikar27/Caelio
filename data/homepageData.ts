@@ -13,43 +13,48 @@ export interface HeroSlide {
 
 export const heroSlidesData: HeroSlide[] = [
   {
-    id: 'slide-1',
-    badge: 'CAELIO Specialty Coffee',
-    title: 'Crafted Green. Served Calmly.',
-    body: 'Specialty Coffee. Artisanal Food. Moments that stay with you.',
-    buttonText: 'Explore Menu',
-    buttonLink: '/menu',
+    id: 'slide-navratri-shakti',
+    badge: 'CAELIO NAVRATRI · SEASONAL EXPERIENCE',
+    title: 'Celebrate Shakti. Celebrate Her. Celebrate Together.',
+    body: 'Where every beat celebrates Shakti. Highlighting modern Indian grace, divine energy, and artisanal coffee culture.',
+    buttonText: 'Explore Navratri Menu',
+    buttonLink: '#navratri-experience',
+    secondaryButtonText: 'Reserve Garba Table',
+    secondaryButtonLink: '/contact',
+    image: '/images/navratri_hero_shakti.jpg'
+  },
+  {
+    id: 'slide-midnight-garba',
+    badge: 'NAGPUR · OPEN 8:00 AM TILL 2:00 AM',
+    title: 'Where Every Beat Celebrates Shakti',
+    body: 'Post-Garba Midnight Sanctuary. Step off the dance floor into calm amber warmth, cooling hydration, and slow-brewed comfort.',
+    buttonText: 'Midnight Sanctuary',
+    buttonLink: '#midnight-sanctuary',
+    secondaryButtonText: 'View Sanctuary Hours',
+    secondaryButtonLink: '#visit-section',
+    image: '/images/navratri_garba_midnight.jpg'
+  },
+  {
+    id: 'slide-saffron-brew',
+    badge: '9 NIGHTS OF SACRED FLAVORS',
+    title: 'Kesar Saffron Nitro & Vrat Artisanal Fare',
+    body: 'Kashmiri saffron cold brew, green cardamom velvet lattes, and crispy amaranth delicacies crafted for festive devotion.',
+    buttonText: 'Taste The Festive Brews',
+    buttonLink: '#festive-offerings',
+    secondaryButtonText: 'Explore All Menu',
+    secondaryButtonLink: '/menu',
+    image: '/images/navratri_saffron_coffee.jpg'
+  },
+  {
+    id: 'slide-women-craft',
+    badge: 'HONORING THE DIVINE FEMININE',
+    title: 'Women in Coffee, Craft & Community',
+    body: 'Celebrating the incredible female farmers of Western Ghats estates, our master baristas, and every woman shaping our sanctuary.',
+    buttonText: 'Read Our Shakti Story',
+    buttonLink: '#coffee-story',
     secondaryButtonText: 'Visit Sanctuary',
     secondaryButtonLink: '/contact',
-    image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085'
-  },
-  {
-    id: 'slide-2',
-    badge: 'Uji Kyoto Imperial Reserve',
-    title: 'Meet The Matcha Collection',
-    body: 'Ceremonial Grade Matcha. Whisked Daily. Crafted With Intention.',
-    buttonText: 'Discover Matcha',
-    buttonLink: '/matcha',
-    image: 'https://images.unsplash.com/photo-1536256263959-770b48d82b0a'
-  },
-  {
-    id: 'slide-3',
-    badge: 'Digital Concierge',
-    title: 'The Complete Caelio Experience',
-    body: 'Browse Our Menu. Discover Our Story. Experience Specialty Coffee.',
-    buttonText: 'Visit Website',
-    buttonLink: '/menu',
-    image: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24',
-    mockupUrl: 'www.caeliocoffeehouse.com'
-  },
-  {
-    id: 'slide-4',
-    badge: 'Nandanvan Sanctuary',
-    title: 'More Than Coffee.',
-    body: 'Work. Meet. Create. Relax.',
-    buttonText: 'Visit Caelio',
-    buttonLink: '/contact',
-    image: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c'
+    image: '/images/navratri_shakti_portrait.jpg'
   }
 ];
 
@@ -65,49 +70,49 @@ export interface CollectionItem {
 
 export const featuredCollectionsData: CollectionItem[] = [
   {
-    id: 'coffee',
-    title: 'Specialty Coffee',
-    tagline: 'Single Origins & Precision Nitro',
-    image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085',
-    href: '/coffee',
-    desc: 'Ethically traded Arabica from Coorg, Chikmagalur & Araku Valley roasted in micro-batches for unprecedented clarity.',
-    badge: 'Single Origin'
+    id: 'kesar-specials',
+    title: 'Festive Kesar & Spice',
+    tagline: 'Kashmiri Saffron & Single Origin Brews',
+    image: '/images/navratri_saffron_coffee.jpg',
+    href: '#festive-offerings',
+    desc: 'Pure royal saffron infusions, green cardamom velvety cold brews, and single-estate nitro pulls crafted for festive celebration.',
+    badge: 'Navratri Reserve'
+  },
+  {
+    id: 'vrat-gourmet',
+    title: 'Artisanal Vrat Gourmet',
+    tagline: 'Fasting-Friendly European Elegance',
+    image: '/images/navratri_vrat_gourmet.jpg',
+    href: '#festive-offerings',
+    desc: 'Crispy amaranth & water chestnut galettes, pink rock salt roasted makhana with black truffle, and heritage dairy accompaniments.',
+    badge: 'Pure Vrat'
+  },
+  {
+    id: 'shakti-craft',
+    title: 'Honoring Women in Craft',
+    tagline: 'Curated by Master Women Baristas',
+    image: '/images/navratri_shakti_portrait.jpg',
+    href: '#coffee-story',
+    desc: 'Sourced from women-led coffee cooperatives in Coorg and Araku Valley, roasted in micro-lots for immaculate nuance and floral sweetness.',
+    badge: 'Women in Coffee'
   },
   {
     id: 'matcha',
-    title: 'Ceremonial Matcha',
-    tagline: 'First-Harvest Stoneground Uji',
+    title: 'Ceremonial Rose Matcha',
+    tagline: 'Stoneground Kyoto × Kannauj Rose',
     image: 'https://images.unsplash.com/photo-1536256263959-770b48d82b0a',
     href: '/matcha',
-    desc: 'Authentic shade-grown green tea leaves from Kyoto, Japan. Whisked traditionally into velvety lattes and iced elixirs.',
-    badge: 'Kyoto Import'
+    desc: 'Authentic first-harvest shade-grown green tea leaves from Uji, whisked with cold-pressed rose nectar and creamy almond milk.',
+    badge: 'Kyoto × Kannauj'
   },
   {
-    id: 'food',
-    title: 'Artisanal Food',
-    tagline: 'Sourdough & European Kitchen',
-    image: '/images/bento_pasta.jpg',
-    href: '/menu#mains',
-    desc: '48-hour slow fermented sourdough toasts, hand-rolled brioche, truffle pastas, and wood-fired breakfast platters.',
-    badge: '48H Sourdough'
-  },
-  {
-    id: 'desserts',
-    title: 'Handcrafted Desserts',
-    tagline: 'Classic French & Italian Patisserie',
-    image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9',
-    href: '/menu#desserts',
-    desc: 'House-made Savoyardi Tiramisu, Dark Chocolate Ganache Tartlets, and Pistachio Brioche Toast baked fresh every morning.',
-    badge: 'Baked Daily'
-  },
-  {
-    id: 'specials',
-    title: 'Seasonal Specials',
-    tagline: 'Limited Micro-Batch Brews',
-    image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd',
-    href: '/menu#specials',
-    desc: 'Rotational single-estate harvest flights, cascara infusions, and seasonal botanical spritzes curated by our master baristas.',
-    badge: 'Limited Edition'
+    id: 'midnight-garba-fuel',
+    title: 'Post-Garba Midnight Fuel',
+    tagline: 'Open 8:00 AM Till 2:00 AM Daily',
+    image: '/images/navratri_garba_midnight.jpg',
+    href: '#midnight-sanctuary',
+    desc: 'Cooling botanical iced brews, cascara spritzes, and warm spiced hot chocolates for Nagpur night-owls after Dandiya Raas.',
+    badge: 'Midnight Cafe'
   }
 ];
 
@@ -120,91 +125,113 @@ export interface BestSellerProduct {
   image: string;
   badge: string;
   rating?: string;
+  isFestive?: boolean;
 }
 
 export const bestSellerProducts: BestSellerProduct[] = [
   {
-    id: 'stardust-nitro',
-    name: 'Stardust Nitro Cold Brew',
-    category: 'Signature Nitro',
-    price: '₹240',
-    desc: 'Nitrogen-infused cold brew topped with lavender botanical foam and finished with edible gold shimmer.',
-    image: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c',
-    badge: 'Best Seller',
-    rating: '4.9'
-  },
-  {
-    id: 'caelio-cold-coffee',
-    name: 'Caelio Cold Coffee',
-    category: 'House Specialty',
-    price: '₹170',
-    desc: 'Our flagship double-filtered espresso blend shaken over crystal mountain ice blocks with rich farm milk.',
-    image: '/images/hero_coffee.jpg',
-    badge: 'Most Popular',
-    rating: '5.0'
-  },
-  {
-    id: 'eclipse-ristretto',
-    name: 'Eclipse Ristretto Pull',
-    category: 'Reserve Espresso',
+    id: 'mont-blanc',
+    name: '01 | Mont Blanc',
+    category: 'Special Coffee',
     price: '₹220',
-    desc: 'Double ristretto pull over shadow dark chocolate bitters with notes of toasted hazelnut and raw cocoa.',
-    image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd',
-    badge: 'Barista Pick',
-    rating: '4.8'
+    desc: 'Inspired by the elegance of the French dessert. Rich espresso, velvety steamed milk, luscious cream, and delicate notes of chocolate.',
+    image: 'https://images.unsplash.com/photo-1572442388796-11668ba67e53',
+    badge: 'Signature',
+    rating: '5.0'
   },
   {
-    id: 'kyoto-matcha-latte',
-    name: 'Kyoto Ceremonial Matcha',
-    category: 'Uji Japanese Import',
+    id: 'tiger-bomb',
+    name: '02 | Tiger Bomb',
+    category: 'Special Coffee',
     price: '₹240',
-    desc: 'Authentic shade-grown first harvest matcha whisked with oat milk and a touch of organic agave nectar.',
-    image: 'https://images.unsplash.com/photo-1536256263959-770b48d82b0a',
-    badge: 'First Harvest',
+    desc: 'Robust espresso with creamy milk and decadent chocolate notes, delivering an explosive burst of energy and sweetness.',
+    image: 'https://images.unsplash.com/photo-1578314675249-a6910f80cc4e',
+    badge: 'Signature',
     rating: '4.9'
   },
   {
-    id: 'tiramisu-savoyardi',
-    name: 'Artisanal Savoyardi Tiramisu',
-    category: 'Italian Patisserie',
-    price: '₹280',
-    desc: 'Layers of espresso-soaked Savoyardi biscuits, whipped mascarpone cream, and 70% dark Valrhona cocoa.',
-    image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9',
-    badge: 'House Made',
+    id: 'brownie-sizzler',
+    name: '04 | Brownie Sizzler ★',
+    category: 'Brownie Collection',
+    price: '₹299',
+    desc: 'Signature brownie served sizzling hot with vanilla ice cream, rich chocolate sauce and a dramatic tableside finish.',
+    image: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87',
+    badge: 'Bestseller',
     rating: '5.0'
+  },
+  {
+    id: 'truffle-mushroom-pasta',
+    name: 'Truffle & Mushroom Spaghetti',
+    category: 'Pasta & Spaghetti',
+    price: '₹280',
+    desc: 'Creamy truffle mushroom spaghetti cooked al dente and served with golden toasted garlic bread.',
+    image: '/images/bento_pasta.jpg',
+    badge: 'Chef Pick',
+    rating: '4.9'
+  },
+  {
+    id: 'biscoff-cookie-crunch-frappe',
+    name: 'Biscoff Cookie Crunch Frappe',
+    category: 'Signature Frappe',
+    price: '₹280',
+    desc: 'Creamy espresso blended with caramelized Biscoff cookies and chilled farm milk for irresistible crunch.',
+    image: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87',
+    badge: 'Popular',
+    rating: '4.9'
+  },
+  {
+    id: 'vietnamese-velvet-brew',
+    name: 'Vietnamese Velvet Cold Brew',
+    category: 'Artisan Cold Brew',
+    price: '₹190',
+    desc: 'Strong 18-hour slow cold brew blended with creamy sweet milk for an authentic Vietnamese-style delight.',
+    image: '/images/pairing_saigon.jpg',
+    badge: 'Bestseller',
+    rating: '4.9'
+  },
+  {
+    id: 'kesar-saffron-nitro',
+    name: 'Kesar Saffron Gold Nitro',
+    category: 'Festive Reserve',
+    price: '₹260',
+    desc: 'Single-origin cold brew infused with whole Kashmiri saffron, cardamom foam, and genuine edible 24k gold shimmer.',
+    image: '/images/navratri_saffron_coffee.jpg',
+    badge: 'Navratri Special',
+    rating: '5.0',
+    isFestive: true
   }
 ];
 
 export const reviewStats = {
   averageRating: '4.9',
-  totalReviews: '1,280+',
-  satisfactionRate: '99.4%',
-  loyalPatrons: '8,500+'
+  totalReviews: '1,350+',
+  satisfactionRate: '99.6%',
+  loyalPatrons: '9,200+'
 };
 
 export const customerReviewsData = [
   {
     id: 'rev-1',
-    quote: "Caelio is unlike anything else in Nagpur. The Stardust Cold Brew and sourdough toast feel straight out of a boutique cafe in Milan or Kyoto.",
-    author: "Ananya Sharma",
-    role: "Architect & Coffee Connoisseur",
-    date: "July 2026",
+    quote: "Caelio's Navratri experience is truly elevated. The Kesar Saffron Nitro after dancing Garba in Nagpur is sublime. It honors our culture with so much dignity and aesthetic grace.",
+    author: "Tanvi Kulkarni",
+    role: "Classical Kathak Dancer & Patron",
+    date: "Navratri Season 2026",
     rating: 5
   },
   {
     id: 'rev-2',
-    quote: "The attention to detail in their single-origin coffee extraction is phenomenal. This is pure craftsmanship, from the La Marzocco machine to the calm interior.",
+    quote: "Finally, a luxury cafe that celebrates Shakti with genuine depth and reverence. The amaranth galette and the midnight sanctuary vibe till 2 AM are unmatched in Nagpur.",
     author: "Dr. Vikramaditya Rao",
-    role: "Local Gastronomic Critic",
-    date: "June 2026",
+    role: "Gastronomic Critic & Coffee Connoisseur",
+    date: "October 2026",
     rating: 5
   },
   {
     id: 'rev-3',
-    quote: "A peaceful sanctuary on Nandanvan Road. Exceptional ceremonial matcha, sublime tiramisu, and late-night hospitality until 1:00 AM.",
+    quote: "A peaceful sanctuary on Nandanvan Road. Stepping in after a long evening of Dandiya Raas with friends for their warm cardamom latte has become our yearly tradition.",
     author: "Priya Deshmukh",
-    role: "Lifestyle Journalist",
-    date: "July 2026",
+    role: "Lifestyle Journalist & Nagpur Native",
+    date: "Navratri Season 2026",
     rating: 5
   }
 ];
