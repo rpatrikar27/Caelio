@@ -3,11 +3,14 @@ import { Metadata } from 'next';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { BlogCard } from '@/components/BlogCard';
-import { db } from '@/db';
+import { db, isDatabaseConfigured } from '@/db';
 import { posts } from '@/db/schema';
 import { desc, eq } from 'drizzle-orm';
 import { Starfield, GrainOverlay } from '@/components/Starfield';
 import { Coffee, Sparkles } from 'lucide-react';
+import { FALLBACK_JOURNAL_POSTS } from '@/data/journalData';
+
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Caelio Journal | Specialty Coffee & Culture in Nagpur',
@@ -15,11 +18,23 @@ export const metadata: Metadata = {
 };
 
 export default async function BlogListingPage() {
-  const allPosts = await db.select()
-    .from(posts)
-    .where(eq(posts.status, 'published'))
-    .orderBy(desc(posts.publishedAt))
-    .limit(50);
+  let allPosts = FALLBACK_JOURNAL_POSTS;
+
+  if (isDatabaseConfigured()) {
+    try {
+      const dbPosts = await db.select()
+        .from(posts)
+        .where(eq(posts.status, 'published'))
+        .orderBy(desc(posts.publishedAt))
+        .limit(50);
+
+      if (dbPosts && dbPosts.length > 0) {
+        allPosts = dbPosts;
+      }
+    } catch (error) {
+      console.warn('Database query skipped or unavailable during blog render, using curated fallback journal articles:', error);
+    }
+  }
 
   return (
     <main className="min-h-screen bg-[#FFF9F5] antialiased">

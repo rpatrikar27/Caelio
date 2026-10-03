@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { db } from '@/db';
+import { db, isDatabaseConfigured } from '@/db';
 import { posts } from '@/db/schema';
 import { eq, desc, ne, and } from 'drizzle-orm';
 import { Navbar } from '@/components/Navbar';
@@ -11,16 +11,42 @@ import { Footer } from '@/components/Footer';
 import ReactMarkdown from 'react-markdown';
 import { Calendar, Clock, ArrowLeft, Share2, Instagram, ChevronRight } from 'lucide-react';
 import { BlogCard } from '@/components/BlogCard';
+import { FALLBACK_JOURNAL_POSTS } from '@/data/journalData';
+
+export const dynamic = 'force-dynamic';
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
+async function getPostData(slug: string) {
+  if (isDatabaseConfigured()) {
+    try {
+      const [post] = await db.select().from(posts).where(eq(posts.slug, slug));
+      if (post) {
+        const morePosts = await db.select()
+          .from(posts)
+          .where(and(eq(posts.status, 'published'), ne(posts.slug, slug)))
+          .orderBy(desc(posts.publishedAt))
+          .limit(3);
+        return { post, morePosts };
+      }
+    } catch (err) {
+      console.warn('Database query failed for slug, falling back to static journal posts:', err);
+    }
+  }
+
+  // Fallback
+  const post = FALLBACK_JOURNAL_POSTS.find((p) => p.slug === slug);
+  const morePosts = FALLBACK_JOURNAL_POSTS.filter((p) => p.slug !== slug).slice(0, 3);
+  return { post, morePosts };
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const [post] = await db.select().from(posts).where(eq(posts.slug, slug));
+  const { post } = await getPostData(slug);
 
-  if (!post) return { title: 'Post Not Found' };
+  if (!post) return { title: 'Post Not Found | Caelio Journal' };
 
   return {
     title: `${post.metaTitle} | Caelio Coffee`,
@@ -35,15 +61,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
-  const [post] = await db.select().from(posts).where(eq(posts.slug, slug));
+  const { post, morePosts } = await getPostData(slug);
 
   if (!post) notFound();
-
-  const morePosts = await db.select()
-    .from(posts)
-    .where(and(eq(posts.status, 'published'), ne(posts.slug, slug)))
-    .orderBy(desc(posts.publishedAt))
-    .limit(3);
 
   const date = new Date(post.publishedAt!).toLocaleDateString('en-IN', {
     day: 'numeric',
